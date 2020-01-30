@@ -1,15 +1,18 @@
 import showdown from 'showdown'
 var fs = require('fs');
 
-
 const converter = new showdown.Converter()
 
-var contents = JSON.parse(fs.readFileSync('md/document.json', 'utf8'));
+const inDir = process.argv[2]+'/'
+const outFile = process.argv[3]
 
-const readAndConvert = ({content})=>(converter.makeHtml(fs.readFileSync('md/'+content, 'utf8')))
+var contents = JSON.parse(fs.readFileSync(`${inDir}document.json`, 'utf8'));
+
+
+const readAndConvert = ({content})=>(converter.makeHtml(fs.readFileSync(inDir+content, 'utf8')))
 const readTemplates = ({header, footer})=>({
-  header:fs.readFileSync('md/' + header, 'utf8'),
-  footer:fs.readFileSync('md/' + footer, 'utf8')
+  header:fs.readFileSync(inDir + header, 'utf8'),
+  footer:fs.readFileSync(inDir + footer, 'utf8')
 })
 
 const readTabs = (tabs)=>(
@@ -60,4 +63,8 @@ const out = contents.sections.map(readSection).reduce((acc, section)=>{
   `)
 },'')
 const {header, footer} = readTemplates(contents)
-console.log(header,out,footer)
+
+
+const html = "".concat(header,out,footer)
+
+fs.writeFileSync(outFile, html)

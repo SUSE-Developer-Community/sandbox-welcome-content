@@ -9,7 +9,7 @@ To build the html locally, run
 ```
 npm install
 npm run build
-npm run run 
+npm run mdToHtml md out.html
 ```
 
 Likely the Content and the npm project will be split up in the near future.
