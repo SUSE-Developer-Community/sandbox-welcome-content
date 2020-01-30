@@ -1,0 +1,55 @@
+{
+  "title": "Sandbox Introduction",
+  "header":"templates/header.html",
+  "footer":"templates/footer.html",
+  "sections":[
+    {
+      "type": "text",
+      "content": "intro/welcome.md"
+    },
+    {
+      "type": "text",
+      "content": "intro/benefits.md"
+    },
+    {
+      "type": "text",
+      "content": "intro/developer_flow.md"
+    },
+    {
+      "type": "text",
+      "content": "intro/stratos_v_cli.md"
+    },
+    {
+      "type": "tab",
+      "tabs":[
+        {
+          "title":"Stratos",
+          "sections":[
+            {
+              "type": "text",
+              "content": "stratos/intro.md"
+            },
+            {
+              "type": "tab",
+              "tabs":[
+                {
+                  "title":"Java",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "stratos/java.md"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "content": "intro/thankyou.md"
+    }
+  ]
+}
