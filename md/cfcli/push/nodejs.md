@@ -4,7 +4,7 @@ For easy readability, we will use the [express](http://expressjs.com/) framework
 
 Create a new project and install [express](http://expressjs.com/) into it:
 
-```bash 
+```bash
 mkdir nodejs_sample 
 cd nodejs_sample
 npm init -y
@@ -13,7 +13,7 @@ npm install express
 
 Create a new file called index.js
 
-```js index.js
+```js
 const express = require('express')
 const app = express()
  

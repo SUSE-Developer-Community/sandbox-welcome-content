@@ -1,0 +1,11 @@
+{
+  "title": "Introduction to Stratos",
+  "header":"templates/header.html",
+  "footer":"templates/footer.html",
+  "sections":[
+    {
+      "type": "text",
+      "content": "strato/intro.md"
+    }
+  ]
+}

@@ -1,1 +1,3 @@
-# stratos intro
+
+
+Placeholder for startos Introduction
