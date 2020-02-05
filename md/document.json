@@ -23,6 +23,74 @@
       "type": "tab",
       "tabs":[
         {
+          "title":"CLI",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/intro.md"
+            },
+            {
+              "type": "tab",
+              "tabs":[
+                {
+                  "title":"SUSE Linux",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/suse.md"
+                    }
+                  ]
+                },
+                {
+                  "title":"Mac OS X",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/osx.md"
+                    }
+                  ]
+                },
+                {
+                  "title":"Windows",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/windows.md"
+                    }
+                  ]
+                },
+                {
+                  "title":"Debian",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/debian.md"
+                    }
+                  ]
+                },
+                {
+                  "title":"RPM",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/rpm.md"
+                    }
+                  ]
+                },
+                {
+                  "title":"Source",
+                  "sections":[
+                    {
+                      "type": "text",
+                      "content": "cfcli/install/source.md"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "title":"Stratos",
           "sections":[
             {
