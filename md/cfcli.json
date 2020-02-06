@@ -78,6 +78,15 @@
       "type":"tab",
       "tabs":[
         {
+          "title":"Theory",
+          "sections":[
+            {
+              "type":"text",
+              "content":"cfcli/push/theory.md"
+            }
+          ]
+        },
+        {
           "title":"Node.js",
           "sections":[
             {
