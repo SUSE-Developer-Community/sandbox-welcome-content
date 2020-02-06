@@ -104,7 +104,7 @@
       "content":"cfcli/push/browse.md"
     },{
       "type":"text",
-      "content":"cfcli/push/cleanup.md"
+      "content":"cfcli/cleanup.md"
     }
   ]
 }
