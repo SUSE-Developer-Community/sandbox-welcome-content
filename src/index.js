@@ -10,7 +10,14 @@ const outFile = process.argv[4]
 var contents = JSON.parse(fs.readFileSync(inFile, 'utf8'));
 
 
-const readAndConvert = ({content})=>(converter.makeHtml(fs.readFileSync(inDir+content, 'utf8')))
+const readAndConvert = ({content})=>{
+  try{
+    return converter.makeHtml(fs.readFileSync(inDir+content, 'utf8'))
+  } catch(e){
+    console.error("file  %s doesn't  seem to exist", inDir+content)
+  }
+}
+
 const readTemplates = ({header, footer})=>({
   header:fs.readFileSync(inDir + header, 'utf8'),
   footer:fs.readFileSync(inDir + footer, 'utf8')
