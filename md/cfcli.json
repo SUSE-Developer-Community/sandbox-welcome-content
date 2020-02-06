@@ -73,6 +73,9 @@
       "content":"cfcli/apps.md"
     },{
       "type":"text",
+      "content":"cfcli/misc_commands.md"
+    },{
+      "type":"text",
       "content":"cfcli/push/push_intro.md"
     },{
       "type":"tab",
