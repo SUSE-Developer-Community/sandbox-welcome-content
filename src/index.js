@@ -49,10 +49,11 @@ const createTabs = ({tabs, id})=>{
 
 const readSection = (section)=>{
   switch(section.type){
-    case "text":
-      return readAndConvert(section)
     case "tab":
       return createTabs(section)
+    case "text":
+    default:
+      return readAndConvert(section)
   }
 }
 
