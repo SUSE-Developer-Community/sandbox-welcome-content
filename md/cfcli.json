@@ -1,0 +1,110 @@
+{
+  "title": "Introduction to the Cloud Foundry  CLI",
+  "header":"templates/header.html",
+  "footer":"templates/footer.html",
+  "sections":[
+    {
+      "type": "text",
+      "content": "cfcli/intro.md"
+    },
+    {
+      "type": "tab",
+      "tabs":[
+        {
+          "title":"SUSE Linux",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/suse.md"
+            }
+          ]
+        },
+        {
+          "title":"Mac OS X",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/osx.md"
+            }
+          ]
+        },
+        {
+          "title":"Windows",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/windows.md"
+            }
+          ]
+        },
+        {
+          "title":"Debian",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/debian.md"
+            }
+          ]
+        },
+        {
+          "title":"RPM",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/rpm.md"
+            }
+          ]
+        },
+        {
+          "title":"Source",
+          "sections":[
+            {
+              "type": "text",
+              "content": "cfcli/install/source.md"
+            }
+          ]
+        }
+      ]
+    },{
+      "type":"text",
+      "content":"cfcli/login.md"
+    },{
+      "type":"text",
+      "content":"cfcli/apps.md"
+    },{
+      "type":"text",
+      "content":"cfcli/misc_commands.md"
+    },{
+      "type":"text",
+      "content":"cfcli/push/push_intro.md"
+    },{
+      "type":"tab",
+      "tabs":[
+        {
+          "title":"Theory",
+          "sections":[
+            {
+              "type":"text",
+              "content":"cfcli/push/theory.md"
+            }
+          ]
+        },
+        {
+          "title":"Node.js",
+          "sections":[
+            {
+              "type":"text",
+              "content":"cfcli/push/nodejs.md"
+            }
+          ]
+        }
+      ]
+    },{
+      "type":"text",
+      "content":"cfcli/push/browse.md"
+    },{
+      "type":"text",
+      "content":"cfcli/cleanup.md"
+    }
+  ]
+}

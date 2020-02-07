@@ -4,12 +4,20 @@ var fs = require('fs');
 const converter = new showdown.Converter()
 
 const inDir = process.argv[2]+'/'
-const outFile = process.argv[3]
+const inFile = inDir + process.argv[3]
+const outFile = process.argv[4]
 
-var contents = JSON.parse(fs.readFileSync(`${inDir}document.json`, 'utf8'));
+var contents = JSON.parse(fs.readFileSync(inFile, 'utf8'));
 
 
-const readAndConvert = ({content})=>(converter.makeHtml(fs.readFileSync(inDir+content, 'utf8')))
+const readAndConvert = ({content})=>{
+  try{
+    return converter.makeHtml(fs.readFileSync(inDir+content, 'utf8'))
+  } catch(e){
+    console.error("file  %s doesn't  seem to exist", inDir+content)
+  }
+}
+
 const readTemplates = ({header, footer})=>({
   header:fs.readFileSync(inDir + header, 'utf8'),
   footer:fs.readFileSync(inDir + footer, 'utf8')
@@ -48,10 +56,11 @@ const createTabs = ({tabs, id})=>{
 
 const readSection = (section)=>{
   switch(section.type){
-    case "text":
-      return readAndConvert(section)
     case "tab":
       return createTabs(section)
+    case "text":
+    default:
+      return readAndConvert(section)
   }
 }
 
