@@ -8,6 +8,6 @@ If you haven't installed homebrew, install it with:
 
 Then install the package with:
 
-```bash 
+```bash
 brew install cloudfoundry/tap/cf-cli
 ``` 
