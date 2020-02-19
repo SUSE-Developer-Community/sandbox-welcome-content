@@ -1,0 +1,8 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "SUSE Developer CAP Sandbox"
+
+theme = ["hugo-dynamic-tabs", "vanilla-bootstrap-hugo-theme"]
+
+[params]
+  includeBootstrapJs = true
