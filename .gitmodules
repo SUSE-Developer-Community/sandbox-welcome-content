@@ -3,4 +3,4 @@
 	url = https://github.com/rvanhorn/hugo-dynamic-tabs
 [submodule "themes/hugo-bootstrap"]
 	path = themes/hugo-bootstrap
-	url = shttps://github.com/mmrath/hugo-bootstrap
+	url = https://github.com/mmrath/hugo-bootstrap

@@ -4,12 +4,9 @@ you can rapidly iterate on your applciation. This allows you to test code withou
 
 It can be run on a variety of systems. Pick the system you are using to install on:
 
-  
-
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
-      
 {{< tab tabNum="1" >}}
-    To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with zypper:
+To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with zypper:
 
 ```bash 
 sudo zypper in cf-cli
@@ -17,7 +14,7 @@ sudo zypper in cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
-    To install the cf-cli on a Mac, the package is available in homebrew. 
+To install the cf-cli on a Mac, the package is available in homebrew. 
 
 If you haven't installed homebrew, install it with:
 
@@ -32,16 +29,15 @@ brew install cloudfoundry/tap/cf-cli
 ``` 
 
 {{< /tab >}}
-  
 {{< tab tabNum="3" >}}
-    To install the CLI on Windows, download the zip file from the link below and run the installer that's inside it. Warning, the link below will start the download.
+To install the CLI on Windows, download the zip file from the link below and run the installer that's inside it. Warning, the link below will start the download.
 
 [https://packages.cloudfoundry.org/stable?release=windows64&source=github](https://packages.cloudfoundry.org/stable?release=windows64&source=github)
 
 {{< /tab >}}
   
 {{< tab tabNum="4" >}}
-    To install the cf-cli on a Debian based system (Ubunty, Debian, Mint, etc.), add the repo and install with the following script:
+To install the cf-cli on a Debian based system (Ubunty, Debian, Mint, etc.), add the repo and install with the following script:
 
 ```bash 
 wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
@@ -53,7 +49,7 @@ sudo apt-get install cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="5" >}}
-    To install the cf-cli on a RPM based system (Centos, Red Hat, etc.), add the repo and install with the following script:
+To install the cf-cli on a RPM based system (Centos, Red Hat, etc.), add the repo and install with the following script:
 
 ```bash 
 sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo
@@ -63,14 +59,13 @@ sudo yum install cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="6" >}}
-    If none of the other methods work for you, there are already 
+If none of the other methods work for you, there are already 
 
 These can be found at [Here](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries).
 
 Or, if you want to build it yourself, the Golang source can be found [Here](https://github.com/cloudfoundry/cli).
 
 {{< /tab >}}
-  
 {{< /tabs >}}
   
   
@@ -88,8 +83,6 @@ TODO: Maybe have a space that the samples live in as well as the standard dev/te
 With that terminal, you should get the option of which Organization and Space you want to use. For now, select "samples". 
 
 TODO: screenshot
-
-
   
 # Organizations and Spaces
 
@@ -144,7 +137,7 @@ Let's run a simple app (use the tabs to select your language of choice):
 {{< tabs tabTotal="2" tabID="1"  tabName1="Theory" tabName2="Node.js" >}}
       
 {{< tab tabNum="1" >}}
-    There are a few steps that happen when you run `cf push`:
+There are a few steps that happen when you run `cf push`:
 
  * The current working directory gets zipped up
  * This file gets uploaded to the server
@@ -156,7 +149,7 @@ Let's run a simple app (use the tabs to select your language of choice):
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
-    Let's create a quick sample application using node.js! 
+Let's create a quick sample application using node.js! 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
 
@@ -213,7 +206,6 @@ cf push nodejs_sample
 
 
 {{< /tab >}}
-  
 {{< /tabs >}}
   
   
@@ -238,7 +230,6 @@ start command:   npm start
 In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
 
 
-  
 # Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
@@ -258,6 +249,18 @@ cf logs --recent <app name>
 
 TODO: screenshot
 
+
+# Persistence / Service Brokers / Service Binding
+
+TODO: write about persistence
+
+# Updating an Application
+
+TODO: updating
+
+# Debugging
+
+TODO: write about debugging
   
 # Clean up
 
@@ -275,3 +278,7 @@ TODO: see what prompts might happen
 
 TODO: what else should we clean up?
   
+
+# Next Steps
+
+TODO: What Next Steps?
