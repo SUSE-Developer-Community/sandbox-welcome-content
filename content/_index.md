@@ -47,4 +47,5 @@ Each has it's benefits and target user. For example, the GUI allows you to pull 
 
 Which experience would you like to try out first?
 
-  
+[Stratos](/stratos/) or 
+[Command Line](/cli/)
