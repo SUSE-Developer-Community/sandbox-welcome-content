@@ -1,0 +1,3 @@
+[submodule "themes/hugo-dynamic-tabs"]
+	path = themes/hugo-dynamic-tabs
+	url = https://github.com/rvanhorn/hugo-dynamic-tabs
