@@ -1,4 +1,4 @@
-code:before {
+code[data-lang]:before {
     content: attr(data-lang);
     clear: right;
     display: block;
