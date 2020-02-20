@@ -1,0 +1,12 @@
+code:before {
+    content: attr(data-lang);
+    clear: right;
+    display: block;
+    width: fit-content;
+    background: grey;
+    padding: 2px;
+    padding-left: 16px;
+    padding-right: 8px;
+    margin-top: -16px;
+    margin-left: -16px;
+}

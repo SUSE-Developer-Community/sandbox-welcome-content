@@ -209,12 +209,12 @@ cf push nodejs_sample
 {{< /tabs >}}
   
   
-Regardless of which language your wrote your app in, the last few lines of the output should look something like this:
+Regardless of which language your write your app in, the last few lines of the output should look something like this:
 
 ```log
 name:              nodejs_sample
 requested state:   started
-routes:            nodejssample.trial.cap.suse.dev
+routes:            nodejssample.cap.explore.suse.dev
 last uploaded:     Wed 05 Feb 14:57:40 PST 2020
 stack:             sle15
 buildpacks:        nodejs
@@ -228,7 +228,6 @@ start command:   npm start
 ```
 
 In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
-
 
 # Logging
 
@@ -256,7 +255,15 @@ TODO: write about persistence
 
 # Updating an Application
 
-TODO: updating
+As you are developing an app you likely would like to continually write code and see it running easily and quickly.
+
+To update your application you can run your cf push again.
+
+```bash
+cf push
+```
+
+
 
 # Debugging
 
