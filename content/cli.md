@@ -1,6 +1,6 @@
 
 For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
-you can rapidly iterate on your applciation. This allows you to test code without needing to commit every single thought to git. 
+you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
 
 # Installation
 It can be run on a variety of systems. Pick the system you are using to install on:
@@ -38,7 +38,7 @@ To install the CLI on Windows, download the zip file from the link below and run
 {{< /tab >}}
   
 {{< tab tabNum="4" >}}
-To install the cf-cli on a Debian based system (Ubunty, Debian, Mint, etc.), add the repo and install with the following script:
+To install the cf-cli on a Debian based system (Ubuntu, Debian, Mint, etc.), add the repo and install with the following script:
 
 ```bash 
 wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
@@ -114,7 +114,7 @@ cf marketplace
 
 Which will return the services, the plans offered, any description, and which broker is providing the service. These will be revisited later.
 
-To find more information about a single subcommand, use the help command. For example to get more information about the marketplace command, run:
+To find more information about a single sub-command, use the help command. For example to get more information about the marketplace command, run:
 
 ```bash
 cf help marketplace
@@ -143,7 +143,7 @@ There are a few steps that happen when you run `cf push`:
  * The current working directory gets zipped up
  * This file gets uploaded to the server
  * The server starts running the code through a series of "build packs"
- * Each buildpack determines if it can do anything with the code
+ * Each build pack determines if it can do anything with the code
  * If one can, it builds the code into a container and instructs the scheduler how to run the new application
  * The scheduler runs the freshly built application
  
@@ -202,8 +202,11 @@ We need to specify the right start script by editing the package.json file to in
 To run this code, now all you need to do is run:
 
 ```bash
-cf push nodejs_sample
+cf push nodejs_sample --random-route
 ```
+
+Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
+
 {{</tab >}}
 
 {{<tab tabNum="3">}}
@@ -269,7 +272,84 @@ The way around this is to use multiple app names to give a blue green deployment
 An update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Updating in JS
+Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
+and we really want to be running a web service that turns random phrases into `cowsay`.
+
+First let's add the cowsay npm module:
+
+```bash
+npm install cowsay
+```
+
+Then we can edit our index.js to include this new feature:
+
+```js
+const express = require('express')
+const app = express()
+
+const cowsay = require('cowsay')
+
+app.get('/', function (req, res) {
+  const msg = cowsay.say({text:'Helloooo, World!'})
+
+  res.send(`<pre>${msg}</pre>`)
+})
+app.listen(8080)
+```
+
+Then to update the running application we can again run 
+```bash 
+cf push nodejs_sample
+```
+
+Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
+
+{{</tab>}}
+{{<tab tabNum="3">}}
+TODO: Updating in Java
+{{</tab>}}
+{{<tab tabNum="4">}}
+TODO: Updating in Python
+{{</tab>}}
+{{</tabs>}}
+
+
+# Manifest
+
+There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
+
+Create a file called ```manifest.yml``` and fill it with 
+
+{{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{<tab tabNum="1">}}
+
+There are a ton of options that can be set up in the manifest file.
+```yaml
+applications:
+- name: <name>
+  buildpacks: 
+  - <list of build packs can be found with `cf buildpacks`>
+  random-route: true 
+  services:
+  - <Services to connect>
+  env:
+    KEY: VALUE
+```
+
+A more complete list of options can be found [Here](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html)
+
+{{</tab>}}
+{{<tab tabNum="2">}}
+```yaml
+applications:
+- name: nodejs_sample
+  buildpacks: 
+  - nodejs_buildpack
+  random-route: true
+  command: npm run start
+  services:
+  env:
+```
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: Updating in Java
@@ -316,7 +396,7 @@ but also allows little to no inspection of application state.
 
 Tracing is a fantastic way to look back at previous errors and see what might have happened in the past. 
 Hooking up a tracer is definitely useful but out of scope for this guide. 
-There are thrid party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
+There are third party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
 
 So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
 Since any traffic going to the container running our application is routed through a reverse proxy, 
