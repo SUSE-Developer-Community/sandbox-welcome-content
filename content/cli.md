@@ -1,7 +1,8 @@
 
-For day to day use, a developer will likely use the cf-cli often. With it's ability to push any code directly to your developer space, 
+For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
 you can rapidly iterate on your applciation. This allows you to test code without needing to commit every single thought to git. 
 
+# Installation
 It can be run on a variety of systems. Pick the system you are using to install on:
 
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
@@ -134,7 +135,7 @@ Let's run a simple app (use the tabs to select your language of choice):
 
   
 
-{{< tabs tabTotal="2" tabID="1"  tabName1="Theory" tabName2="Node.js" >}}
+{{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
       
 {{< tab tabNum="1" >}}
 There are a few steps that happen when you run `cf push`:
@@ -203,18 +204,25 @@ To run this code, now all you need to do is run:
 ```bash
 cf push nodejs_sample
 ```
+{{</tab >}}
 
+{{<tab tabNum="3">}}
+TODO: Java Example
+{{</tab >}}
 
-{{< /tab >}}
-{{< /tabs >}}
+{{<tab tabNum="4">}}
+TODO: Python Example
+{{</tab >}}
+
+{{</tabs >}}
   
   
-Regardless of which language your wrote your app in, the last few lines of the output should look something like this:
+Regardless of which language your write your app in, the last few lines of the output should look something like this:
 
 ```log
 name:              nodejs_sample
 requested state:   started
-routes:            nodejssample.trial.cap.suse.dev
+routes:            nodejssample.cap.explore.suse.dev
 last uploaded:     Wed 05 Feb 14:57:40 PST 2020
 stack:             sle15
 buildpacks:        nodejs
@@ -228,7 +236,6 @@ start command:   npm start
 ```
 
 In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
-
 
 # Logging
 
@@ -249,18 +256,90 @@ cf logs --recent <app name>
 
 TODO: screenshot
 
+# Updating an Application
+
+As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
+
+It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production.
+
+The way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.  
+
+{{<tabs tabTotal="4" tabID="updating_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{<tab tabNum="1">}}
+An update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
+{{</tab>}}
+{{<tab tabNum="2">}}
+TODO: Updating in JS
+{{</tab>}}
+{{<tab tabNum="3">}}
+TODO: Updating in Java
+{{</tab>}}
+{{<tab tabNum="4">}}
+TODO: Updating in Python
+{{</tab>}}
+{{</tabs>}}
 
 # Persistence / Service Brokers / Service Binding
 
-TODO: write about persistence
+TODO: Write about file persistence
 
-# Updating an Application
+TODO: Explain OSBAPI
 
-TODO: updating
+TODO: Explain Marketplace
+
+TODO: Walkthrough Marketplace and Services
+
+TODO: Explain minibroker
+
+
+{{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{<tab tabNum="1">}}
+TODO: Theory of VCAP_SERVICES
+{{</tab>}}
+{{<tab tabNum="2">}}
+TODO: Reading VCAP_SERVICES in JS
+{{</tab>}}
+{{<tab tabNum="3">}}
+TODO: Reading VCAP_SERVICES in Java
+{{</tab>}}
+{{<tab tabNum="4">}}
+TODO: Reading VCAP_SERVICES in Python
+{{</tab>}}
+{{</tabs>}}
 
 # Debugging
 
-TODO: write about debugging
+There are a few methods of debugging a running application that can be used: logging, tracing, and remote debugging from your IDE.
+
+We've already covered logging, this is an effective but typically painful way to debug application flow. It requires no setup 
+but also allows little to no inspection of application state.
+
+Tracing is a fantastic way to look back at previous errors and see what might have happened in the past. 
+Hooking up a tracer is definitely useful but out of scope for this guide. 
+There are thrid party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
+
+So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
+Since any traffic going to the container running our application is routed through a reverse proxy, 
+we need to be a little clever when attaching a remote debugger to the running application. 
+
+TODO: clean up wording
+
+{{<tabs tabTotal="4" tabID="debugging_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{<tab tabNum="1">}}
+The trick for most languages is to pipe through SSH using `cf ssh`. 
+This will open up an SSH socket and host it on your local computer giving a secure way to access your application
+{{</tab>}}
+{{<tab tabNum="2">}}
+TODO: Debugging in JS
+{{</tab>}}
+{{<tab tabNum="3">}}
+TODO: Debugging in Java
+{{</tab>}}
+{{<tab tabNum="4">}}
+TODO: Debugging in Python
+{{</tab>}}
+{{</tabs>}}
+
   
 # Clean up
 
