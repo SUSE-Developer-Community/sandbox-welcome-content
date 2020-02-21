@@ -374,10 +374,51 @@ TODO: Explain minibroker
 
 {{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
-TODO: Theory of VCAP_SERVICES
+
+Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES.
+
+Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
+
+```json
+{
+  "service-type1":[
+    {
+      "name": "name",
+      "credentials": {
+        "username": "admin",
+        "password": "password"
+      }
+    }
+  ],
+  "service-type2":[
+    {
+      "name": "name",
+      "credentials": {
+        "connectionString":"a:p@path.to/service"
+      }
+    }
+  ]
+}
+```
+
+These can be consumed in your applications code to know what services exist that it can use.
+
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Reading VCAP_SERVICES in JS
+In a Node application, we can consume the services with 
+```js
+const services = JSON.parse(process.env['VCAP_SERVICES'])
+const type = 'type'
+const name = 'name'
+try {
+const {credentials} = services[type].find(({n})=>(n===name))
+}catch(e){
+  console.err(`Service of type ${type} named ${name} not found`)
+}
+```
+
+//TODO: example
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: Reading VCAP_SERVICES in Java
