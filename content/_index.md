@@ -3,6 +3,9 @@
 
 Welcome to the SUSE CAP Sandbox! 
 
+```note
+If you would like to skip the introduction and just get logged in an playing around, [click here](/cli/)
+```
   
 # Key Developer Benefits to Platform as a Service
 

@@ -1,4 +1,6 @@
-
+---
+title: Introduction to the Cloud Foundry Command Line Tool 
+---
 For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
 you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
 
@@ -9,9 +11,9 @@ It can be run on a variety of systems. Pick the system you are using to install 
 {{< tab tabNum="1" >}}
 To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with zypper:
 
-```bash 
+```bash
 sudo zypper in cf-cli
-``` 
+```
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
@@ -68,7 +70,7 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
 
 {{< /tab >}}
 {{< /tabs >}}
-  
+
   
 # Login To Your Account
 
@@ -202,7 +204,7 @@ We need to specify the right start script by editing the package.json file to in
 To run this code, now all you need to do is run:
 
 ```bash
-cf push nodejs_sample --random-route
+cf push mysample --random-route
 ```
 
 Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
@@ -225,7 +227,7 @@ Regardless of which language your write your app in, the last few lines of the o
 ```log
 name:              nodejs_sample
 requested state:   started
-routes:            nodejssample.cap.explore.suse.dev
+routes:            mysample.cap.explore.suse.dev
 last uploaded:     Wed 05 Feb 14:57:40 PST 2020
 stack:             sle15
 buildpacks:        nodejs
@@ -299,7 +301,7 @@ app.listen(8080)
 
 Then to update the running application we can again run 
 ```bash 
-cf push nodejs_sample
+cf push mysample
 ```
 
 Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
@@ -326,12 +328,12 @@ Create a file called ```manifest.yml``` and fill it with
 There are a ton of options that can be set up in the manifest file.
 ```yaml
 applications:
-- name: <name>
-  buildpacks: 
-  - <list of build packs can be found with `cf buildpacks`>
-  random-route: true 
+- name: "name"
+  buildpacks:
+  - [list of build packs can be found with `cf buildpacks`]
+  random-route: true
   services:
-  - <Services to connect>
+  - [Services to connect]
   env:
     KEY: VALUE
 ```
@@ -342,7 +344,7 @@ A more complete list of options can be found [Here](https://docs.cloudfoundry.or
 {{<tab tabNum="2">}}
 ```yaml
 applications:
-- name: nodejs_sample
+- name: mysample
   buildpacks: 
   - nodejs_buildpack
   random-route: true
@@ -359,24 +361,62 @@ TODO: Updating in Python
 {{</tab>}}
 {{</tabs>}}
 
-# Persistence / Service Brokers / Service Binding
+# Data Persistence / Service Brokers / Service Binding
 
-TODO: Write about file persistence
+While we like to talk a lot about "stateless" applications, that's not the reality for a lot of systems. For most systems, state needs to live somewhere and treating all state as ephemeral like the hyper-scalers is not fiscally responsible for all but the largest systems.
 
-TODO: Explain OSBAPI
-
-TODO: Explain Marketplace
-
-TODO: Walkthrough Marketplace and Services
-
-TODO: Explain minibroker
+The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the outside using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
 
 
-{{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
-{{<tab tabNum="1">}}
+TODO: Write about file persistence?
+
+## Open Service Broker
+
+The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API standard that describes how to create and allow consumption of services. This can allow a provider of services to give some control over life-cycle to the users of the service.
+
+## Service Marketplace
+
+As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. Your account should have access to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
+
+We can look at the services provided by running:
+```bash
+cf marketplace
+```
+
+This will give us a table view of the available services to run.
+
+//TODO what is the expected output?
+
+For our working example, let's create a redis instance:
+
+```bash
+cf create-service redis 4-0-10 myredis
+```
+
+This will kick off the creation of a new redis instance.
+
+To see the state (and a list of current services),
+run
+```bash
+cf services
+```
+
+Once that shows `create succeeded` under "last operation", you can bind the service to an application. There are two ways to go about that: add it to your `manifest.yml` and push again or use 
+
+```bash
+cf bind-service mysample myredis
+cf restage mysample
+```
+To add the service and restage with any new environment variables needed.
+
+## Service Binding
+
+Once we have the service created and bound, we can consume it from our application
 
 Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES.
 
+{{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{<tab tabNum="1">}}
 Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
 
 ```json
