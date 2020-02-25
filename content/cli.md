@@ -475,10 +475,11 @@ npm install redis
 const services = JSON.parse(process.env['VCAP_SERVICES'])
 const type = 'redis'
 const name = 'myredis'
+let credentials
 try {
-  const {credentials} = services[type].find(({n})=>(n===name))
+  credentials = services[type].find((service)=>(service.name==name)).credentials
 }catch(e){
-  console.err(`Service of type ${type} named ${name} not found`)
+  console.error(`Service of type ${type} named ${name} not found`)
 }
 
 const express = require('express')
@@ -486,25 +487,24 @@ const app = express()
 const redis = require('redis').createClient(credentials.uri)
 
 const { promisify } = require("util")
-const r_get = promisify(client.get).bind(client)
-const r_push = promisify(client.rpush).bind(client)
+const lrange = promisify(redis.lrange).bind(redis)
+const rpush = promisify(redis.rpush).bind(redis)
 
 redis.on("error", function(error) {
   console.error('Redis Error: ', error);
 });
 
 app.get('/', function (req, res) {
-  //TODO: finish
-  r_get('emails').then((emails)=>{
-    const list = emails.map((email)=>(`<li>${email}</li>`))
+  lrange('emails',0,-1).then((emails)=>{
+    const list = (emails||[]).map((email)=>(`<li>${email}</li>`))
+      .concat('<li><form method=POST action="/"><input name=email placeholder=email/><button type=submit>Add</button></form></li>')
     res.send(`<ul>${list}</ul>`)
-  })
+  }).catch()
 })
 app.use(express.urlencoded());
 app.post('/', function (req, res) {
-  //TODO: finish
   const email = req.body.email
-  r_push('emails', email).then(()=>{
+  rpush('emails', email).then(()=>{
     res.redirect('/')
   })
 })
