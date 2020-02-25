@@ -544,7 +544,57 @@ The trick for most languages is to pipe through SSH using `cf ssh`.
 This will open up an SSH socket and host it on your local computer giving a secure way to access your application
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in JS
+TODO: Debugging in 
+
+Node.js has a debug mode available by starting with the `--inspect` flag.
+
+The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
+
+```json
+...
+  "scripts": {
+    "start":"node --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+...
+```
+
+And push again 
+
+```bash
+cf push
+```
+
+Then to allow access to the debugger, use the command:
+```bash
+cf ssh nodejs-example -L 9221:localhost:9229
+```
+
+This will forward port 9211 on your local machine to port 9229 of the container. It will hold this port open until you exit the shell it creates. (This ssh connection can be useful for all sort of debugging as well)
+
+You can then attach whichever debugger you prefer to 127.0.0.1:9221. For example, we can use VS Code with this `config/launch.json` file.
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach To Remote on SUSE CAP",
+            "address": "127.0.0.1",
+            "port":9221
+        }
+    ]
+}
+
+With this file written, we can click on the 
+
+TODO: Screenshot
+
+```
+
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: Debugging in Java
