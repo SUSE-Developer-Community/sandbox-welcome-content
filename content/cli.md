@@ -497,6 +497,7 @@ redis.on("error", function(error) {
 app.get('/', function (req, res) {
   lrange('emails',0,-1).then((emails)=>{
     const list = (emails||[]).map((email)=>(`<li>${email}</li>`))
+      .reduce((acc,curr)=>(acc.concat(curr)),'')
       .concat('<li><form method=POST action="/"><input name=email placeholder=email/><button type=submit>Add</button></form></li>')
     res.send(`<ul>${list}</ul>`)
   }).catch()
