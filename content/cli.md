@@ -407,13 +407,17 @@ Once that shows `create succeeded` under "last operation", you can bind the serv
 cf bind-service mysample myredis
 cf restage mysample
 ```
-To add the service and restage with any new environment variables needed.
+To add the service and restage with any new environment variables needed. To see this, check out:
+
+```bash
+cf env mysample
+```
 
 ## Service Binding
 
-Once we have the service created and bound, we can consume it from our application
+Once we have the service created and bound, we can consume it from our application.
 
-Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES.
+Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES environment variable.
 
 {{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
@@ -445,19 +449,68 @@ These can be consumed in your applications code to know what services exist that
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-In a Node application, we can consume the services with 
+In a Node application, we can consume the services with something like this: 
+
 ```js
 const services = JSON.parse(process.env['VCAP_SERVICES'])
-const type = 'type'
-const name = 'name'
+const type = 'redis'
+const name = 'myredis'
 try {
-const {credentials} = services[type].find(({n})=>(n===name))
+  const {credentials} = services[type].find(({n})=>(n===name))
 }catch(e){
   console.err(`Service of type ${type} named ${name} not found`)
 }
 ```
+//TODO: write a quick library and publish it?
 
 //TODO: example
+
+With this, we can expand our sample program from a basic hello world to a simple guestbook:
+
+```bash
+npm install redis
+```
+
+```js
+const services = JSON.parse(process.env['VCAP_SERVICES'])
+const type = 'redis'
+const name = 'myredis'
+try {
+  const {credentials} = services[type].find(({n})=>(n===name))
+}catch(e){
+  console.err(`Service of type ${type} named ${name} not found`)
+}
+
+const express = require('express')
+const app = express()
+const redis = require('redis').createClient(credentials.uri)
+
+const { promisify } = require("util")
+const r_get = promisify(client.get).bind(client)
+const r_push = promisify(client.rpush).bind(client)
+
+redis.on("error", function(error) {
+  console.error('Redis Error: ', error);
+});
+
+app.get('/', function (req, res) {
+  //TODO: finish
+  r_get('emails').then((emails)=>{
+    const list = emails.map((email)=>(`<li>${email}</li>`))
+    res.send(`<ul>${list}</ul>`)
+  })
+})
+app.use(express.urlencoded());
+app.post('/', function (req, res) {
+  //TODO: finish
+  const email = req.body.email
+  r_push('emails', email).then(()=>{
+    res.redirect('/')
+  })
+})
+app.listen(8080)
+```
+
 
 {{</tab>}}
 {{<tab tabNum="3">}}
