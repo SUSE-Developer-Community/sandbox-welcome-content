@@ -452,39 +452,28 @@ These can be consumed in your applications code to know what services exist that
 In a Node application, we can consume the services with something like this: 
 
 ```js
-const services = JSON.parse(process.env['VCAP_SERVICES'])
-const type = 'redis'
-const name = 'myredis'
-try {
-  const {credentials} = services[type].find(({n})=>(n===name))
-}catch(e){
-  console.err(`Service of type ${type} named ${name} not found`)
-}
+const getService = (type, name)=>(
+  JSON.parse(process.env['VCAP_SERVICES'])[type]
+  .find((service)=>(service.name==name))
+)
 ```
 //TODO: write a quick library and publish it?
 
-//TODO: example
-
-With this, we can expand our sample program from a basic hello world to a simple guestbook:
+With this, we can expand our sample program from a basic hello world to an (extremely) simple guestbook using redis:
 
 ```bash
 npm install redis
 ```
 
 ```js
-const services = JSON.parse(process.env['VCAP_SERVICES'])
-const type = 'redis'
-const name = 'myredis'
-let credentials
-try {
-  credentials = services[type].find((service)=>(service.name==name)).credentials
-}catch(e){
-  console.error(`Service of type ${type} named ${name} not found`)
-}
+const getService = (type, name)=>(
+  JSON.parse(process.env['VCAP_SERVICES'])[type]
+  .find((service)=>(service.name==name))
+)
 
 const express = require('express')
 const app = express()
-const redis = require('redis').createClient(credentials.uri)
+const redis = require('redis').createClient(getService('redis','myredis').credentials.uri)
 
 const { promisify } = require("util")
 const lrange = promisify(redis.lrange).bind(redis)
