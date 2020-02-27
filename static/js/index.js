@@ -263,13 +263,13 @@ function submenuLinksSetAttribute () {
 }
 
 /* Add shadow to submenu element on scrop */
-const submenuAddShadow = () => {
-  if ($(window).scrollTop() > 100) {
-    $('.js-submenu-section').stop().addClass('submenu-scroll')
-  } else {
-    $('.js-submenu-section').stop().removeClass('submenu-scroll')
-  }
-}
+// const submenuAddShadow = () => {
+//   if ($(window).scrollTop() > 100) {
+//     $('.js-submenu-section').stop().addClass('submenu-scroll')
+//   } else {
+//     $('.js-submenu-section').stop().removeClass('submenu-scroll')
+//   }
+// }
 
 /* When window loads, if current the page is inside the dropdown, then highlight more menu */
 const highlightMoreMenu = () => {
@@ -346,4 +346,10 @@ $(function () {
       $(this).tooltip('hide')
     })
   })
+})
+
+
+$(()=>{
+  $('h2').each((ind,ele)=>{$(ele).prepend('<a href="#'+ele.id+'">#</a> ')})
+  $('h3').each((ind,ele)=>{$(ele).prepend('<a href="#'+ele.id+'">#</a> ')})
 })
