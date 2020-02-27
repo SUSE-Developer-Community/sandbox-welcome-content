@@ -1,0 +1,1479 @@
+/* Base
+   ========================================================================== */
+/**
+* This folder holds the boilerplate code for the project. Here you'll find all
+* the project's variables, and standard styles for commonly used HTML elements
+*/
+/* Variables
+  ========================================================================== */
+/**
+* This folder contains all our variables
+*
+* When variables are component specific, place the file in the /components folder
+*/
+/* Primary colors variables
+   ========================================================================== */
+/* brand color - green */
+/* brand color - blue */
+/* brand color - orange */
+/* brand color - cerulean */
+/* brand color - violet */
+/* brand color - red */
+/* brand color - yellow */
+/* brand color - gray */
+/* brand color - neutral */
+/* Meaningful colors variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Typography
+   ========================================================================== */
+@import url("https://fonts.googleapis.com/css?family=Lato:200,400,700");
+/* Paragraph variables
+   ========================================================================== */
+/* Variables: /assets/stylesheets/eos-base/variables/typography.scss */
+/* Titles
+   ========================================================================== */
+/* z-index variables for use cases
+   ========================================================================== */
+/* z-index values for content */
+/* Spacing variables
+   ========================================================================== */
+/**
+* Spacing variables used for margins and paddings
+*
+* $eos-space-base: base size from which the rest of the sizes are calculated
+*/
+/* Borders variables
+   ========================================================================== */
+/* Links
+   ========================================================================== */
+/*
+ * Colors variables: /assets/stylesheets/eos-base/variables/branding.scss
+*/
+/* Shadow variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Box shadow */
+/* Media query variables
+   ========================================================================== */
+/**
+* Media query variables for mobile and tablets
+*
+* $eos-sd-min for Small Devices (mobile) and $eos-md-min for Medium Devices (tablets)
+*/
+/* Lists
+   ========================================================================== */
+/*
+ * Colors variables: /assets/stylesheets/eos-base/variables/spacing.scss
+*/
+/* Helpers
+   ========================================================================== */
+/**
+*  This folder gathers all Sass tools and helpers
+*  Functions, mixins and placeholders should be put in here
+*/
+/* Mixins
+   ========================================================================== */
+/* Margin rules */
+/* Padding rules */
+/* Spacing rules
+   ========================================================================== */
+/**
+ * The margins/paddings mixins will generate classes following the format:
+ * type-direction-size
+ * for example, you will be able to use in PUG:
+ * .margin-top-xs or .padding-bottom-xl
+ * for more information checkout the file mixins.scss in this same folder.
+ */
+.margin-top-m {
+  margin-top: 16px; }
+
+.margin-top-xs {
+  margin-top: 4px; }
+
+.margin-top-s {
+  margin-top: 8px; }
+
+.margin-top-l {
+  margin-top: 24px; }
+
+.margin-top-xl {
+  margin-top: 32px; }
+
+.margin-top-xxl {
+  margin-top: 48px; }
+
+.margin-top-xxxl {
+  margin-top: 64px; }
+
+.margin-bottom-m {
+  margin-bottom: 16px; }
+
+.margin-bottom-xs {
+  margin-bottom: 4px; }
+
+.margin-bottom-s {
+  margin-bottom: 8px; }
+
+.margin-bottom-l {
+  margin-bottom: 24px; }
+
+.margin-bottom-xl {
+  margin-bottom: 32px; }
+
+.margin-bottom-xxl {
+  margin-bottom: 48px; }
+
+.margin-bottom-xxxl {
+  margin-bottom: 64px; }
+
+.margin-left-m {
+  margin-left: 16px; }
+
+.margin-left-xs {
+  margin-left: 4px; }
+
+.margin-left-s {
+  margin-left: 8px; }
+
+.margin-left-l {
+  margin-left: 24px; }
+
+.margin-left-xl {
+  margin-left: 32px; }
+
+.margin-left-xxl {
+  margin-left: 48px; }
+
+.margin-left-xxxl {
+  margin-left: 64px; }
+
+.margin-right-m {
+  margin-right: 16px; }
+
+.margin-right-xs {
+  margin-right: 4px; }
+
+.margin-right-s {
+  margin-right: 8px; }
+
+.margin-right-l {
+  margin-right: 24px; }
+
+.margin-right-xl {
+  margin-right: 32px; }
+
+.margin-right-xxl {
+  margin-right: 48px; }
+
+.margin-right-xxxl {
+  margin-right: 64px; }
+
+.padding-top-m {
+  padding-top: 16px; }
+
+.padding-top-xs {
+  padding-top: 4px; }
+
+.padding-top-s {
+  padding-top: 8px; }
+
+.padding-top-l {
+  padding-top: 24px; }
+
+.padding-top-xl {
+  padding-top: 32px; }
+
+.padding-top-xxl {
+  padding-top: 48px; }
+
+.padding-top-xxxl {
+  padding-top: 64px; }
+
+.padding-bottom-m {
+  padding-bottom: 16px; }
+
+.padding-bottom-xs {
+  padding-bottom: 4px; }
+
+.padding-bottom-s {
+  padding-bottom: 8px; }
+
+.padding-bottom-l {
+  padding-bottom: 24px; }
+
+.padding-bottom-xl {
+  padding-bottom: 32px; }
+
+.padding-bottom-xxl {
+  padding-bottom: 48px; }
+
+.padding-bottom-xxxl {
+  padding-bottom: 64px; }
+
+.padding-left-m {
+  padding-left: 16px; }
+
+.padding-left-xs {
+  padding-left: 4px; }
+
+.padding-left-s {
+  padding-left: 8px; }
+
+.padding-left-l {
+  padding-left: 24px; }
+
+.padding-left-xl {
+  padding-left: 32px; }
+
+.padding-left-xxl {
+  padding-left: 48px; }
+
+.padding-left-xxxl {
+  padding-left: 64px; }
+
+.padding-right-m {
+  padding-right: 16px; }
+
+.padding-right-xs {
+  padding-right: 4px; }
+
+.padding-right-s {
+  padding-right: 8px; }
+
+.padding-right-l {
+  padding-right: 24px; }
+
+.padding-right-xl {
+  padding-right: 32px; }
+
+.padding-right-xxl {
+  padding-right: 48px; }
+
+.padding-right-xxxl {
+  padding-right: 64px; }
+
+/* Mixins
+   ========================================================================== */
+/* Margin rules */
+/* Padding rules */
+/* Titles
+   ========================================================================== */
+/**
+* Titles
+*
+* Typography variables: /assets/stylesheets/eos-base/variables/typography.scss
+* Titles variables: /assets/stylesheets/eos-base/variables/titles.scss
+* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss
+*/
+h1,
+h2 {
+  font-weight: 400;
+  line-height: 1.5em; }
+
+h4,
+h5,
+h6 {
+  line-height: 1.5em; }
+
+h1 {
+  font-size: 2em; }
+
+h2 {
+  font-size: 1.75em; }
+
+h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1.5em; }
+
+h4 {
+  font-size: 1.3em;
+  font-weight: bold; }
+
+h5 {
+  font-size: 1.15em;
+  font-weight: bold; }
+
+h6 {
+  font-size: 1em;
+  font-weight: bold; }
+
+.title-line {
+  margin-bottom: 32px;
+  width: 100%; }
+  .title-line::after, .title-line::before {
+    border-top: 1px solid #ddd;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 30%; }
+  .title-line::before {
+    margin-right: 32px; }
+  .title-line::after {
+    margin-left: 32px; }
+
+.title-strong {
+  font-weight: bold; }
+
+.title-no-margings {
+  margin: 0; }
+
+.subheadline {
+  font-size: 1.3em;
+  font-weight: 200;
+  line-height: 1.5em; }
+
+/* Paragraphs
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/paragraphs.scss */
+p {
+  font-size: 14px;
+  line-height: 1.5em;
+  margin-top: 14px; }
+
+/* List styles
+   ========================================================================== */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* Reset list styles */
+.no-list-style {
+  list-style: none;
+  padding-left: 0; }
+  .no-list-style ul {
+    list-style: none;
+    padding-left: 0;
+    padding-top: 8px; }
+    .no-list-style ul li a {
+      padding-left: 32px; }
+    .no-list-style ul li:last-of-type {
+      padding-bottom: 0; }
+
+/* List without padding */
+.list-no-padding {
+  list-style-position: inside;
+  padding-left: 0; }
+
+.ul-horizontal.no-list-style li {
+  margin-right: 16px; }
+
+.ul-horizontal li {
+  display: inline-block; }
+
+li {
+  padding: 8px 0 8px; }
+
+ol > li {
+  padding-left: 16px; }
+  ol > li .fa {
+    margin-right: 8px; }
+
+@media screen and (max-width: 769px) {
+  ul {
+    padding-left: 4px; } }
+
+/* Description List */
+dt {
+  display: inline-block;
+  width: 20%; }
+
+dd {
+  display: inline-block;
+  margin-left: 0;
+  width: 80%; }
+
+@media screen and (max-width: 769px) {
+  dt,
+  dd {
+    display: block;
+    width: auto; } }
+
+/* Links
+   ========================================================================== */
+/**
+*
+* Links variables: /assets/stylesheets/eos-base/variables/links.scss
+*/
+/* Set the link color to our blue and not the bootstrap default */
+/* Remove the default text decoration from link status */
+a,
+a:active,
+a:visited,
+a:focus {
+  text-decoration: none; }
+
+a,
+.link-default,
+footer.display-collapsed .footer-link,
+a:not([href]):not([tabindex]) {
+  color: #008ACF;
+  font-weight: bold; }
+  a:hover,
+  .link-default:hover,
+  footer.display-collapsed .footer-link:hover,
+  a:not([href]):not([tabindex]):hover {
+    color: #008ACF;
+    cursor: pointer;
+    text-decoration: underline; }
+  a * p,
+  .link-default * p,
+  footer.display-collapsed .footer-link * p,
+  a:not([href]):not([tabindex]) * p {
+    font-weight: normal; }
+
+a.link-dark,
+a.link-dark:not([href]):not([tabindex]) {
+  color: #141823;
+  text-decoration: underline; }
+  a.link-dark:hover,
+  a.link-dark:not([href]):not([tabindex]):hover {
+    text-decoration: none; }
+
+a.link-light, footer a.footer-link,
+a.link-light:not([href]):not([tabindex]),
+footer a.footer-link:not([href]):not([tabindex]) {
+  color: #ffffff;
+  text-decoration: underline; }
+  a.link-light:hover, footer a.footer-link:hover,
+  a.link-light:not([href]):not([tabindex]):hover,
+  footer a.footer-link:not([href]):not([tabindex]):hover {
+    text-decoration: none; }
+
+/* Layout
+   ========================================================================== */
+/**
+* This folder contains everything that takes part in laying out the  application
+*/
+/* Layout variables
+   ========================================================================== */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* Footer variables: /assets/stylesheets/eos-components/footer/footer.variables.scss */
+/* Post styles
+   ========================================================================== */
+/**
+*  Use it in HTML as
+*  <section class='post'></section>
+*
+*  This rule wraps a section with a max width of 1116px and applies a box box-shadow
+*  Titles: /assets/stylesheets/eos-base/variables/typography.scss
+*  Media-query: /assets/stylesheets/eos-base/variables/media-query.scss
+*  Spacing: /assets/stylesheets/eos-base/variables/spacings.scss
+*  Variables: /assets/stylesheets/eos-layout/layout.variables.scss
+*/
+html {
+  position: relative; }
+
+html,
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  height: 100%; }
+
+body {
+  background-color: #ffffff;
+  color: #141823;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  line-height: 1.5em; }
+
+.content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  min-height: calc(100vh - 40px);
+  min-width: 360px; }
+  @media screen and (max-width: 769px) {
+    .content {
+      margin-left: 0;
+      padding-top: 80px; } }
+
+.container {
+  margin-bottom: 64px;
+  max-width: 1116px;
+  overflow-x: hidden;
+  padding: 32px;
+  position: relative;
+  width: 100%; }
+  .container hr {
+    margin: 48px 0; }
+
+/* Components
+   ========================================================================== */
+/**
+*  This folder contains modules that compose the application
+*/
+/* Main Menu
+   ========================================================================== */
+/* Main Menu
+   ========================================================================== */
+/* Header
+   ========================================================================== */
+/**
+* Colors
+*
+* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss
+* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss
+* Titles: /assets/stylesheets/eos-base/variables/titles.scss
+*/
+/* Header styles
+   ========================================================================== */
+/* Variables file: assets/stylesheets/eos-components/menu/header/header.variables.scss */
+.main-menu header {
+  align-items: center;
+  border-bottom: 1px solid #314C5D;
+  display: flex;
+  height: 48px;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-left: 21px;
+  padding-right: 16px; }
+  .main-menu header i {
+    color: #ffffff;
+    cursor: pointer;
+    margin: 0;
+    width: 18px; }
+  .main-menu header img {
+    height: 20px; }
+  .main-menu header .design-system {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 1.15em;
+    vertical-align: middle; }
+
+/* Main menu variables
+   ========================================================================== */
+/* Typography variables: /assets/stylesheets/eos-base/variables/typography.scss */
+/* Media query variables: /assets/stylesheets/eos-base/variables/media-query.scss */
+/* Border variables: /assets/stylesheets/eos-base/variables/borders.scss */
+/* z-index variables: /assets/stylesheets/eos-base/variables/z-index.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* Collapsed menu variables */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Layout */
+/* Layout variables: /assets/stylesheets/eos-base/variables/layout.scss */
+/* for temporary styles */
+/* Mobile menu section / $eos-mm = mobile-menu
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* z-index variables: /assets/stylesheets/eos-base/variables/z-index.scss */
+/* ==========================================================================
+   Menu stylesheet
+   ========================================================================== */
+/* Variables file: assets/stylesheets/eos-components/menu/menu.variables.scss */
+/* Menu & desktop version styles
+   ========================================================================== */
+.main-menu {
+  background-color: #0D2C40;
+  border-right: 1px solid #E0DFDF;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  left: 0;
+  max-width: 250px;
+  position: fixed;
+  top: 0;
+  width: 250px;
+  z-index: 1000; }
+  .main-menu .selected {
+    background: #00C081;
+    border-radius: 0 2px 2px 0;
+    color: #ffffff; }
+    .main-menu .selected:hover {
+      color: #ffffff; }
+  @media screen and (max-width: 769px) {
+    .main-menu {
+      display: none; } }
+  .main-menu .menu-togglable {
+    margin-bottom: 40px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 0 0 48px 0; }
+    .main-menu .menu-togglable li {
+      padding: 0; }
+  .main-menu .menu-title {
+    border-left: 5px solid transparent;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    margin: 0 16px 0 0;
+    padding: 8px 0 8px 21px;
+    transition: 0.1s;
+    user-select: none; }
+    .main-menu .menu-title:hover {
+      border-left: 5px solid #00C081;
+      text-decoration: none; }
+  .main-menu hr {
+    border-top-color: #314C5D;
+    margin: 16px 0; }
+  .main-menu h6 {
+    color: #ffffff;
+    margin: 0;
+    padding: 16px; }
+
+.mm-navigation-container {
+  width: 100%;
+  /* Fixed size for icons to fix the fliker when are not done loaded. */ }
+  .mm-navigation-container i {
+    font-size: 18px;
+    height: 18px;
+    width: 18px; }
+
+.mm-navigation-close {
+  cursor: pointer;
+  margin-right: -16px;
+  padding: 16px; }
+
+/* Collapsed menu style.
+  ========================================================================== */
+.collapsed-sidebar.main-menu {
+  width: 60px;
+  /* From here starts the style for items with dropdown when the menu is collapsed
+      ========================================================================== */ }
+  .collapsed-sidebar.main-menu li a {
+    margin: 0; }
+    .collapsed-sidebar.main-menu li a.selected {
+      border-radius: 0; }
+  .collapsed-sidebar.main-menu .selected {
+    border-radius: 0; }
+  .collapsed-sidebar.main-menu .menu-item {
+    position: relative; }
+    .collapsed-sidebar.main-menu .menu-item:hover .main-collapsed-title {
+      display: block; }
+  .collapsed-sidebar.main-menu input[type=checkbox]:checked ~ ul {
+    display: none; }
+  .collapsed-sidebar.main-menu input[type=checkbox]:checked ~ .menu-title {
+    background-color: transparent; }
+  .collapsed-sidebar.main-menu .menu-item:hover .menu-dropdown-list {
+    display: block; }
+  .collapsed-sidebar.main-menu .menu-title-content,
+  .collapsed-sidebar.main-menu .menu-expand {
+    display: none; }
+  .collapsed-sidebar.main-menu .menu-togglable {
+    height: 100%;
+    max-height: 85vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%; }
+    .collapsed-sidebar.main-menu .menu-togglable .menu-item {
+      position: static; }
+      .collapsed-sidebar.main-menu .menu-togglable .menu-item .menu-element {
+        display: none;
+        position: absolute; }
+      .collapsed-sidebar.main-menu .menu-togglable .menu-item:hover {
+        background-color: #00C081;
+        cursor: pointer; }
+      .collapsed-sidebar.main-menu .menu-togglable .menu-item:hover > .menu-element {
+        display: block; }
+  .collapsed-sidebar.main-menu .menu-dropdown-list,
+  .collapsed-sidebar.main-menu .main-collapsed-title {
+    background: #ffffff;
+    box-shadow: 6px 3px 5px rgba(20, 24, 35, 0.21);
+    left: 60px;
+    padding-top: 0;
+    position: absolute;
+    top: 0;
+    width: 200px; }
+    .collapsed-sidebar.main-menu .menu-dropdown-list li,
+    .collapsed-sidebar.main-menu .main-collapsed-title li {
+      padding: 8px 16px; }
+      .collapsed-sidebar.main-menu .menu-dropdown-list li a,
+      .collapsed-sidebar.main-menu .main-collapsed-title li a {
+        color: #141823;
+        padding: 0; }
+        .collapsed-sidebar.main-menu .menu-dropdown-list li a:hover, .collapsed-sidebar.main-menu .menu-dropdown-list li a.selected,
+        .collapsed-sidebar.main-menu .main-collapsed-title li a:hover,
+        .collapsed-sidebar.main-menu .main-collapsed-title li a.selected {
+          background: #ffffff;
+          color: #00C081; }
+  .collapsed-sidebar.main-menu .menu-collapsed-title,
+  .collapsed-sidebar.main-menu .main-collapsed-title {
+    background-color: #00C081;
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: -1px; }
+  .collapsed-sidebar.main-menu .menu-collapsed-title {
+    display: block; }
+  .collapsed-sidebar.main-menu .main-collapsed-title {
+    padding: 8px 16px; }
+
+.collapsed-sidebar .mm-navigation-close {
+  left: 0;
+  margin-right: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%; }
+
+.collapsed-sidebar .footer-side-menu,
+.collapsed-sidebar .hide-collapsed,
+.collapsed-sidebar span {
+  display: none; }
+
+.collapsed-sidebar ~ .content {
+  margin-left: 60px; }
+  @media screen and (max-width: 769px) {
+    .collapsed-sidebar ~ .content {
+      margin-left: 0; } }
+
+.collapsed-sidebar .menu-headers {
+  max-height: 53px;
+  max-width: 60px;
+  visibility: hidden; }
+
+.collapsed-sidebar .menu-title {
+  border-left: 0; }
+  .collapsed-sidebar .menu-title:hover {
+    border-left: 0; }
+
+/* Dropdown menu in main menu
+  ========================================================================== */
+.menu-dropdown input[type=checkbox] {
+  display: none; }
+
+.menu-dropdown ul {
+  display: none; }
+
+.menu-dropdown input[type=checkbox]:checked ~ ul, .menu-dropdown.selected ~ ul {
+  display: block; }
+
+.menu-dropdown input[type=checkbox]:checked ~ label .menu-expand, .menu-dropdown.selected ~ label .menu-expand {
+  margin-right: 16px;
+  transform: rotate(180deg); }
+
+.menu-dropdown input[type=checkbox]:checked ~ .menu-title, .menu-dropdown.selected ~ .menu-title {
+  background-color: #092132;
+  margin-right: 0; }
+
+.menu-title .menu-expand {
+  margin-right: 0; }
+
+/* Uncollapsed sidebar styles for dropdown menu */
+.menu-togglable .menu-dropdown-list {
+  background: #092132;
+  padding-top: 0; }
+  .menu-togglable .menu-dropdown-list li a {
+    padding-left: 48px; }
+
+.menu-collapsed-title,
+.main-collapsed-title {
+  display: none; }
+
+.nav-wrap {
+  max-height: 80vh;
+  position: relative; }
+
+.svg-icon-menu {
+  height: 18px;
+  margin-right: 8px;
+  width: 18px; }
+
+/* Mobile menu styles
+   ========================================================================== */
+.mobile-menu {
+  display: none; }
+  @media screen and (max-width: 769px) {
+    .mobile-menu {
+      background-color: #0D2C40;
+      display: block;
+      height: 80px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1040; } }
+  .mobile-menu .selected {
+    background-color: #00C081; }
+  .mobile-menu-open {
+    overflow: hidden; }
+  .mobile-menu header {
+    align-self: center;
+    border-bottom: 1px solid #314C5D;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 24px;
+    position: relative; }
+    .mobile-menu header .burger-menu {
+      position: absolute;
+      right: 24px; }
+      .mobile-menu header .burger-menu i {
+        color: #ffffff;
+        cursor: pointer; }
+  .mobile-menu nav {
+    background-color: #0D2C40;
+    display: none;
+    min-height: 1200px;
+    position: relative; }
+    .mobile-menu nav hr {
+      border-top: 1px solid #314C5D;
+      margin: 16px 0; }
+    .mobile-menu nav .nav-wrap {
+      overflow-y: scroll;
+      padding-top: 16px; }
+    .mobile-menu nav .menu-togglable {
+      margin: 0;
+      padding: 0; }
+      .mobile-menu nav .menu-togglable li {
+        cursor: pointer;
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        .mobile-menu nav .menu-togglable li .menu-title {
+          border-left: 5px solid transparent;
+          color: #ffffff;
+          cursor: pointer;
+          display: block;
+          font-weight: 400;
+          margin: 0;
+          padding: 8px 24px;
+          transition: 0.1s;
+          user-select: none; }
+          .mobile-menu nav .menu-togglable li .menu-title i {
+            font-size: 18px;
+            height: 18px;
+            width: 18px; }
+          .mobile-menu nav .menu-togglable li .menu-title:hover {
+            border-left: 5px solid #00C081;
+            text-decoration: none; }
+          .mobile-menu nav .menu-togglable li .menu-title.selected {
+            background-color: #00C081; }
+        .mobile-menu nav .menu-togglable li .menu-element li a {
+          padding-left: 48px; }
+        .mobile-menu nav .menu-togglable li.menu-dropdown input[type=checkbox] {
+          display: none; }
+        .mobile-menu nav .menu-togglable li.menu-dropdown .menu-element ul {
+          display: none; }
+        .mobile-menu nav .menu-togglable li.menu-dropdown input[type=checkbox]:checked .menu-element > ul, .mobile-menu nav .menu-togglable li.menu-dropdown.selected .menu-element > ul {
+          display: block; }
+        .mobile-menu nav .menu-togglable li.menu-dropdown input[type=checkbox]:checked ~ label .menu-expand, .mobile-menu nav .menu-togglable li.menu-dropdown.selected ~ label .menu-expand {
+          margin-right: 0; }
+
+/* Footer
+   ========================================================================== */
+/* Footer variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* ==========================================================================
+  Footer style
+========================================================================== */
+footer {
+  height: 40px;
+  /* Style for side-menu footer.
+   ========================================================================== */
+  /* Style for content footer.
+   ========================================================================== */
+  /* Devices and when menu is collapsed.
+   ========================================================================== */ }
+  footer ul.footer-list {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: center;
+    margin: 0;
+    padding: 8px 24px; }
+  footer li.footer-list-item {
+    list-style: none;
+    padding: 0 8px 0 0; }
+    footer li.footer-list-item img {
+      width: 18px; }
+  footer.footer-side-menu {
+    align-items: center;
+    background-color: #092132;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: space-between;
+    position: fixed; }
+    footer.footer-side-menu ul.footer-list {
+      color: #ffffff;
+      display: flex;
+      justify-content: flex-start;
+      width: 249px; }
+  footer.footer-content {
+    align-items: center;
+    border-top: 1px solid #f4f4f4;
+    box-shadow: 0px -2px 3px rgba(226, 226, 226, 0.11);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; }
+    footer.footer-content ul.footer-list {
+      color: #969494; }
+  @media screen and (min-width: 770px) {
+    footer {
+      /* Hide footer for Devices */ }
+      footer.footer-content {
+        display: none; } }
+  footer.display-collapsed {
+    display: flex;
+    margin-left: 60px;
+    width: auto; }
+    footer.display-collapsed .footer-link {
+      text-decoration: none; }
+    @media screen and (max-width: 769px) {
+      footer.display-collapsed {
+        margin-left: 0; } }
+
+/* Submenu
+   ========================================================================== */
+/* Submenu variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* z-index variables: /assets/stylesheets/eos-components/mobile-menu/mobile-menu.variables.scss */
+/* Submenu
+   ========================================================================== */
+/* Variables file: assets/stylesheets/eos-components/submenu/submenu.variables.scss */
+.submenu {
+  align-items: center;
+  align-self: baseline;
+  background: #ffffff;
+  border-bottom: 1px solid #edeff0;
+  display: flex;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1030;
+  /* shared link styles */
+  /* top level specific link styles */
+  /* this toggle is currently static */
+  /* shared search input styles */
+  /* overwrite bootstrap styles */ }
+  @media screen and (max-width: 769px) {
+    .submenu {
+      top: 80px; } }
+  .submenu a:not([href]):not([tabindex]),
+  .submenu a {
+    color: #141823;
+    font-weight: normal; }
+    .submenu a:not([href]):not([tabindex]):hover,
+    .submenu a:hover {
+      border-color: #A6A4A4;
+      cursor: pointer;
+      text-decoration: none; }
+  .submenu .user-profile {
+    margin-left: auto;
+    padding: 10px 8px 10px 0; }
+    .submenu .user-profile i {
+      cursor: pointer; }
+    .submenu .user-profile > .dropdown-menu {
+      margin-right: 8px;
+      padding: 0; }
+      .submenu .user-profile > .dropdown-menu li {
+        border-bottom: 1px solid #edeff0;
+        padding: 8px 16px 16px 16px; }
+        .submenu .user-profile > .dropdown-menu li a {
+          margin-top: 8px; }
+      .submenu .user-profile > .dropdown-menu .user-name > strong,
+      .submenu .user-profile > .dropdown-menu .user-name span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
+      .submenu .user-profile > .dropdown-menu .user-name > span {
+        color: #686565;
+        font-size: 12px; }
+  .submenu .dropdown-toggle:after {
+    content: none; }
+  .submenu .submenu-item {
+    border-bottom: 3px solid transparent;
+    display: inline-block;
+    padding: 12px 16px;
+    transition: all ease-in 0.1s;
+    white-space: nowrap; }
+  .submenu .sidebar-toggle,
+  .submenu nav,
+  .submenu .submenu-search-wrap {
+    display: flex; }
+  .submenu .sidebar-toggle {
+    padding: 16px; }
+    .submenu .sidebar-toggle i {
+      margin: 0; }
+  .submenu .main-submenu {
+    display: none; }
+    .submenu .main-submenu a.selected {
+      border-color: #00C081; }
+  .submenu .submenu-search,
+  .submenu .submenu-search-wrap {
+    align-items: center; }
+  .submenu .submenu-search {
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto; }
+    .submenu .submenu-search .submenu-search-wrap {
+      border-bottom: 1px solid #CBCACA;
+      height: 32px; }
+    .submenu .submenu-search input,
+    .submenu .submenu-search a {
+      border: 0; }
+    .submenu .submenu-search input {
+      outline: 0; }
+    .submenu .submenu-search a {
+      margin-left: auto;
+      padding: 0; }
+  .submenu .dropdown-menu {
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    margin-top: 0;
+    padding: 8px 16px;
+    width: 200px; }
+    .submenu .dropdown-menu > li > span {
+      color: #CBCACA; }
+    .submenu .dropdown-menu > li a {
+      padding: 0; }
+      .submenu .dropdown-menu > li a:hover {
+        background: transparent;
+        color: #00C081; }
+      .submenu .dropdown-menu > li a.selected {
+        color: #00C081; }
+  .submenu .visible {
+    display: inline-block; }
+
+/* Smart submenu nav dropdown */
+.dropdown-more .submenu-item {
+  padding: 11px 16px; }
+  .dropdown-more .submenu-item.selected {
+    border-bottom: 3px solid #00C081; }
+
+.dropdown-more .dropdown-menu a {
+  margin-top: 8px; }
+  .dropdown-more .dropdown-menu a:first-child {
+    margin-top: 0; }
+
+.dropdown-more + .user-submenu {
+  margin-left: auto; }
+
+.submenu-scroll {
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out; }
+
+/* Alerts gallery
+   ========================================================================== */
+/* Alerts variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacings.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/typography.scss */
+/* z-index variables: /assets/stylesheets/eos-base/variables/z-index.scss */
+/* Shared */
+/* Global alerts */
+/* All Alert-danger */
+/* Section alerts */
+/* Success section alert vars */
+/* Info section alert vars */
+/* Warning section alert vars */
+/* Danger section alert vars */
+/* Inline alerts */
+/* Alerts
+   ========================================================================== */
+/**
+*  These rules overwrite existing Bootstrap rules
+*  Alerts depend on 3 classes: alert alert-position alert-type
+*  Use it in HTML as
+*  <div class='alert alert-global alert-danger'>
+*    Alert content goes here
+*  </div>
+*
+*
+* Variables file: assets/stylesheets/eos-components/alerts/alerts.variables.scss
+*/
+/* Shared styles */
+.alert {
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  padding: 8px;
+  position: relative; }
+  .alert .close {
+    margin-left: 8px;
+    opacity: 1;
+    text-shadow: none; }
+    .alert .close i {
+      margin-right: 0; }
+  .alert > i {
+    margin-top: 2px; }
+  .alert a {
+    font-weight: bold;
+    text-decoration: underline; }
+  .alert-body {
+    flex: 1; }
+
+/*
+  Affects all danger alerts:
+  Given that alert-danger do not have a close button, the alert requires an extra padding on the right
+  to avoid getting too close to the right edge and look consistent with the rest of the alerts
+*/
+.alert-danger {
+  padding-right: 16px; }
+
+/* Global alerts
+   ========================================================================== */
+.alert-global {
+  color: #ffffff;
+  height: 37px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1040;
+  /* Success alert */
+  /* Info alert */
+  /* Warning alert */
+  /* Danger alert */ }
+  .alert-global a:not([href]):not([tabindex]),
+  .alert-global a {
+    color: #ffffff;
+    text-decoration: underline; }
+    .alert-global a:not([href]):not([tabindex]):hover,
+    .alert-global a:hover {
+      text-decoration: none; }
+  .alert-global .close:hover,
+  .alert-global .close:focus {
+    color: #ffffff; }
+  .alert-global.alert-success {
+    background-color: #00C081; }
+  .alert-global.alert-info {
+    background-color: #00B2E2; }
+  .alert-global.alert-warning {
+    background-color: #FF9E02; }
+  .alert-global.alert-danger {
+    background-color: #DC3545; }
+  .alert-global-mobile {
+    display: none; }
+  @media screen and (max-width: 769px) {
+    .alert-global-desktop {
+      display: none; }
+    .alert-global-mobile {
+      display: block; } }
+  .alert-global ~ .main-menu,
+  .alert-global ~ .content .submenu {
+    top: 37px; }
+  .alert-global ~ .main-menu .footer-content {
+    margin-bottom: 37px; }
+  @media screen and (max-width: 769px) {
+    .alert-global ~ .mobile-menu {
+      top: 37px; }
+      .alert-global ~ .mobile-menu ~ .content {
+        padding-top: 117px; }
+    .alert-global ~ .content .submenu {
+      top: 117px; } }
+  .alert-global ~ .content {
+    padding-top: 37px; }
+    @media screen and (max-width: 769px) {
+      .alert-global ~ .content {
+        margin-left: 0;
+        padding-top: 80px; } }
+
+/* Section alerts
+   ========================================================================== */
+.alert-section {
+  border-left: 5px solid;
+  color: #141823;
+  /* Success alert */
+  /* Info alert */
+  /* Warning alert */
+  /* Danger alert */ }
+  .alert-section a:not([href]):not([tabindex]),
+  .alert-section a {
+    color: #141823;
+    text-decoration: underline; }
+    .alert-section a:not([href]):not([tabindex]):hover,
+    .alert-section a:hover {
+      text-decoration: none; }
+  .alert-section .alert-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px; }
+  .alert-section.alert-success {
+    background-color: #E0F7F0;
+    border-color: #00C081; }
+    .alert-section.alert-success .alert-icon {
+      color: #00C081; }
+  .alert-section.alert-info {
+    background-color: #B3E8F6;
+    border-color: #00B2E2; }
+    .alert-section.alert-info .alert-icon {
+      color: #00B2E2; }
+  .alert-section.alert-warning {
+    background-color: #FFECB5;
+    border-color: #FF9E02; }
+    .alert-section.alert-warning .alert-icon {
+      color: #FF9E02; }
+  .alert-section.alert-danger {
+    background-color: #F5C2C7;
+    border-color: #DC3545; }
+    .alert-section.alert-danger .alert-icon {
+      color: #DC3545; }
+
+/* Inline alerts
+   ========================================================================== */
+.alert-inline {
+  border-left: 5px solid;
+  color: #141823;
+  /* Success alert */
+  /* Info alert */
+  /* Warning alert */
+  /* Danger alert */ }
+  .alert-inline a:not([href]):not([tabindex]),
+  .alert-inline a {
+    color: #141823;
+    text-decoration: underline; }
+    .alert-inline a:not([href]):not([tabindex]):hover,
+    .alert-inline a:hover {
+      text-decoration: none; }
+  .alert-inline.alert-success {
+    background-color: #E0F7F0;
+    border-color: #00C081; }
+    .alert-inline.alert-success .alert-icon {
+      color: #00C081; }
+  .alert-inline.alert-info {
+    background-color: #B3E8F6;
+    border-color: #00B2E2; }
+    .alert-inline.alert-info .alert-icon {
+      color: #00B2E2; }
+  .alert-inline.alert-warning {
+    background-color: #FFECB5;
+    border-color: #FF9E02; }
+    .alert-inline.alert-warning .alert-icon {
+      color: #FF9E02; }
+  .alert-inline.alert-danger {
+    background-color: #F5C2C7;
+    border-color: #DC3545; }
+    .alert-inline.alert-danger .alert-icon {
+      color: #DC3545; }
+
+/* Elements
+   ========================================================================== */
+/**
+*  This folder contains elements that compose the application
+*/
+/* Buttons
+   ========================================================================== */
+/* Buttons variables
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Spacing variables: /assets/stylesheets/eos-base/variables/spacing.scss */
+/* Typography variables: /assets/stylesheets/eos-base/variables/typography.scss */
+/* btn */
+/* secondary button */
+/* secondary button inverse */
+/* Primary button and outline primary button */
+/* Danger button */
+/* Small button */
+/* Small button */
+/* Large button */
+/* Button styling
+   ========================================================================== */
+/* button */
+.btn {
+  background-color: transparent;
+  border-radius: 2px;
+  font-weight: bold;
+  line-height: 1.5em;
+  padding: 8px 16px; }
+  .btn:not(:disabled):not(.disabled):active, .btn:not(:disabled):not(.disabled):active:focus, .btn:hover, .btn:active:hover, .btn:active, .btn.active, .btn:focus, .btn.focus, .btn.active.focus, .btn.active:focus, .btn:active:focus, .btn:active.focus {
+    background-color: transparent;
+    box-shadow: none; }
+  .btn .eos-icons {
+    margin-right: 0;
+    pointer-events: none;
+    vertical-align: text-bottom; }
+
+/* Default button */
+.btn-secondary {
+  border-color: #141823;
+  color: #141823; }
+  .btn-secondary:hover, .btn-secondary:active:hover {
+    border-color: #686565;
+    color: #686565; }
+  .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:active, .btn-secondary.active, .btn-secondary:focus, .btn-secondary.focus, .btn-secondary.active.focus, .btn-secondary.active:focus, .btn-secondary:active:focus, .btn-secondary:active.focus {
+    border-color: #969494;
+    color: #969494; }
+  .btn-secondary.disabled, .btn-secondary.disabled:hover, .btn-secondary.disabled:focus {
+    background-color: transparent;
+    border-color: #141823;
+    color: #141823;
+    opacity: .60; }
+
+/* Default button inverse */
+.btn-secondary-inverse {
+  border-color: #ffffff;
+  color: #ffffff; }
+  .btn-secondary-inverse:hover, .btn-secondary-inverse:active:hover {
+    border-color: #CBCACA;
+    color: #CBCACA; }
+  .btn-secondary-inverse:not(:disabled):not(.disabled):active, .btn-secondary-inverse:not(:disabled):not(.disabled):active:focus, .btn-secondary-inverse:active, .btn-secondary-inverse.active, .btn-secondary-inverse:focus, .btn-secondary-inverse.focus, .btn-secondary-inverse.active.focus, .btn-secondary-inverse.active:focus, .btn-secondary-inverse:active:focus, .btn-secondary-inverse:active.focus {
+    border-color: #A6A4A4;
+    color: #A6A4A4; }
+  .btn-secondary-inverse.disabled, .btn-secondary-inverse.disabled:hover, .btn-secondary-inverse.disabled:focus {
+    background-color: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
+    opacity: .55; }
+
+/* Primary button */
+.btn-primary {
+  background-color: #00C081;
+  border-color: #00C081;
+  color: #ffffff; }
+  .btn-primary:hover, .btn-primary:active:hover {
+    background-color: #009C51;
+    border-color: #009C51;
+    color: #ffffff; }
+  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:active, .btn-primary.active, .btn-primary:focus, .btn-primary.focus, .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary:active:focus, .btn-primary:active.focus {
+    background-color: #00B26E;
+    border-color: #00B26E;
+    color: #ffffff; }
+  .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus {
+    background-color: #00C081;
+    border-color: #00C081;
+    opacity: .60; }
+
+/* Outline primary button */
+.btn-outline-primary {
+  border-color: #00C081;
+  color: #00C081; }
+  .btn-outline-primary:hover, .btn-outline-primary:active:hover {
+    border-color: #009C51;
+    color: #009C51; }
+  .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary:focus, .btn-outline-primary.focus, .btn-outline-primary.active.focus, .btn-outline-primary.active:focus, .btn-outline-primary:active:focus, .btn-outline-primary:active.focus {
+    border-color: #00B26E;
+    color: #00B26E; }
+  .btn-outline-primary.disabled, .btn-outline-primary.disabled:hover, .btn-outline-primary.disabled:focus {
+    border-color: #00C081;
+    color: #00C081;
+    opacity: .60; }
+
+/* Danger button */
+.btn-danger {
+  background-color: #DC3545;
+  border-color: #DC3545;
+  color: #ffffff; }
+  .btn-danger:hover, .btn-danger:active:hover {
+    background-color: #C5161F;
+    border-color: #C5161F;
+    color: #ffffff; }
+  .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:active, .btn-danger.active, .btn-danger:focus, .btn-danger.focus, .btn-danger.active.focus, .btn-danger.active:focus, .btn-danger:active:focus, .btn-danger:active.focus {
+    background-color: #D32836;
+    border-color: #D32836;
+    color: #ffffff; }
+  .btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focus {
+    background-color: #DC3545;
+    border-color: #DC3545;
+    color: #ffffff;
+    opacity: .60; }
+
+/* Extra small button */
+.btn-xs {
+  padding: 2px 4px; }
+
+/* Small button */
+.btn-sm {
+  padding: 4px 8px; }
+
+/* Vertical-align icons Extra small and small button */
+.btn-xs .eos-icons,
+.btn-sm .eos-icons {
+  vertical-align: bottom; }
+
+/* Large button */
+.btn-lg {
+  padding: 8px 16px; }
+
+/* Icons
+   ========================================================================== */
+/* Base variables for icons
+   ========================================================================== */
+/* Colors variables: /assets/stylesheets/eos-base/variables/branding.scss */
+/* Icons */
+/* Material icons variables */
+/* Base classes for icons
+   ========================================================================== */
+/**
+* Dependencies:
+*   - helpers/mixins.scss
+*   - components/icons/icons.variables.scss
+*   - base/variables/spacings.scss
+*/
+.eos-icons {
+  margin-right: 8px;
+  vertical-align: bottom;
+  width: 24px; }
+
+/* Rules for sizing the icon. */
+.md-18 {
+  font-size: 18px;
+  width: 18px; }
+
+.md-24 {
+  font-size: 24px;
+  width: 24px; }
+
+.md-36 {
+  font-size: 36px;
+  width: 36px; }
+
+.md-48 {
+  font-size: 48px;
+  width: 48px; }
+
+/* Allow image icons, like svg, to use the icon size classes */
+img.md-18 {
+  height: 18px;
+  width: 18px; }
+
+img.md-24 {
+  height: 24px;
+  width: 24px; }
+
+img.md-36 {
+  height: 36px;
+  width: 36px; }
+
+img.md-48 {
+  height: 48px;
+  width: 48px; }
+
+/* Rules for icon colors. */
+.md-light {
+  color: #ffffff; }
+  .md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3); }
+
+.md-dark {
+  color: #141823; }
+  .md-dark.md-inactive {
+    color: rgba(20, 24, 35, 0.3); }
+
+/* Logo icons style */
+.logo {
+  margin-right: 8px;
+  padding: 6px; }
+  .logo-square {
+    border-radius: 0; }
+  .logo-round {
+    border-radius: 2px; }
+
+/* Wrapper background */
+.md-dark-wrapper {
+  background: #141823; }
+  .md-dark-wrapper.md-inactive {
+    background: rgba(20, 24, 35, 0.3); }
+
+.md-light-wrapper {
+  background: #ffffff; }
+  .md-light-wrapper.md-inactive {
+    background: rgba(255, 255, 255, 0.3); }
+
+/* Icons - general (not eos-icons classes) */
+.main-menu .active .icon-new {
+  color: #ffffff; }

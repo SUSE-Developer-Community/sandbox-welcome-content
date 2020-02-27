@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/eos-icons/dist/extended/css/eos-icons-extended.css">
+    <link rel="stylesheet" href="css/eos-style.css">
+    <title>EOS - Layout</title>
+  </head>
+  <body>
+    <aside class="main-menu js-main-menu">
+      <div class="mm-navigation-container">
+        <header><a class="hide-collapsed" href="https://www.eosdesignsystem.com/"><img src="images/eos-logo.png"></a>
+          <div class="mm-navigation-close js-sidebar-toggle"><i class="eos-icons js-sidebar-tooltip js-tooltip" data-placement="bottom" title="">menu</i></div>
+        </header>
+        <div class="nav-wrap">
+          <ul class="menu-togglable no-list-style">
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Dashboard</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/"><i class="eos-icons">dashboard</i><span class="menu-title-content">Dashboard</span></a>
+              <li class="menu-item menu-dropdown">
+                <input id="documentation-toggle" type="checkbox">
+                <label class="menu-title" for="documentation-toggle"><i class="eos-icons">school</i><span class="menu-title-content">Documentation</span><i class="eos-icons md-18 float-right menu-expand">expand_more</i></label>
+                <ul class="menu-dropdown-list menu-element">
+                  <li class="menu-collapsed-title">Documentation</li>
+                  <li><a class="menu-title js-select-current js-feature-flag" href="/installing-npm">Installing EOS npm</a></li>
+                  <li><a class="menu-title js-select-current-parent js-feature-flag" href="/design-specs">Implementing design specs</a></li>
+                  <li><a class="menu-title js-select-current-parent js-feature-flag" href="/design-kit">Design kit</a></li>
+                </ul>
+              </li>
+            </li>
+            <hr>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Alerts</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/alerts"><i class="eos-icons">notifications</i><span class="menu-title-content">Alerts</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Buttons</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/buttons"><i class="eos-icons">crop_16_9</i><span class="menu-title-content">Buttons</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Colors</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/colors"><i class="eos-icons">color_lens</i><span class="menu-title-content">Colors</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Icons</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/icons"><i class="eos-icons">miscellaneous</i><span class="menu-title-content">Icons</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Patterns</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/patterns"><img class="md-18 margin-right-s" src="images/patterns-icon.svg"><span class="menu-title-content">Patterns</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Layout</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/layout"><i class="eos-icons">web</i><span class="menu-title-content">Layout</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Links</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/links"><i class="eos-icons">link</i><span class="menu-title-content">Links</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Typography</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/typography"><i class="eos-icons">text_fields</i><span class="menu-title-content">Typography</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Writing guides</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/writing"><i class="eos-icons">spellcheck</i><span class="menu-title-content">Writing guides</span></a>
+            </li>
+            <li class="menu-item menu-dropdown">
+              <input id="internal-tools-toggle" type="checkbox">
+              <label class="menu-title" for="internal-tools-toggle"><i class="eos-icons">build</i><span class="menu-title-content">Internal tools</span><i class="eos-icons md-18 float-right menu-expand">expand_more</i></label>
+              <ul class="menu-dropdown-list menu-element">
+                <li class="menu-collapsed-title">Internal tools</li>
+                <li><a class="menu-title js-select-current" href="/internal/design-specs">Design specs</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/icons-report">Icons report</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/spacewalk-icons-scc">Spacewalk icons in SCC</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/spacewalk-icons-suma">Spacewalk icons in SUMA</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/special-icons">Special icons list</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/stratos-icons">Stratos icons list</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer class="footer-side-menu">
+        <ul class="footer-list">
+          <li class="footer-list-item"><a class="footer-link" href="/cookies-policy" data-event-category="Internal link" data-event-action="Cookies policy" data-event-label="Footer">Cookie policy</a></li>
+          <li class="footer-list-item"><a class="footer-link" href="https://gitlab.com/SUSE-UIUX/eos/tags" data-event-category="External link" data-event-action="Link Gitlab issues" data-event-label="Footer" target="_blank"><img class="js-tooltip" src="images/gitlab_color.svg" data-toggle="tooltip" data-html="true" title="View our repository"></a></li>
+        </ul>
+      </footer>
+    </aside>
+    <div class="mobile-menu js-mobile-menu">
+      <header><a href="/"><img src="images/eos-logo.png"></a>
+        <div class="burger-menu js-burger-menu"><a><i class="eos-icons md-32">menu</i></a></div>
+      </header>
+      <nav class="display-nav">
+        <div class="nav-wrap">
+          <ul class="menu-togglable no-list-style">
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Dashboard</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/"><i class="eos-icons">dashboard</i><span class="menu-title-content">Dashboard</span></a>
+              <li class="menu-item menu-dropdown">
+                <input id="documentation-toggle" type="checkbox">
+                <label class="menu-title" for="documentation-toggle"><i class="eos-icons">school</i><span class="menu-title-content">Documentation</span><i class="eos-icons md-18 float-right menu-expand">expand_more</i></label>
+                <ul class="menu-dropdown-list menu-element">
+                  <li class="menu-collapsed-title">Documentation</li>
+                  <li><a class="menu-title js-select-current js-feature-flag" href="/installing-npm">Installing EOS npm</a></li>
+                  <li><a class="menu-title js-select-current-parent js-feature-flag" href="/design-specs">Implementing design specs</a></li>
+                  <li><a class="menu-title js-select-current-parent js-feature-flag" href="/design-kit">Design kit</a></li>
+                </ul>
+              </li>
+            </li>
+            <hr>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Alerts</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/alerts"><i class="eos-icons">notifications</i><span class="menu-title-content">Alerts</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Buttons</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/buttons"><i class="eos-icons">crop_16_9</i><span class="menu-title-content">Buttons</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Colors</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/colors"><i class="eos-icons">color_lens</i><span class="menu-title-content">Colors</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Icons</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/icons"><i class="eos-icons">miscellaneous</i><span class="menu-title-content">Icons</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Patterns</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/patterns"><img class="md-18 margin-right-s" src="images/patterns-icon.svg"><span class="menu-title-content">Patterns</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Layout</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/layout"><i class="eos-icons">web</i><span class="menu-title-content">Layout</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Links</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/links"><i class="eos-icons">link</i><span class="menu-title-content">Links</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Typography</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/typography"><i class="eos-icons">text_fields</i><span class="menu-title-content">Typography</span></a>
+            </li>
+            <li class="menu-item">
+              <div class="menu-element"><span class="main-collapsed-title">Writing guides</span></div><a class="menu-title js-select-current-parent js-feature-flag" href="/writing"><i class="eos-icons">spellcheck</i><span class="menu-title-content">Writing guides</span></a>
+            </li>
+            <li class="menu-item menu-dropdown">
+              <input id="internal-tools-toggle" type="checkbox">
+              <label class="menu-title" for="internal-tools-toggle"><i class="eos-icons">build</i><span class="menu-title-content">Internal tools</span><i class="eos-icons md-18 float-right menu-expand">expand_more</i></label>
+              <ul class="menu-dropdown-list menu-element">
+                <li class="menu-collapsed-title">Internal tools</li>
+                <li><a class="menu-title js-select-current" href="/internal/design-specs">Design specs</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/icons-report">Icons report</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/spacewalk-icons-scc">Spacewalk icons in SCC</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/spacewalk-icons-suma">Spacewalk icons in SUMA</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/special-icons">Special icons list</a></li>
+                <li><a class="menu-title js-select-current" href="/internal/stratos-icons">Stratos icons list</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <section class="content">
+      <div class="submenu js-submenu-section">
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="examples"><a class="submenu-item js-select-current" href="/examples/demo-layout.html">Submenu 1</a><a class="submenu-item js-select-current">Submenu 2</a><a class="submenu-item js-select-current">Submenu 3</a><a class="submenu-item js-select-current">Submenu 4</a><a class="submenu-item js-select-current">Submenu 5</a><a class="submenu-item js-select-current">Submenu 6</a><a class="submenu-item js-select-current">Submenu 7</a><a class="submenu-item js-select-current">Submenu 8</a><a class="submenu-item js-select-current">Submenu 9</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="colors"><a class="submenu-item js-select-current js-feature-flag" href="/colors">Colors</a><a class="submenu-item js-select-current js-feature-flag" href="/colors/usage">Usage</a><a class="submenu-item js-select-current js-feature-flag" href="/colors/gradients">Gradients</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="icons"><a class="submenu-item js-select-current js-feature-flag" href="/icons">Icons</a><a class="submenu-item js-select-current js-feature-flag" href="/icons/eos-icons-set">EOS icons set</a><a class="submenu-item js-select-current js-feature-flag" href="/icons/logo-icons-set">Logo icons set</a><a class="submenu-item js-select-current js-feature-flag" href="/icons/material-icons">Material Design icons</a><a class="submenu-item js-select-current js-feature-flag" href="/icons/icon-ux">Icon UX</a><a class="submenu-item js-select-current js-feature-flag" href="/icons/arrows-usage">Arrow icons usage</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="installing-npm"><a class="submenu-item js-select-current js-feature-flag" href="/installing-npm">Installing EOS npm</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="design-specs"><a class="submenu-item js-select-current js-feature-flag" href="/design-specs">Implementing design specs</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="design-kit"><a class="submenu-item js-select-current js-feature-flag" href="/design-kit">Design kit</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="writing"><a class="submenu-item js-select-current js-feature-flag" href="/writing">Writing guides</a><a class="submenu-item js-select-current js-feature-flag" href="/writing/brand-voice">Brand voice</a><a class="submenu-item js-select-current js-feature-flag" href="/writing/brand-tone">Brand tone</a><a class="submenu-item js-select-current js-feature-flag" href="/writing/ux-writing">UX writing</a><a class="submenu-item js-select-current js-feature-flag" href="/writing/conventions-and-rules">Conventions and rules</a><a class="submenu-item js-select-current js-feature-flag" href="/writing/acronyms">Acronyms</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="buttons"><a class="submenu-item js-select-current js-feature-flag" href="/buttons">Buttons</a><a class="submenu-item js-select-current js-feature-flag" href="/buttons/icon-buttons" data-route="/buttons/icon-buttons">Icon buttons</a><a class="submenu-item js-select-current js-feature-flag" href="/buttons/sizing" data-route="/buttons/sizing">Sizing</a><a class="submenu-item js-select-current js-feature-flag" href="/buttons/positioning" data-route="/buttons/positioning">Positioning</a><a class="submenu-item js-select-current js-feature-flag" href="/buttons/usage" data-route="/buttons/usage">Usage</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="patterns"><a class="submenu-item js-select-current js-feature-flag" href="/patterns">Patterns</a><a class="submenu-item js-select-current js-feature-flag" href="/patterns/common-actions">Common actions</a><a class="submenu-item js-select-current js-feature-flag" href="/patterns/loading" data-route="/patterns/loading">Loading</a><a class="submenu-item js-select-current js-feature-flag" href="/patterns/spacing" data-route="/patterns/spacing">Spacing</a><a class="submenu-item js-select-current js-feature-flag" href="/patterns/date-time" data-route="/patterns/date-time">Date & time</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="alerts"><a class="submenu-item js-select-current js-feature-flag" href="/alerts">Alerts</a><a class="submenu-item js-select-current js-feature-flag" href="/alerts/global" data-route="/alerts/global">Global</a><a class="submenu-item js-select-current js-feature-flag" href="/alerts/section" data-route="/alerts/section">Section</a><a class="submenu-item js-select-current js-feature-flag" href="/alerts/inline" data-route="/alerts/inline">Inline</a><a class="submenu-item js-select-current js-feature-flag" href="/alerts/usage" data-route="/alerts/usage">Usage</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="layout"><a class="submenu-item js-select-current js-feature-flag" href="/layout">Layout</a><a class="submenu-item js-select-current js-feature-flag" href="/layout/main-menu" data-route="/layout/main-menu">Main menu</a><a class="submenu-item js-select-current js-feature-flag" href="/layout/submenu" data-route="/layout/submenu">Submenu</a><a class="submenu-item js-select-current js-feature-flag" href="/layout/footer" data-route="/layout/footer">Footer</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="links"><a class="submenu-item js-select-current js-feature-flag" href="/links">Links</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu="typography"><a class="submenu-item js-select-current js-feature-flag" href="/typography">Typography</a></nav>
+        <nav class="main-submenu js-submenu-make-visible" data-parent-menu=""><a class="submenu-item js-select-current js-feature-flag" href="/">Dashboard</a></nav>
+        <div class="dropdown dropdown-more js-submenu-more"><a class="submenu-item dropdown-toggle" data-toggle="dropdown"><i class="eos-icons md-24">more_horiz</i></a>
+          <ul class="dropdown-menu dropdown-menu-left js-submenu-content">
+            <li><span>More</span></li>
+            <li class="js-submenu-more-list"></li>
+          </ul>
+        </div>
+        <div class="user-profile js-user-profile dropdown">
+          <div class="dropdown-toggle" data-toggle="dropdown"><i class="eos-icons md-24">account_circle</i></div>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li class="user-name"><strong class="js-tooltip" data-toggle="tooltip" title="User-name-get-truncated-this-way-when-is-too-long-&amp;Display-onToolTip">User-name-get-truncated-this-way-when-is-too-long-&Display-onToolTip</strong><span class="js-tooltip" data-toggle="tooltip" title="User-name-get-truncated-this-way-when-is-too-long-&amp;Display-onToolTip@something.com">User-name-get-truncated-this-way-when-is-too-long-&Display-onToolTip@something.com</span></li>
+            <li><a class="dropdown-item"><i class="eos-icons md-18">edit</i>Edit profile</a><a class="dropdown-item"><i class="eos-icons md-18">settings</i>Settings</a><a class="dropdown-item"><i class="eos-icons md-18">subscriptions</i>My subscriptions</a></li>
+            <li><a class="dropdown-item"><i class="eos-icons md-18">exit_to_app</i>Logout   </a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <h1>Welcome to EOS</h1>
+        <p>To show an active menu/submenu element, add the class <code>selected</code></p>
+      </div>
+    </section>
+    <footer class="footer-content js-footer-content">
+      <ul class="footer-list">
+        <li class="footer-list-item"><a class="footer-link" href="/cookies-policy" data-event-category="Internal link" data-event-action="Cookies policy" data-event-label="Footer">Cookie policy</a></li>
+        <li class="footer-list-item"><a class="footer-link" href="https://gitlab.com/SUSE-UIUX/eos/tags" data-event-category="External link" data-event-action="Link Gitlab issues" data-event-label="Footer" target="_blank"><img class="js-tooltip" src="images/gitlab_color.svg" data-toggle="tooltip" data-html="true" title="View our repository"></a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/index.js"></script>
+<script src="js/demo.js"></script>

@@ -1,5 +1,11 @@
 ---
 title: Introduction to the Cloud Foundry Command Line Tool 
+menu:
+  nav:
+    name: "Command Line"
+    url: "/cli/"
+    weight: 50
+    icon: color_lens
 ---
 For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
 you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 

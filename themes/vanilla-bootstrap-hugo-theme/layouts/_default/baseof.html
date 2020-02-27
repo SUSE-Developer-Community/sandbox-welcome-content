@@ -1,16 +1,49 @@
-<!doctype html>
-{{ $lang := .Site.Language.Lang | default "en" }}
-<html lang="{{ $lang }}" class="h-100">
-  {{ partial "head.html" . }}
-  <body class="d-flex flex-column h-100">
-    {{ partial "nav.html" . }}
-    <div class="container">
-      <main id="main">
-        {{ block "main" . }}{{ end }}
-      </main>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/eos-icons/dist/extended/css/eos-icons-extended.css">
+    <link rel="stylesheet" href="/css/eos-style.css">
+    <title>SUSE CAP Getting Started -- {{ $.Page.Title }}</title>
+  </head>
+  <body>
+    <aside class="main-menu js-main-menu">
+      <div class="mm-navigation-container">
+        <header><a class="hide-collapsed" href="https://www.eosdesignsystem.com/"><img src="images/eos-logo.png"></a>
+          <div class="mm-navigation-close js-sidebar-toggle"><i class="eos-icons js-sidebar-tooltip js-tooltip" data-placement="bottom" title="">menu</i></div>
+        </header>
+        <div class="nav-wrap">
+          {{ partial "nav.html" . }}
+        </div>
+      </div>
+      <footer class="footer-side-menu">
+        <ul class="footer-list">
+          <li class="footer-list-item"><a class="footer-link" href="https://gitlab.com/SUSE-UIUX/eos/tags" data-event-category="External link" data-event-action="Link Gitlab issues" data-event-label="Footer" target="_blank"><img class="js-tooltip" src="images/gitlab_color.svg" data-toggle="tooltip" data-html="true" title="View our repository"></a></li>
+        </ul>
+      </footer>
+    </aside>
+    <div class="mobile-menu js-mobile-menu">
+      <header><a href="/"><img src="images/eos-logo.png"></a>
+        <div class="burger-menu js-burger-menu"><a><i class="eos-icons md-32">menu</i></a></div>
+      </header>
+      <nav class="display-nav">
+        {{ partial "nav.html" . }}
+      </nav>
     </div>
-    {{ partial "footer.html" . }}
-    {{ partial "script.html" . }}
-    {{ partial "google-analytics-async.html" . }}
+    <section class="content">
+      </div>
+      <div class="container">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </section>
+    <footer class="footer-content js-footer-content">
+      
+      {{ partial "footer.html" . }}
+    </footer>
   </body>
 </html>
+{{ partial "script.html" . }}
