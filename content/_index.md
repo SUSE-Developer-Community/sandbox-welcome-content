@@ -1,5 +1,11 @@
-
-# Welcome
+---
+title: Welcome
+menu:
+  nav:
+    name: "Introduction"
+    url: "/"
+    weight: 10
+---
 
 Welcome to the SUSE CAP Sandbox! 
 
@@ -7,7 +13,7 @@ If you would like to skip the introduction and just get logged in and start play
   
 # Key Developer Benefits to Platform as a Service
 
-Imagine you just got a new laptop. First thing you do is slab your favorite OS on it and then the fun begins. You have to install your favorite editor or IDE, compilers, libraries, debug tools and what have you. Fast forward a few hours and you're slowly getting to a point where your new tool becomes usable. Couple of weeks later something in your toolchain breaks and you have to spend time to fix it. Updates need to be made, dependencies to be considered and managed and so on. Bottomline is, you need to invest a certain amount of your valuable time into building and maintaining your development environment, your workbench so to speak. And this time gets taken away from the time you have to do actually productive things, i.e. write code. 
+Imagine you just got a new laptop. First thing you do is slab your favorite OS on it and then the fun begins. You have to install your favorite editor or IDE, compilers, libraries, debug tools and what have you. Fast forward a few hours and you're slowly getting to a point where your new tool becomes usable. Couple of weeks later something in your tool-chain breaks and you have to spend time to fix it. Updates need to be made, dependencies to be considered and managed and so on. Bottom line is, you need to invest a certain amount of your valuable time into building and maintaining your development environment, your workbench so to speak. And this time gets taken away from the time you have to do actually productive things, i.e. write code. 
 
 > TODO: find numbers how much time developers spend maintaining their environment
 

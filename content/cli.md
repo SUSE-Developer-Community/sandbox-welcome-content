@@ -1,10 +1,16 @@
 ---
 title: Introduction to the Cloud Foundry Command Line Tool 
+menu:
+  nav:
+    name: "Command Line"
+    url: "/cli/"
+    weight: 50
+    icon: color_lens
 ---
 For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
 you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
 
-# Installation
+## Installation
 It can be run on a variety of systems. Pick the system you are using to install on:
 
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
@@ -72,7 +78,7 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
 {{< /tabs >}}
 
   
-# Login To Your Account
+## Login To Your Account
 
 Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
 
@@ -87,7 +93,7 @@ With that terminal, you should get the option of which Organization and Space yo
 
 TODO: screenshot
   
-# Organizations and Spaces
+## Organizations and Spaces
 
 The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
 
@@ -129,7 +135,7 @@ cf help -a
 ```
 
   
-# Pushing Applications
+## Pushing Applications
 
 From a developer's perspective, Cloud Foundry can be summed up in a single command. All it takes to run an application is `cf push`. 
 
@@ -242,7 +248,7 @@ start command:   npm start
 
 In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
 
-# Logging
+## Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
 or just too see the event history.
@@ -261,7 +267,7 @@ cf logs --recent <app name>
 
 TODO: screenshot
 
-# Updating an Application
+## Updating an Application
 
 As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
 
@@ -316,7 +322,7 @@ TODO: Updating in Python
 {{</tabs>}}
 
 
-# Manifest
+## Manifest
 
 There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
 
@@ -361,7 +367,7 @@ TODO: Updating in Python
 {{</tab>}}
 {{</tabs>}}
 
-# Data Persistence / Service Brokers / Service Binding
+## Data Persistence / Service Brokers / Service Binding
 
 While we like to talk a lot about "stateless" applications, that's not the reality for a lot of systems. For most systems, state needs to live somewhere and treating all state as ephemeral like the hyper-scalers is not fiscally responsible for all but the largest systems.
 
@@ -370,11 +376,11 @@ The way SUSE CAP approaches this problem is by pushing dependencies (including s
 
 TODO: Write about file persistence?
 
-## Open Service Broker
+### Open Service Broker
 
 The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API standard that describes how to create and allow consumption of services. This can allow a provider of services to give some control over life-cycle to the users of the service.
 
-## Service Marketplace
+### Service Marketplace
 
 As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. Your account should have access to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
 
@@ -413,7 +419,7 @@ To add the service and restage with any new environment variables needed. To see
 cf env mysample
 ```
 
-## Service Binding
+### Service Binding
 
 Once we have the service created and bound, we can consume it from our application.
 
@@ -511,7 +517,7 @@ TODO: Reading VCAP_SERVICES in Python
 {{</tab>}}
 {{</tabs>}}
 
-# Debugging
+## Debugging
 
 There are a few methods of debugging a running application that can be used: logging, tracing, and remote debugging from your IDE.
 
@@ -595,7 +601,7 @@ TODO: Debugging in Python
 {{</tabs>}}
 
   
-# Clean up
+## Clean up
 
 If you want to clean up unused apps or services, we can delete them from the command line.
 
@@ -612,6 +618,6 @@ TODO: see what prompts might happen
 TODO: what else should we clean up?
   
 
-# Next Steps
+## Next Steps
 
 TODO: What Next Steps?

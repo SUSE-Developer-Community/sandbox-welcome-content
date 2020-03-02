@@ -1,22 +1,20 @@
-<div id="nav-border" class="container">
-  <nav id="nav" class="nav justify-content-center">
-  {{ $showActiveNav := .Site.Params.showActiveNav }}
+<ul class="menu-togglable no-list-style">
   {{ $currentPage := . }}
   {{ range .Site.Menus.nav }}
     {{ $active := "" }}
-    {{ if eq $showActiveNav true }}
-      {{ $isMenu := or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }}
-      {{ $isMenu = or $isMenu (eq $currentPage.Params.identifier .Identifier) }}
-      {{ $isMenu = or $isMenu (eq $currentPage.Title .Name) }}
-      {{ $isMenu = or $isMenu (and (eq .Name "Blog") (eq $currentPage.Section "post")) }}
-      {{ $isMenu = or $isMenu (and (eq .Name "Tags") (eq $currentPage.Section "tags")) }}
-      {{ if $isMenu }} 
-        {{ $active = "nav-link-active" }}
-      {{ end }}  
-    {{ end }}  
-    {{ $icon := printf "<i data-feather=\"%s\"></i>" .Pre }}
-    {{ $text := print $icon " " .Name | safeHTML }}
-    <a class="nav-link {{ $active }}" href="{{ .URL }}">{{ $text }}</a>
+    {{ $isMenu := or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }}
+    {{ $isMenu = or $isMenu (eq $currentPage.Params.identifier .Identifier) }}
+    {{ $isMenu = or $isMenu (eq $currentPage.Title .Name) }}
+    {{ if $isMenu }} 
+      {{ $active = "selected" }}
+    {{ end }} 
+    {{ $text := print .Name | safeHTML }}
+    <li class="menu-item">
+      <div class="menu-element"><span class="main-collapsed-title">{{ $text }}</span></div>
+      <a class="menu-title js-select-current-parent js-feature-flag {{ $active }}" href="{{ .URL }}">
+        <i class="eos-icons">color_lens</i>
+        <span class="menu-title-content">{{ $text }}</span>
+      </a>
+    </li>
   {{ end }}
-  </nav>
-</div>
+</ul>
