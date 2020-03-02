@@ -10,6 +10,6 @@ To build the html locally, install [hugo](https://gohugo.io/getting-started/quic
 git clone https://github.com/SUSE-Developer-Community/sandbox-welcome-content.git
 cd sandbox-welcome-content
 git submodule init
-git submodule upgrade
+git submodule update
 hugo -D
 ```
