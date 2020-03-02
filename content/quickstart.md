@@ -4,14 +4,14 @@ You can access the SUSE CAP Sandbox via the Cloud Foundry command line interface
 
 ## CLI access
 
-I'm assuming you already installed the Cloud Foundry CLI (check here for installation instructions). 
+I'm assuming you already installed the Cloud Foundry CLI (check [here](/cli/) for detailed instructions regarding CLI use). 
 
 Start the login process with:
 ``` bash
 cf login -a https://api.cap.explore.suse.dev -sso
 ```
 
-This will return a URL you need to copy into your browser, which will take you to the login page. After logging in there, you will receive a one-time token, which you need to copy into your terminal like:
+This will return a URL that you need to copy into your browser. This will take you to the login page of the SUSE developer portal. After logging in there, you will receive a one-time token, which you need to copy into your terminal like:
 ``` bash
 cf login -sso-passcode <your token>
 API endpoint: https://api.cap.explore.suse.dev
@@ -41,4 +41,4 @@ The Stratos Web UI can be accessed at https://stratos.cap.explore.suse.dev.
 
 ## Further reading
 
-More detailed instructions and inspiration what to try out can be found here. 
+More detailed instructions and inspiration what to try out on the command line can be found [here](/cli/), and some exercises on the web UI Stratos can be found [here](/stratos). 
