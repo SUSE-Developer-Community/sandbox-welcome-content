@@ -26,8 +26,8 @@ Targeted space dev
 
 
 API endpoint:   https://api.trial.cap.suse.dev (API version: 3.73.0)
-User:           tim.irnich@suse.com
-Org:            tim
+User:           <username>
+Org:            <your_org_name>
 Space:          dev
 ```
 
