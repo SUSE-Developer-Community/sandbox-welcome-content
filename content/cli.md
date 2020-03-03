@@ -7,6 +7,7 @@ menu:
     weight: 50
     icon: color_lens
 ---
+
 For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
 you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
 
@@ -68,7 +69,7 @@ sudo yum install cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="6" >}}
-If none of the other methods work for you, there are already 
+If none of the other methods work for you, there are binaries precompiled for you to use. 
 
 These can be found at [Here](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries).
 
@@ -83,15 +84,38 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
 Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
 
 ```bash
-cf login -a < TODO  url> --sso 
+cf login -a < TODO  url> -u <Email used in developer portal> 
 ```
-TODO: Fact Check
-This will give you a URL to browse to and log in. After you log in, you will get a single use token to copy and paste back into your terminal.
 
-TODO: Maybe have a space that the samples live in as well as the standard dev/test/prod?
-With that terminal, you should get the option of which Organization and Space you want to use. For now, select "samples". 
+This will prompt you for your password. This is the random password delivered along with your welcome email. (If you have since changed your password on Stratos, use what you changed it to)
 
-TODO: screenshot
+The next prompt will be to select which space you want to target. Select "4" (or Samples) for now. 
+
+```bash
+user:~/Projects/ $ cf login -u test@example.com -p <redacted>
+API endpoint: https://api.cap.explore.suse.dev
+Authenticating...
+OK
+
+Targeted org text_example_com
+
+Select a space (or press enter to skip):
+1. dev
+2. prod
+3. samples
+4. test
+
+Space> 3
+Targeted space samples
+
+
+                
+API endpoint:   https://api.cap.explore.suse.dev (API version: 2.138.0)
+User:           test@example.com
+Org:            text_example_com
+Space:          samples
+
+```
   
 ## Organizations and Spaces
 
@@ -230,7 +254,7 @@ TODO: Python Example
   
 Regardless of which language your write your app in, the last few lines of the output should look something like this:
 
-```log
+```bash
 name:              nodejs_sample
 requested state:   started
 routes:            mysample.cap.explore.suse.dev
