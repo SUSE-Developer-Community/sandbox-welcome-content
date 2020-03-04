@@ -252,7 +252,7 @@ TODO: Python Example
 {{</tabs >}}
   
   
-Regardless of which language your write your app in, the last few lines of the output should look something like this:
+Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
 name:              nodejs_sample
