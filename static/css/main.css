@@ -18,8 +18,18 @@ pre {
 
 .tab-content {
     border: rgba(0,0,0,.2) 1px solid;
+
+}
+.tab-pane {
+    margin:8px;
+    margin-left:12px;
 }
 
 h2 {
-    margin-top:32px;
+    margin-top:64px;
+    font-weight: bold;
+}
+
+h2 a {
+    font-size: smaller;
 }
