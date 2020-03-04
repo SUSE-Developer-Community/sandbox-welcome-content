@@ -87,7 +87,7 @@ Once you have installed the cf-cli, we need to log in. In this sandbox environme
 cf login -a < TODO  url> -u <Email used in developer portal> 
 ```
 
-This will prompt you for your password. This is the random password delivered along with your welcome email. (If you have since changed your password on Stratos, use what you changed it to)
+This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
 The next prompt will be to select which space you want to target. Select "4" (or Samples) for now. 
 
