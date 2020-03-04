@@ -23,12 +23,17 @@ Platform as a Service addresses all those problems.
 
 Looking at it from an individual developer's point of view, PaaS makes it possible (but by no means necessary) to avoid composing and maintaining a local build toolchain, since the platform takes care of building your code at deployment time. The only thing you really need locally is an editor or an IDE. You can then push your code to your PaaS cluster and the rest will be taken care of by the platform. 
 
-## Build Packs
+### Build Packs
 In case of Cloud Foundry, there is a concept called [build packs](https://docs.cloudfoundry.org/buildpacks/), which standardizes your build environment. Cloud Foundry will inspect your code directory when you push it, and automatically detect the right build pack to use (you can manually override that if you want). In a nutshell, CF tries to detect which programming language you use and if your code makes any assumptions on required build tools like Maven or Gradle. 
 
 This concept becomes even more beneficial when it comes to harmonizing development environments across teams and insuring conformance to any security or regulatory rules. Having code built by a build pack ensures that the build environment is exactly the same every time a developer pushes a code change to the platform. Changes to the build environment can be done in a controlled way (by updating the build pack) and happen at the same time for all involved developers. 
 
-At this point the reader probably wonders how this impacts debugging. While this is beyond this article's scope, I'd like to have a pointer to another article that explains how debugging an app on CF works.
+
+### Debugging 
+
+TODO: At this point the reader probably wonders how this impacts debugging. While this is beyond this article's scope, I'd like to have a pointer to another article that explains how debugging an app on CF works.
+
+### Ecosystem
 
 Another advantage of Platform as a Service is that it can rid a developer to maintain adjacent components as part of the test tool-chain. The platform operator usually offers a number of services such as databases, search and analytics engines, etc. Imagine you want to use a database in your app. Normally you would have to install and configure that database yourself. With a PaaS, your platform operator can offer readily available database instances as services that you can bind to your app. So the only thing you need to worry about is the API calls to the database interface in your code. 
 
