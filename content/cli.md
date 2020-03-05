@@ -246,7 +246,48 @@ TODO: Java Example
 {{</tab >}}
 
 {{<tab tabNum="4">}}
-TODO: Python Example
+Let us create a simple static website as an example Cloud Foundry application written in Python. 
+
+First, let's create a simple HTML file that will serve as our home page, and save as index.html:
+
+```html
+  <html>
+      <head>
+          <title>Python says Hello World!</title>
+      </head>
+      <body>
+          <h1>And this is running on the SUSE Cloud Application Platform developer sandbox</h1>
+          <p>Update this page and simply run cf push to get your changes online within seconds!</p>
+      </body>
+  </html>
+```
+
+Now let's create a simple web server like this:
+```Python
+import http.server
+import socketserver
+
+PORT = 8080
+HOST = "0.0.0.0"
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer((HOST, PORT), Handler) as httpd:
+    print("serving at port", PORT)
+    httpd.serve_forever()
+```
+
+Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry Python build pack defaults to Python 2.7, we need to add a `runtime.txt` file to our app directory:
+
+```txt
+python-3.x
+```
+
+And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a Procfile, a manifest.yaml or specify the start command when pushing with the -c switch. We'll use the Procfile option in this example. 
+
+```txt
+web: python server.py
+``` 
+
 {{</tab >}}
 
 {{</tabs >}}
@@ -255,7 +296,7 @@ TODO: Python Example
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
-name:              nodejs_sample
+name:              my_sample_app
 requested state:   started
 routes:            mysample.cap.explore.suse.dev
 last uploaded:     Wed 05 Feb 14:57:40 PST 2020
