@@ -2,7 +2,7 @@
 title: Welcome
 menu:
   nav:
-    name: "Introduction"
+    name: home
     url: "/"
     weight: 10
 ---

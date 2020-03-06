@@ -1,8 +1,8 @@
 ---
-title: Introduction to the Cloud Foundry Command Line Tool 
+title: Introduction to the CLI 
 menu:
   nav:
-    name: "Command Line"
+    name: "computer"
     url: "/cli/"
     weight: 50
     icon: color_lens

@@ -2,10 +2,9 @@
 title: Introduction to Stratos
 menu:
   nav:
-    name: "Stratos"
+    name: "web"
     url: "/stratos/"
     weight: 60
-    icon: color_lens
 ---
 
 # Logging in

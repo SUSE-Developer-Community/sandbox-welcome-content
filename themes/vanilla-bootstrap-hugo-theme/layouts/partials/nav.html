@@ -8,11 +8,11 @@
     {{ if $isMenu }} 
       {{ $active = "selected" }}
     {{ end }} 
-    {{ $text := print .Name | safeHTML }}
+    {{ $text := print .Title | safeHTML }}
     <li class="menu-item">
       <div class="menu-element"><span class="main-collapsed-title">{{ $text }}</span></div>
       <a class="menu-title js-select-current-parent js-feature-flag {{ $active }}" href="{{ .URL }}">
-        <i class="eos-icons">color_lens</i>
+        <i class="eos-icons">{{.Name}}</i>
         <span class="menu-title-content">{{ $text }}</span>
       </a>
     </li>
