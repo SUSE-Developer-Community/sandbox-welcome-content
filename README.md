@@ -11,5 +11,5 @@ git clone https://github.com/SUSE-Developer-Community/sandbox-welcome-content.gi
 cd sandbox-welcome-content
 git submodule init
 git submodule update
-hugo -D
+hugo serve -D
 ```
