@@ -26,10 +26,17 @@ pre {
 }
 
 h2 {
-    margin-top:64px;
+    margin-top:48px;
     font-weight: bold;
 }
 
 h2 a {
     font-size: smaller;
+}
+
+p img {
+    width: 85%;
+    margin-left: 5%;
+    margin-top: 1em;
+    margin-bottom: 2em;
 }
