@@ -43,14 +43,71 @@ For these instructions, we can use an existing project. If you want to follow al
 
 ### Manifest
 
-For future projects (or if you want to use your own project in this guide), you need to add a file called `manifest.yml`. Stratos and Cloud Foundry will look for this file to know some basic information about how to build and deploy the application.
+Stratos and Cloud Foundry will look for this file to know some basic information about how to build and deploy the application.
 
 
-## Deploying App
+For future projects (or if you want to use your own project in this guide), you need to create a file called `manifest.yml`. The most basic example is:
+
+```yaml
+applications:
+- name: Example Application
+```
+
+
+## Deploying Application
+
+To deploy your example application, start on the applications page
+
+Click the `+` in the top right
+
+Click `Public GitHub`
+
+Select the `dev` space in the third drop down.
+
+Click Next
+
+Enter your github username and `/` to get a drop down of you publicly available repos.
+
+Select the example from the drop down (or just type it in)
+
+Make sure you have the master branch selected.
+
+Click Next
+
+Pick the top commit
+
+Click `Create a random route`
+
+Click Deploy
+
+You will see a live tail of the deployment log. 
+
+At the end of it's output, you will see the URL printed. (This can be found later)
+
+At any time, you can click `Go to App Summary` to go to te application summary page.
 
 ## Logging
 
-## Upgrading App
+To see any console output of your application, go to the application summary page and click `Log Stream` on the second left side bar.
+
+If you are scrolled up in the logs, a button will pop up allowing you to scroll to the most recent logs. 
+
+![Logging]()
+
+## Upgrading Application
+
+To upgrade your application, first make a new commit in github. This can be done in GitHub by editing a file. 
+
+TODO: what edit
+
+For the purposes of this example, commit directly to master.
+
+
+To upgrade the application to this new version, we need to go back to the application details on Stratos. 
+
+On the left, click the `GitHub` menu to see all the commits available to deploy. (If you don't see your new commit, click the refresh on the right of the panel)
+
+To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`.
 
 
 ## Data Persistence / Service Brokers / Service Binding
