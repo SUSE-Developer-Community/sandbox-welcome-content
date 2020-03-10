@@ -125,9 +125,90 @@ The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API s
 
 ### Service Marketplace
 
+Stratos makes browsing the service marketplace very easy. To view the services available to use, Click on the `Marketplace` tab on the left.
+
+![Service Marketplace](/images/stratos/marketplace.png)
+
+Depending on the brokers installed, this list can vary. In our sandbox, we have the minibroker installed. This gives developers easy access to common databases (mariadb, mongodb, postgres, and redis). You have access to create 
+
+
+### Service Creation
+
+If we click on one of the services, we can see some information about it. 
+
+![Service Marketplace](/images/stratos/marketplace-summary1.png)
+
+If we click `Plans` on the left, you will see which version are available. With minibroker, these are versions but in other brokers, plans can be different distinctions. (For example, the AWS and Azure services tend to have separate plans for free and paid versions).
+
+//TODO: sync with rest of example
+![MariaDB Plans](/images/stratos/mariadb-plans.png)
+
+In the sandbox, we will only offer a single version of each service to keep things simple.
+
+To create a new service instance, click the `+` in the top right of the service summary page.
+
+Select the Space that you want to use the service in. (If you are following the example, select `dev`) Then click `Next`. 
+
+![MongoDB Space Selection](/images/stratos/mongo-create1.png)
+
+On this page we can select which version we would like to use. As there is only one being offered in the sandbox, it will be selected automatically. Click `Next`.
+
+![MongoDB Plan Selection](/images/stratos/mongo-create2.png)
+
+
+Next, we will be asked if we want to bind this new service to an existing application. Select your example application and click `Next`. (You can inject data about the service binding into the application here but we don't need to)
+
+![MongoDB App Selection](/images/stratos/mongo-create3.png)
+
+Lastly, we will name the service instance `MongoExample`. This will be the name that the application uses to bind in future deployments.
+
+Some services allow you to customize the creation parameters, we don't need to worry about this for now.
+
+Click `Finish`. This will create the instance and set up the application binding.
+![MongoDB App Selection](/images/stratos/mongo-create4.png)
+
+
+If your application is already running, you will need to restart it to get the application to read the new environment.
+
+This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
+![Restart App](/images/stratos/restart-app.png)
 
 ### Service Binding
 
+We can bind a single service to multiple applications as well as keep a service across application deletions and creations.
+
+If you want to bind existing services to an application, we can start from the application's summary page and click on  Services on the left.
+
+Here we can see any services that are bound to the application:
+
+Click the `+` to start creating a new service binding.
+![App Services](/images/stratos/bind1.png)
+
+Select `Marketplace Service` (See [below](#user-provided-services) for User Provided Services)
+
+![App Services](/images/stratos/bind2.png)
+
+Select the type of service we would like to bind to and click `Next`
+
+![App Services](/images/stratos/bind3.png)
+
+Since there's only one version to pick from, just click `Next`
+![App Services](/images/stratos/bind4.png)
+
+We don't have any  specific binding parameters, so we just click `Next`
+![App Services](/images/stratos/bind5.png)
+
+We are binding to an existing Service Instance so click `Bind to an Existing Service Instance` and select the Service Instance you want to attach to.
+
+Click Finish to bind the instance.
+![App Services](/images/stratos/bind6.png)
+
+Like above, if your application is already running, you will need to restart it to get the application to read the new environment.
+
+This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
+![Restart App](/images/stratos/restart-app.png)
+
+### User Provided Services
 
 
 ## Clean up
