@@ -11,13 +11,11 @@ Stratos is a great way to manage your Cloud Foundry applications. While it might
 
 ## Logging in
 
-When you created your account, you should have been sent an email with a temporary password. 
-
-Browse to https://stratos.cap.explore.suse.dev/login and sign in with this password and the same email as you used to sign up for the Developer Community Portal (also the one that the password got sent to).
+Sign in to Stratos at https://stratos.cap.explore.suse.dev/login. (If you haven't changed your password already, check out [Changing your Password](/password/))
 
 ![Logging In](/images/stratos/login.png)
 
-When you first log in, you will be greeted by a list of applications and pages your have "favorited". As this is your first time logging in, it will be empty.
+When you first log in, you will be greeted by a list of applications and pages you have "favorited". As this is your first time logging in, it will be empty.
 ![Applications 1](/images/stratos/favorites-init.png)
 
 ## Applications
@@ -32,7 +30,7 @@ The applications and users of a Cloud Foundry platform are split into Organizati
 
 As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "sample" space (selected at login).
 
-When you first log in, you should see these 
+When you first log in, you should see (TODO: What should they see?)
 
 
 ## Forking Example on GitHub
