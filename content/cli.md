@@ -605,8 +605,6 @@ The trick for most languages is to pipe through SSH using `cf ssh`.
 This will open up an SSH socket and host it on your local computer giving a secure way to access your application
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in 
-
 Node.js has a debug mode available by starting with the `--inspect` flag.
 
 The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
@@ -620,7 +618,7 @@ The first step will be to change the start command in your `package.json` to ena
 ...
 ```
 
-And push again 
+And push again by:
 
 ```bash
 cf push
@@ -628,7 +626,7 @@ cf push
 
 Then to allow access to the debugger, use the command:
 ```bash
-cf ssh nodejs-example -L 9221:localhost:9229
+cf ssh mysample -L 9221:localhost:9229
 ```
 
 This will forward port 9211 on your local machine to port 9229 of the container. It will hold this port open until you exit the shell it creates. (This ssh connection can be useful for all sort of debugging as well)
