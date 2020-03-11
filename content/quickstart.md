@@ -1,11 +1,10 @@
 ---
-title: Quickstart with SUSE Cloud Application Platform
+title: Quickstart
 menu:
   nav:
-    name: "computer"
+    name: "primitive"
     url: "/quickstart/"
     weight: 50
-    icon: color_lens
 ---
 
 # Quickstart
