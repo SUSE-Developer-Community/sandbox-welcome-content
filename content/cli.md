@@ -242,7 +242,53 @@ Note: The ```--random-route``` flag is useful here in this multi-tenant environm
 {{</tab >}}
 
 {{<tab tabNum="3">}}
-TODO: Java Example
+Let us start by creating a simple Java Spring Boot Application. 
+First let us go to the spring initializer site https://start.spring.io/ the select the required dependcies and enter the project name and details, here are the requested details:
+  - Spring version 2.2.5
+  - Group com.suse.cap
+  - Artifact helloworld
+  - Packaging jar
+  - java 8
+  - dependcies:
+      - spring web
+  Then hit generate button and download the project zip.
+  Upzip the project then open eclipse and import the project.
+  In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
+  Now Navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+ ```Java
+  package com.suse.cap.helloworld;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello "+name + " From Spring :)!";
+	}
+}
+```
+Then navigate to the main folder and create manifest.yaml with the following content:
+```yaml
+---
+applications:
+- name: HelloWorld
+  memory: 1G
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+```   
+Now try to build the application using maven by running mvn clean install then pushing it into the application by cf push and test it but running the browser your application assigned route followed by helloworld/sayHello/cap user and you can see the Hello World message.
+
 {{</tab >}}
 
 {{<tab tabNum="4">}}
