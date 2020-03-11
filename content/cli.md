@@ -248,7 +248,7 @@ TODO: Java Example
 {{<tab tabNum="4">}}
 Let us create a simple static website as an example Cloud Foundry application written in Python. 
 
-First, let's create a simple HTML file that will serve as our home page, and save as index.html:
+First, let's create a simple HTML file that will serve as our home page, and save it as `index.html`:
 
 ```html
   <html>
@@ -276,17 +276,30 @@ with socketserver.TCPServer((HOST, PORT), Handler) as httpd:
     httpd.serve_forever()
 ```
 
-Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry Python build pack defaults to Python 2.7, we need to add a `runtime.txt` file to our app directory:
+Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry Python build pack defaults to Python 2.7, we need to add a `runtime.txt` file to our app directory, which contains the following line:
 
 ```txt
 python-3.x
 ```
 
-And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a Procfile, a manifest.yaml or specify the start command when pushing with the -c switch. We'll use the Procfile option in this example. 
+And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command when with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
 
 ```txt
 web: python server.py
 ``` 
+
+Now we are ready to push our app up to Cloud Foundry. If you followed our example step-by-step you might want to double-check on the space you're targeting first. Push your app with `cf push` and remember to specify that you want to use the Python build pack by using the -b switch. This is needed since the Python build pack looks for `requirements.txt` or `setup.py` to determine if it's facing a Python application and our very simple app doesn't need either of them. 
+
+```bash
+> cf target -s dev
+api endpoint:   https://api.cap.explore.suse.dev
+api version:    2.144.0
+user:           <your_user_name>
+org:            <your_org_name>
+space:          dev
+
+> cf push pythonhelloworld -b python_buildpack
+```
 
 {{</tab >}}
 
@@ -381,9 +394,11 @@ Note: This time, we can drop the ```--random-route``` as the configuration is pe
 {{<tab tabNum="3">}}
 TODO: Updating in Java
 {{</tab>}}
+
 {{<tab tabNum="4">}}
 TODO: Updating in Python
 {{</tab>}}
+
 {{</tabs>}}
 
 
