@@ -210,6 +210,7 @@ This can be done from the Application Summary page by clicking the `Restart` but
 
 ### User Provided Services
 
+Not all services have Open Service Brokers available for them. In these cases we can create User Provided Services. This provides us with a way to pass in service URLs and credentials to an application in an easy to manage way (with out millions of separate environment variables).
 
 ## Clean up
 
