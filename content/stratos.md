@@ -54,58 +54,56 @@ applications:
 
 ## Deploying Application
 
-To deploy your example application, start on the applications page
+To deploy your example application, start on the applications page and click the `+` in the top right:
 
-Click the `+` in the top right
+Click `Public GitHub`:
 
-Click `Public GitHub`
+Select the `dev` space in the third drop down:
 
-Select the `dev` space in the third drop down.
+Click Next:
 
-Click Next
+Enter your github username and `/` to get a drop down of you publicly available repos:
 
-Enter your github username and `/` to get a drop down of you publicly available repos.
+Select the example from the drop down (or just type it in):
 
-Select the example from the drop down (or just type it in)
+Make sure you have the master branch selected:
 
-Make sure you have the master branch selected.
+Click Next:
 
-Click Next
+Pick the top commit:
 
-Pick the top commit
+Click `Create a random route`:
 
-Click `Create a random route`
+Click Deploy:
 
-Click Deploy
+You will see a live tail of the deployment log:
 
-You will see a live tail of the deployment log. 
+At the end of it's output, you will see the URL printed: (This can be easily found again later so don't worry about copying it down)
 
-At the end of it's output, you will see the URL printed. (This can be found later)
-
-At any time, you can click `Go to App Summary` to go to te application summary page.
+At any time, you can click `Go to App Summary` to go to te application summary page:
 
 ## Logging
 
-To see any console output of your application, go to the application summary page and click `Log Stream` on the second left side bar.
+To see any console output of your application, go to the application summary page and click `Log Stream` on the second left side bar:
 
-If you are scrolled up in the logs, a button will pop up allowing you to scroll to the most recent logs. 
+If you are scrolled up in the logs, a button (`Scroll to Bottom`) will pop up allowing you to scroll to the most recent logs:
 
-![Logging]()
+![Logging](/images/stratos/logging.png)
 
 ## Upgrading Application
 
-To upgrade your application, first make a new commit in github. This can be done in GitHub by editing a file. 
+To upgrade your application, first make a new commit in your GitHub repository. This can be done in GitHub by [editing a file](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository). (For the purposes of this example, we can commit directly to master)
 
-TODO: what edit
-
-For the purposes of this example, commit directly to master.
+TODO: what to edit?
 
 
-To upgrade the application to this new version, we need to go back to the application details on Stratos. 
+To upgrade the application to this new version, we need to go back to the application details on Stratos.
 
 On the left, click the `GitHub` menu to see all the commits available to deploy. (If you don't see your new commit, click the refresh on the right of the panel)
 
 To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`.
+
+This will restage and restart your application with the selected commit. To roll back, do the same but pick the appropriate commit message.
 
 
 ## Data Persistence / Service Brokers / Service Binding
@@ -113,9 +111,6 @@ To switch which commit is deployed, click the `...` menu on the right of the row
 While we like to talk a lot about "stateless" applications, that's not the reality for a lot of systems. For most systems, state needs to live somewhere and treating all state as ephemeral like the hyper-scalers is not fiscally responsible for all but the largest systems.
 
 The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the outside using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
-
-
-TODO: Write about file persistence?
 
 ### Open Service Broker
 
@@ -175,7 +170,7 @@ This can be done from the Application Summary page by clicking the `Restart` but
 
 We can bind a single service to multiple applications as well as keep a service across application deletions and creations.
 
-If you want to bind existing services to an application, we can start from the application's summary page and click on  Services on the left.
+If you want to bind existing services to an application, we can start from the application's summary page and click on Services on the left.
 
 Here we can see any services that are bound to the application:
 
@@ -204,13 +199,26 @@ Click Finish to bind the instance.
 Like above, if your application is already running, you will need to restart it to get the application to read the new environment.
 
 This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
+
 ![Restart App](/images/stratos/restart-app.png)
-
-### User Provided Services
-
-Not all services have Open Service Brokers available for them. In these cases we can create User Provided Services. This provides us with a way to pass in service URLs and credentials to an application in an easy to manage way (with out millions of separate environment variables).
 
 ## Clean up
 
+To delete an application, go to the Application summary page and click the `trashcan` icon.
+
+![Application Deletion](/images/stratos/delete1.png)
+
+If you don't plan on using the route again, select it for removal. Since they count against our organization's quota, it's helpful to clean routes up if they aren't being shared by other applications. 
+
+Click `Next`:
+
+![Application Deletion](/images/stratos/delete2.png)
+
+Select the  services if any that you want to clean up as well, then click `Next`:
+![Application Deletion](/images/stratos/delete3.png)
+
+If everything looks correct, click `Delete`:
+
+![Application Deletion](/images/stratos/delete4.png)
 
 ## Next Steps
