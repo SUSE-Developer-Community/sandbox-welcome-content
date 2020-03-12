@@ -316,7 +316,7 @@ In the line starting with `routes:`, we can get a link to our newly created appl
 ## Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
-or just too see the event history.
+or just to see the event history.
 
 To view a stream of your app's logs, run: 
 
