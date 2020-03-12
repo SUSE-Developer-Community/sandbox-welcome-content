@@ -121,7 +121,7 @@ Space:          samples
 
 The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
 
-As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "sample" space (selected at login).
+As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "samples" space (selected at login).
 
 To check which apps are running in the current org and space, run:
 
@@ -131,13 +131,14 @@ cf apps
 
 This should show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
 
-To switch to the "dev" space, use 
+To switch to the "dev" space, use: 
 
 ```bash
 cf target -s dev
 ```
-
   
+Once you are a member of more than one org (initially your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available and you didn't specify which one you want to target. 
+
 You can also check out the services provided in our environment, by running:
 
 ```bash
@@ -165,8 +166,6 @@ From a developer's perspective, Cloud Foundry can be summed up in a single comma
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
-  
-
 {{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
       
 {{< tab tabNum="1" >}}
@@ -182,11 +181,11 @@ There are a few steps that happen when you run `cf push`:
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
-Let's create a quick sample application using node.js! 
+Let's create a quick sample application using node.js! You'll need node and npm installed on your system for this example, instructions are [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
 
-Create a new project and install [express](http://expressjs.com/) into it:
+Create a new project and install express into it:
 
 ```bash
 mkdir nodejs_sample 
@@ -234,7 +233,7 @@ We need to specify the right start script by editing the package.json file to in
 To run this code, now all you need to do is run:
 
 ```bash
-cf push mysample --random-route
+cf push <app-name> --random-route
 ```
 
 Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
@@ -316,7 +315,7 @@ In the line starting with `routes:`, we can get a link to our newly created appl
 ## Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
-or just too see the event history.
+or just to see the event history.
 
 To view a stream of your app's logs, run: 
 
@@ -346,7 +345,7 @@ An update will act the same as any deploy however it will keep any additional se
 {{</tab>}}
 {{<tab tabNum="2">}}
 Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
-and we really want to be running a web service that turns random phrases into `cowsay`.
+and we really want to be running a web service that turns random phrases into `cowsay` (a nice article introducing cowsay can he found[here](https://opensource.com/article/18/12/linux-toy-cowsay)).
 
 First let's add the cowsay npm module:
 
@@ -466,8 +465,7 @@ cf create-service redis 4-0-10 myredis
 
 This will kick off the creation of a new redis instance.
 
-To see the state (and a list of current services),
-run
+To see the state (and a list of current services), run
 ```bash
 cf services
 ```
@@ -478,7 +476,7 @@ Once that shows `create succeeded` under "last operation", you can bind the serv
 cf bind-service mysample myredis
 cf restage mysample
 ```
-To add the service and restage with any new environment variables needed. To see this, check out:
+to add the service and restage with any new environment variables needed. To see this, check out:
 
 ```bash
 cf env mysample
@@ -586,12 +584,12 @@ TODO: Reading VCAP_SERVICES in Python
 
 There are a few methods of debugging a running application that can be used: logging, tracing, and remote debugging from your IDE.
 
-We've already covered logging, this is an effective but typically painful way to debug application flow. It requires no setup 
+We've already covered logging, which is an effective but typically painful way to debug application flow. It requires no setup 
 but also allows little to no inspection of application state.
 
 Tracing is a fantastic way to look back at previous errors and see what might have happened in the past. 
 Hooking up a tracer is definitely useful but out of scope for this guide. 
-There are third party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
+There are third party vendors who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
 
 So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
 Since any traffic going to the container running our application is routed through a reverse proxy, 
@@ -605,8 +603,6 @@ The trick for most languages is to pipe through SSH using `cf ssh`.
 This will open up an SSH socket and host it on your local computer giving a secure way to access your application
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in 
-
 Node.js has a debug mode available by starting with the `--inspect` flag.
 
 The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
@@ -620,7 +616,7 @@ The first step will be to change the start command in your `package.json` to ena
 ...
 ```
 
-And push again 
+And push again by:
 
 ```bash
 cf push
@@ -628,7 +624,7 @@ cf push
 
 Then to allow access to the debugger, use the command:
 ```bash
-cf ssh nodejs-example -L 9221:localhost:9229
+cf ssh mysample -L 9221:localhost:9229
 ```
 
 This will forward port 9211 on your local machine to port 9229 of the container. It will hold this port open until you exit the shell it creates. (This ssh connection can be useful for all sort of debugging as well)
@@ -668,7 +664,7 @@ TODO: Debugging in Python
   
 ## Clean up
 
-If you want to clean up unused apps or services, we can delete them from the command line.
+If you want to clean up unused apps or services, you can delete them from the command line.
 
 To delete an app you can run:
 
@@ -676,11 +672,13 @@ To delete an app you can run:
 cf delete <app name>
 ```
 
-Depending on the app, you might get a few prompts.
+You will be prompted to confirm the deletion and, depending on the app, you might get a few additional prompts.
 
-TODO: see what prompts might happen
+If an app is deleted using `cf delete <app name>` the route created for the app will still persist.
 
-TODO: what else should we clean up?
+To delete the route as well use -r, e.g. `cf delete -r <app name>`. 
+
+If the route is not removed when the app is deleted, it can then be deleted afterwards with `cf delete-route <domain> -n <host>`. To bulk delete any routes that are not mapped in the current space use `cf delete-orphaned-routes`.
   
 
 ## Next Steps
