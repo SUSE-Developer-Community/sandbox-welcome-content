@@ -586,12 +586,12 @@ TODO: Reading VCAP_SERVICES in Python
 
 There are a few methods of debugging a running application that can be used: logging, tracing, and remote debugging from your IDE.
 
-We've already covered logging, this is an effective but typically painful way to debug application flow. It requires no setup 
+We've already covered logging, which is an effective but typically painful way to debug application flow. It requires no setup 
 but also allows little to no inspection of application state.
 
 Tracing is a fantastic way to look back at previous errors and see what might have happened in the past. 
 Hooking up a tracer is definitely useful but out of scope for this guide. 
-There are third party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
+There are third party vendors who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
 
 So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
 Since any traffic going to the container running our application is routed through a reverse proxy, 
