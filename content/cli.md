@@ -165,8 +165,6 @@ From a developer's perspective, Cloud Foundry can be summed up in a single comma
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
-  
-
 {{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
       
 {{< tab tabNum="1" >}}
@@ -234,7 +232,7 @@ We need to specify the right start script by editing the package.json file to in
 To run this code, now all you need to do is run:
 
 ```bash
-cf push mysample --random-route
+cf push <app-name> --random-route
 ```
 
 Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
