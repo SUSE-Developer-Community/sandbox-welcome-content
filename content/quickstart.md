@@ -7,8 +7,6 @@ menu:
     weight: 50
 ---
 
-# Quickstart
-
 You can access the SUSE CAP Sandbox via the Cloud Foundry command line interface or via the Stratos Web interface. Your user name is the e-mail address you used to create your SUSE developer community account, and the password is in the welcome e-mail you received after registering for access to the sandbox. 
 
 ## CLI access
