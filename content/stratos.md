@@ -7,7 +7,7 @@ menu:
     weight: 60
 ---
 
-Stratos is a great way to manage your Cloud Foundry applications. While it might not be the most useful for "inner-loop" development cycles, it's a great tool for looking at configuration, logging, and resource utilization.
+Stratos is a great way to manage our Cloud Foundry applications. While it might not be the most useful for "inner-loop" development cycles, it's a great tool for looking at configuration, logging, and resource utilization.
 
 ## Logging in
 
@@ -15,7 +15,7 @@ Sign in to Stratos at https://stratos.cap.explore.suse.dev/login. (If you haven'
 
 ![Logging In](/images/stratos/login.png)
 
-When you first log in, you will be greeted by a list of applications and pages you have "favorited". As this is your first time logging in, it will be empty.
+When we first log in, we will be greeted by a list of applications and pages we have "favorited". As this is our first time logging in, it will be empty.
 ![Applications 1](/images/stratos/favorites-init.png)
 
 ## Applications
@@ -28,89 +28,77 @@ To see a list of currently running applications, click on the Applications tab o
 
 The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
 
-As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "sample" space (selected at login).
-
-When you first log in, you should see (TODO: What should they see?)
+As part of your free trial, you have been set up administrator rights for your own personal organization with a few different spaces by default (dev, test, prod, and sample).
 
 
 ## Forking Example on GitHub
 
-While you can zip up some files and upload them, it's much easier in the long run to tie a release into your git repository. This will allow you to switch between deployed commits easily. 
+While we can deploy applications by zipping up some files and uploading them, it's much easier in the long run to tie a release into a git repository. This will allow switching between deployed commits significantly easily. (This is a reason that the CLI is much better for active development but Stratos does very well for managing production deployments)
 
-For these instructions, we can use an existing project. If you want to follow along with the example, fork the project found at [Link](#) to your personal space.
+For these instructions, we can use an existing project. If you want to follow along with the example, fork the project found at [Link](https://github.com/scf-samples/python-mongodb-blog) to your personal space. 
 
 ### Manifest
 
-Stratos and Cloud Foundry will look for this file to know some basic information about how to build and deploy the application.
+Stratos and Cloud Foundry will look for a `manifest.yml` file to know some basic information about how to build and deploy the application.
 
 
-For future projects (or if you want to use your own project in this guide), you need to create a file called `manifest.yml`. The most basic example is:
+For future projects (or if you want to use your own project in this guide), you need to add a `manifest.yml`. The most basic example is:
 
 ```yaml
 applications:
 - name: Example Application
 ```
 
+But these can get a little bit lengthy depending on your use-case. 
+
 
 ## Deploying Application
 
 To deploy your example application, start on the applications page and click the `+` in the top right:
 
+![Application Page](/images/stratos/deploy1.png)
+
 Click `Public GitHub`:
 
-Select the `dev` space in the third drop down:
+![Public GitHub](/images/stratos/deploy2.png)
 
-Click Next:
+Select the `dev` space in the third drop down and click `Next`:
 
-Enter your github username and `/` to get a drop down of you publicly available repos:
+![Space Selection](/images/stratos/deploy3.png)
 
+Enter your github username (or organization) and `/` to get a drop down of publicly available repos in that organization.
 Select the example from the drop down (or just type it in):
 
-Make sure you have the master branch selected:
+![Project Selection](/images/stratos/deploy4.png)
 
-Click Next:
+Select the branch you want to use. For this example, the default branch is `scf` and is kept up to date. Then click `Next`:
 
-Pick the top commit:
+![Branch Selection](/images/stratos/deploy5.png)
 
-Click `Create a random route`:
+Pick the top commit and click `Next`:
 
-Click Deploy:
+![Commit Selection](/images/stratos/deploy6.png)
 
-You will see a live tail of the deployment log:
+Here you can customize the application deployment. Any settings set in your manifest can be overwritten at this step.  
 
-At the end of it's output, you will see the URL printed: (This can be easily found again later so don't worry about copying it down)
+For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will will error out if there is a collision, so don't be that person)
 
-At any time, you can click `Go to App Summary` to go to te application summary page:
+![Deploy Setting](/images/stratos/deploy7.png)
 
-## Logging
+A live tail of the deployment log will be displayed:
 
-To see any console output of your application, go to the application summary page and click `Log Stream` on the second left side bar:
+At the end of it's output, we will see the URL printed: (This can be easily found again later so don't worry about copying it down)
 
-If you are scrolled up in the logs, a button (`Scroll to Bottom`) will pop up allowing you to scroll to the most recent logs:
+At any time, clicking `Go to App Summary` will go to the Application Summary page:
 
-![Logging](/images/stratos/logging.png)
-
-## Upgrading Application
-
-To upgrade your application, first make a new commit in your GitHub repository. This can be done in GitHub by [editing a file](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository). (For the purposes of this example, we can commit directly to master)
-
-TODO: what to edit?
-
-
-To upgrade the application to this new version, we need to go back to the application details on Stratos.
-
-On the left, click the `GitHub` menu to see all the commits available to deploy. (If you don't see your new commit, click the refresh on the right of the panel)
-
-To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`.
-
-This will restage and restart your application with the selected commit. To roll back, do the same but pick the appropriate commit message.
+![Deploy Logs](/images/stratos/deploy8.png)
 
 
 ## Data Persistence / Service Brokers / Service Binding
 
 While we like to talk a lot about "stateless" applications, that's not the reality for a lot of systems. For most systems, state needs to live somewhere and treating all state as ephemeral like the hyper-scalers is not fiscally responsible for all but the largest systems.
 
-The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the outside using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
+The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the fringe using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
 
 ### Open Service Broker
 
@@ -122,7 +110,7 @@ Stratos makes browsing the service marketplace very easy. To view the services a
 
 ![Service Marketplace](/images/stratos/marketplace.png)
 
-Depending on the brokers installed, this list can vary. In our sandbox, we have the minibroker installed. This gives developers easy access to common databases (mariadb, mongodb, postgres, and redis). You have access to create 
+Depending on the brokers installed, this list can vary. In our sandbox, we have included [minibroker](https://github.com/kubernetes-sigs/minibroker). This can give developers easy access to common databases (mariadb, mongodb, postgres, and redis). You have access to create up to 5 services at any given time. 
 
 
 ### Service Creation
@@ -201,6 +189,32 @@ Like above, if your application is already running, you will need to restart it 
 This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
 
 ![Restart App](/images/stratos/restart-app.png)
+
+
+## Upgrading Application
+
+To upgrade our application, first make a new commit in your GitHub repository. This can be done in GitHub by [editing a file](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository). (For the purposes of this example, we can commit directly to master)
+
+TODO: what to edit?
+
+
+To upgrade the application to this new version, we need to go back to the application details on Stratos.
+
+On the left, click the `GitHub` menu to see all the commits available to deploy. (If you don't see your new commit, click the refresh on the right of the panel)
+
+To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`.
+
+This will restage and restart our application with the selected commit. To roll back, do the same but pick the appropriate commit message.
+
+
+## Logging
+
+To see a live view of the console output of our application, go to the application summary page and click `Log Stream` on the smaller left side bar.
+
+If you scroll up in the logs, a button (`Scroll to Bottom`) will pop up allowing you to scroll to the most recent logs:
+
+![Logging](/images/stratos/logging.png)
+
 
 ## Clean up
 
