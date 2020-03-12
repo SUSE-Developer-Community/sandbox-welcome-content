@@ -349,15 +349,15 @@ TODO: screenshot
 
 As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
 
-It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production.
+It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
 
-The way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.  
+TODO: can we give a pointer to further reading on updating in production?  
 
-{{<tabs tabTotal="4" tabID="updating_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+Now let's see how we can update our running app. Note that an update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
+
+
+{{<tabs tabTotal="3" tabID="updating_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
-An update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
-{{</tab>}}
-{{<tab tabNum="2">}}
 Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
 and we really want to be running a web service that turns random phrases into `cowsay`.
 
@@ -391,12 +391,30 @@ cf push mysample
 Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
 
 {{</tab>}}
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 TODO: Updating in Java
 {{</tab>}}
 
-{{<tab tabNum="4">}}
-TODO: Updating in Python
+{{<tab tabNum="3">}}
+Let's update our app's `index.html` home page as follows:
+  ```html
+  <html>
+      <head>
+          <title>Python says Hello World!</title>
+      </head>
+      <body>
+          <h1>And this is running on the SUSE Cloud Application Platform developer sandbox</h1>
+          <p>This page has been updated and pushing the update has been simple and fast!</p>
+      </body>
+  </html>
+```
+
+Then to update the running application we can again run 
+```bash 
+cf push pythonhelloworld
+```
+
+Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
 {{</tab>}}
 
 {{</tabs>}}
@@ -404,14 +422,12 @@ TODO: Updating in Python
 
 ## Manifest
 
-There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
+There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file. There are a ton of options that can be set up in the manifest file.
 
 Create a file called ```manifest.yml``` and fill it with 
 
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
-
-There are a ton of options that can be set up in the manifest file.
 ```yaml
 applications:
 - name: "name"
@@ -443,7 +459,16 @@ applications:
 TODO: Updating in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
-TODO: Updating in Python
+```yaml
+applications:
+- name: pythonhelloworld
+  buildpacks: 
+  - python_buildpack
+  random-route: true
+  command: python server.py
+  services:
+  env:
+```
 {{</tab>}}
 {{</tabs>}}
 
@@ -676,7 +701,7 @@ TODO: Screenshot
 TODO: Debugging in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
-TODO: Debugging in Python
+TODO: debugging in Python
 {{</tab>}}
 {{</tabs>}}
 
