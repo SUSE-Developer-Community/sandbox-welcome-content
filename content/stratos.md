@@ -154,7 +154,7 @@ Click `Finish`. This will create the instance and set up the application binding
 
 ![MongoDB App Selection](/images/stratos/mongo-create4.png)
 
-If your application is already running, you will need to restart it to get the application to read the new environment.
+If your application is currently running, you will need to restart it to get the application to read the new environment.
 
 This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
 
