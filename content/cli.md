@@ -180,7 +180,7 @@ There are a few steps that happen when you run `cf push`:
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
-Let's create a quick sample application using node.js! 
+Let's create a quick sample application using node.js! You'll need node and npm installed on your system for this example, instructions are [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
 
