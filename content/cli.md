@@ -679,10 +679,6 @@ If an app is deleted using `cf delete <app name>` the route created for the app 
 To delete the route as well use -r, e.g. `cf delete -r <app name>`. 
 
 If the route is not removed when the app is deleted, it can then be deleted afterwards with `cf delete-route <domain> -n <host>`. To bulk delete any routes that are not mapped in the current space use `cf delete-orphaned-routes`.
-
-TODO: see what prompts might happen
-
-TODO: what else should we clean up?
   
 
 ## Next Steps
