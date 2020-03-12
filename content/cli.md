@@ -666,7 +666,7 @@ TODO: Debugging in Python
   
 ## Clean up
 
-If you want to clean up unused apps or services, we can delete them from the command line.
+If you want to clean up unused apps or services, you can delete them from the command line.
 
 To delete an app you can run:
 
@@ -674,7 +674,7 @@ To delete an app you can run:
 cf delete <app name>
 ```
 
-Depending on the app, you might get a few prompts.
+You will be prompted to confirm the deletion and, depending on the app, you might get a few additional prompts.
 
 TODO: see what prompts might happen
 
