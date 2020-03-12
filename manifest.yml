@@ -1,0 +1,6 @@
+applications:
+- name: GettingStarted
+  buildpacks: 
+  - hugo_buildpack
+  - staticfile_buildpack
+  random-route: true
