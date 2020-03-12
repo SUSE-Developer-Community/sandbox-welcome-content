@@ -466,8 +466,7 @@ cf create-service redis 4-0-10 myredis
 
 This will kick off the creation of a new redis instance.
 
-To see the state (and a list of current services),
-run
+To see the state (and a list of current services), run
 ```bash
 cf services
 ```
@@ -478,7 +477,7 @@ Once that shows `create succeeded` under "last operation", you can bind the serv
 cf bind-service mysample myredis
 cf restage mysample
 ```
-To add the service and restage with any new environment variables needed. To see this, check out:
+to add the service and restage with any new environment variables needed. To see this, check out:
 
 ```bash
 cf env mysample
