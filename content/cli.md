@@ -346,7 +346,7 @@ An update will act the same as any deploy however it will keep any additional se
 {{</tab>}}
 {{<tab tabNum="2">}}
 Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
-and we really want to be running a web service that turns random phrases into `cowsay`.
+and we really want to be running a web service that turns random phrases into `cowsay` (a nice article introducing cowsay can he found[here](https://opensource.com/article/18/12/linux-toy-cowsay)).
 
 First let's add the cowsay npm module:
 
