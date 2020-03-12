@@ -131,7 +131,7 @@ cf apps
 
 This should show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
 
-To switch to the "dev" space, use 
+To switch to the "dev" space, use: 
 
 ```bash
 cf target -s dev
