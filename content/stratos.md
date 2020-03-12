@@ -160,7 +160,7 @@ This can be done from the Application Summary page by clicking the `Restart` but
 
 ![Restart App](/images/stratos/restart-app.png)
 
-Visiting the page again, should show the sample application running correctly now!
+Visiting the page again, should show the sample application running correctly now! (Albeit, a bit lonely)
 
 ![Restart App](/images/stratos/mongo-sample-1.png)
 
@@ -203,18 +203,36 @@ This can be done from the Application Summary page by clicking the `Restart` but
 
 ## Upgrading Application
 
-To upgrade our application, first make a new commit in your GitHub repository. This can be done in GitHub by [editing a file](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository). (For the purposes of this example, we can commit directly to master)
+To upgrade our application, first make a new commit in your GitHub repository. This can be done in GitHub by [editing a file](https://help.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository).
 
-TODO: what to edit?
+I feel like a page with no content should have a little more instructions on what to do. So let's add that. 
+
+Edit the file in git found at `./blog/templates/index.html` to look more like [this](https://github.com/agracey/python-mongodb-blog/blob/scf/blog/templates/index.html): 
+
+Commit this change to the default branch (instead of requiring a Pull Request):
+
+![Editing a File](/images/stratos/update1.png)
 
 
 To upgrade the application to this new version, we need to go back to the application details on Stratos.
 
-On the left, click the `GitHub` menu to see all the commits available to deploy. (If you don't see your new commit, click the refresh on the right of the panel)
+On the left, click the `GitHub` menu to see all the commits available to deploy: (If you don't see your new commit, click the refresh on the right of the panel)
 
-To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`.
+![Commit Selection](/images/stratos/update2.png)
 
-This will restage and restart our application with the selected commit. To roll back, do the same but pick the appropriate commit message.
+To switch which commit is deployed, click the `...` menu on the right of the row then `Deploy`:
+
+![Commit Options](/images/stratos/update3.png)
+
+Click `Next`:
+
+![Commit Options](/images/stratos/update4.png)
+
+Click `Redeploy`:
+
+![Commit Options](/images/stratos/update5.png)
+
+This will restage and restart our application with the selected commit. To roll back, do the same but pick an older commit message.
 
 
 ## Logging
