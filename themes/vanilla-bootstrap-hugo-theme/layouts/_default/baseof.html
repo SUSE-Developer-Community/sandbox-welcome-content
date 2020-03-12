@@ -14,7 +14,8 @@
   <body>
     <aside class="main-menu js-main-menu">
       <div class="mm-navigation-container">
-        <header><a class="hide-collapsed" href="https://www.eosdesignsystem.com/"><img src="/images/logo.png"></a>
+        <header>
+          <a class="hide-collapsed" href="https://www.explore.suse.dev/"><img src="/images/logo.png"></a>
           <div class="mm-navigation-close js-sidebar-toggle"><i class="eos-icons js-sidebar-tooltip js-tooltip" data-placement="bottom" title="">menu</i></div>
         </header>
         <div class="nav-wrap">
@@ -23,7 +24,9 @@
       </div>
       <footer class="footer-side-menu">
         <ul class="footer-list">
-          <li class="footer-list-item"><a class="footer-link" href="https://github.com/SUSE-Developer-Community" data-event-category="External link" data-event-action="Link Github issues" data-event-label="Footer" target="_blank"><img class="js-tooltip" src="images/gitlab_color.svg" data-toggle="tooltip" data-html="true" title="View our repository"></a></li>
+          <li class="footer-list-item"><a class="footer-link" href="https://github.com/SUSE-Developer-Community" data-event-category="External link" data-event-action="Link Github issues" data-event-label="Footer" target="_blank">
+            <!-- <img class="js-tooltip" src="images/github_color.svg" data-toggle="tooltip" data-html="true" title="View our repository"> -->
+            View our Repository on Github</a></li>
         </ul>
       </footer>
     </aside>
@@ -40,11 +43,9 @@
       <div class="container">
         {{ block "main" . }}{{ end }}
       </div>
-    </section>
-    <footer class="footer-content js-footer-content">
       
       {{ partial "footer.html" . }}
-    </footer>
+    </section>
   </body>
 </html>
 {{ partial "script.html" . }}
