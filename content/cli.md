@@ -184,7 +184,7 @@ Let's create a quick sample application using node.js! You'll need node and npm 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
 
-Create a new project and install [express](http://expressjs.com/) into it:
+Create a new project and install express into it:
 
 ```bash
 mkdir nodejs_sample 
