@@ -93,6 +93,12 @@ At any time, clicking `Go to App Summary` will go to the Application Summary pag
 
 ![Deploy Logs](/images/stratos/deploy8.png)
 
+To view your app, click the `Go to App Summary` button. On that page, click the `Visit` button:
+
+![Visit Deployment](/images/stratos/deploy9.png)
+
+You will see that the new app is live but has an error due to a lack of database connectivity. Let's add that next:
+
 
 ## Data Persistence / Service Brokers / Service Binding
 
@@ -115,14 +121,13 @@ Depending on the brokers installed, this list can vary. In our sandbox, we have 
 
 ### Service Creation
 
-If we click on one of the services, we can see some information about it. 
+If we click on one of the available services, we can see some information about it. 
 
 ![Service Marketplace](/images/stratos/marketplace-summary1.png)
 
 If we click `Plans` on the left, you will see which version are available. With minibroker, these are versions but in other brokers, plans can be different distinctions. (For example, the AWS and Azure services tend to have separate plans for free and paid versions).
 
-//TODO: sync with rest of example
-![MariaDB Plans](/images/stratos/mariadb-plans.png)
+![MongoDB Plans](/images/stratos/mongo-plans.png)
 
 In the sandbox, we will only offer a single version of each service to keep things simple.
 
@@ -146,13 +151,18 @@ Lastly, we will name the service instance `MongoExample`. This will be the name 
 Some services allow you to customize the creation parameters, we don't need to worry about this for now.
 
 Click `Finish`. This will create the instance and set up the application binding.
-![MongoDB App Selection](/images/stratos/mongo-create4.png)
 
+![MongoDB App Selection](/images/stratos/mongo-create4.png)
 
 If your application is already running, you will need to restart it to get the application to read the new environment.
 
 This can be done from the Application Summary page by clicking the `Restart` button in the middle of the top bar:
+
 ![Restart App](/images/stratos/restart-app.png)
+
+Visiting the page again, should show the sample application running correctly now!
+
+![Restart App](/images/stratos/mongo-sample-1.png)
 
 ### Service Binding
 
