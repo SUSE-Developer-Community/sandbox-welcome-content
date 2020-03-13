@@ -29,17 +29,17 @@ In case of Cloud Foundry, there is a concept called [build packs](https://docs.c
 This concept becomes even more beneficial when it comes to harmonizing development environments across teams and insuring conformance to any security or regulatory rules. Having code built by a build pack ensures that the build environment is exactly the same every time a developer pushes a code change to the platform. Changes to the build environment can be done in a controlled way (by updating the build pack) and happen at the same time for all involved developers. 
 
 
-### Debugging 
-
-TODO: At this point the reader probably wonders how this impacts debugging. While this is beyond this article's scope, I'd like to have a pointer to another article that explains how debugging an app on CF works.
-
 ### Ecosystem
 
 Another advantage of Platform as a Service is that it can rid a developer to maintain adjacent components as part of the test tool-chain. The platform operator usually offers a number of services such as databases, search and analytics engines, etc. Imagine you want to use a database in your app. Normally you would have to install and configure that database yourself. With a PaaS, your platform operator can offer readily available database instances as services that you can bind to your app. So the only thing you need to worry about is the API calls to the database interface in your code. 
 
-> TODO: add how service creation and binding can be automated. 
+#### Services
 
-> TODO: paragraph on autoscaling
+Cloud Foundry uses the Open Service Broker API spec to allow external services to give an easy way to be created and attached to applications. We then give a way for applications to define which services they expect to exist and specify how to receive credentials for those services.
+
+This set of features gives a really easy way to connect your application to external services without a lot of additional set up work. This allows you to get started on your code with much less headache.
+
+#### Autoscaling
 
 Yet another benefit of PaaS is that it helps you avoid writing certain kinds of code that you don't want to write. For example, platforms usually have built-in load balancers and autoscaling capabilities so that the platform can launch additional app instances automatically - you don't have to write the code that does this anymore. This is a very complex topic though, and if you want to dive more into those aspects...
 > TODO: add a pointer to further reading about load balancers, autoscaler and microservice patterns...
@@ -49,7 +49,6 @@ Yet another benefit of PaaS is that it helps you avoid writing certain kinds of 
 Software development is hard. There's no getting around the base level of complexity involved in building software that doesn't completely fall apart as soon as a user breathes on it.
 
 The goal of any platform is to simplify the mundane boring part of development to let you focus your energy on more interesting problems. 
-
 
   
 ## Stratos vs Command Line
