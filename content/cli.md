@@ -84,7 +84,7 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
 Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
 
 ```bash
-cf login -a < TODO  url> -u <Email used in developer portal> 
+cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal> 
 ```
 
 This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
@@ -437,9 +437,6 @@ While we like to talk a lot about "stateless" applications, that's not the reali
 
 The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the outside using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
 
-
-TODO: Write about file persistence?
-
 ### Open Service Broker
 
 The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API standard that describes how to create and allow consumption of services. This can allow a provider of services to give some control over life-cycle to the users of the service.
@@ -455,7 +452,13 @@ cf marketplace
 
 This will give us a table view of the available services to run.
 
-//TODO what is the expected output?
+```bash
+service      plans           description                 broker
+mongodb      4-0-6           Helm Chart for mongodb      minibroker
+postgresql   11-5-0          Helm Chart for postgresql   minibroker
+redis        4-0-10, 5-0-7   Helm Chart for redis        minibroker
+mariadb      10-1-34         Helm Chart for mariadb      minibroker
+```
 
 For our working example, let's create a redis instance:
 
@@ -526,13 +529,14 @@ const getService = (type, name)=>(
   .find((service)=>(service.name==name))
 )
 ```
-//TODO: write a quick library and publish it?
 
 With this, we can expand our sample program from a basic hello world to an (extremely) simple guestbook using redis:
 
 ```bash
 npm install redis
 ```
+
+Then adapting the application to use it:
 
 ```js
 const getService = (type, name)=>(
@@ -570,7 +574,6 @@ app.post('/', function (req, res) {
 app.listen(8080)
 ```
 
-
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: Reading VCAP_SERVICES in Java
@@ -591,11 +594,10 @@ Tracing is a fantastic way to look back at previous errors and see what might ha
 Hooking up a tracer is definitely useful but out of scope for this guide. 
 There are third party vendors who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
 
-So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
+Lastly, we can attach a debugger to the running application to monitor state as well as place breakpoints.
+
 Since any traffic going to the container running our application is routed through a reverse proxy, 
 we need to be a little clever when attaching a remote debugger to the running application. 
-
-TODO: clean up wording
 
 {{<tabs tabTotal="4" tabID="debugging_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
@@ -603,7 +605,8 @@ The trick for most languages is to pipe through SSH using `cf ssh`.
 This will open up an SSH socket and host it on your local computer giving a secure way to access your application
 {{</tab>}}
 {{<tab tabNum="2">}}
-Node.js has a debug mode available by starting with the `--inspect` flag.
+
+Node.js has a debug mode available by starting with the `--inspect` flag that we can use to attach the VS Code debugger.
 
 The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
 
@@ -644,12 +647,13 @@ You can then attach whichever debugger you prefer to 127.0.0.1:9221. For example
         }
     ]
 }
-
-With this file written, we can click on the 
-
-TODO: Screenshot
-
 ```
+
+With this file written, we can click on the `Run and Debug` tab on the left of VS Code and press the green arrow to start the debugger.
+
+You should see something similar to:
+
+![VS Code Debugger](/images/cli/debugger1.png)
 
 
 {{</tab>}}
