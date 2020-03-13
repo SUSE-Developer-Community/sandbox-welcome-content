@@ -4,7 +4,7 @@ menu:
   nav:
     name: "web"
     url: "/stratos/"
-    weight: 60
+    weight: 50
 ---
 
 Stratos is a great way to manage our Cloud Foundry applications. While it might not be the most useful for "inner-loop" development cycles, it's a great tool for looking at configuration, logging, and resource utilization.
@@ -81,7 +81,7 @@ Pick the top commit and click `Next`:
 
 Here you can customize the application deployment. Any settings set in your manifest can be overwritten at this step.  
 
-For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will will error out if there is a collision, so don't be that person)
+For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will produce and error if there is a collision, so don't be that person)
 
 ![Deploy Setting](/images/stratos/deploy7.png)
 

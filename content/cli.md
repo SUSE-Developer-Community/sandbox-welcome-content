@@ -4,7 +4,7 @@ menu:
   nav:
     name: "computer"
     url: "/cli/"
-    weight: 50
+    weight: 60
     icon: color_lens
 ---
 
@@ -89,7 +89,7 @@ cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal>
 
 This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
-The next prompt will be to select which space you want to target. Select "4" (or Samples) for now. 
+The next prompt will be to select which space you want to target. Select the option that corresponds to `samples` for now. 
 
 ```bash
 user:~/Projects/ $ cf login -u test@example.com -p <redacted>
@@ -147,7 +147,9 @@ cf marketplace
 
 Which will return the services, the plans offered, any description, and which broker is providing the service. These will be revisited later.
 
-To find more information about a single sub-command, use the help command. For example to get more information about the marketplace command, run:
+## Help on Commands
+
+There is a lot of commands with their own options in the cli. To find more information about a single sub-command, use the `cf help` command. For example to get more information about the marketplace command, run:
 
 ```bash
 cf help marketplace
@@ -163,6 +165,10 @@ cf help -a
 ## Pushing Applications
 
 From a developer's perspective, Cloud Foundry can be summed up in a single command. All it takes to run an application is `cf push`. 
+
+
+Note: The `--random-route` flag shown below is useful here in this multi-tenant environment. It eliminates collisions of people running the same examples (each trying to request same route from different apps). Please use it when working in our sandbox! You will get a randomly generated url for each new app that will stay consistent between app redeploys. 
+
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
@@ -230,13 +236,11 @@ We need to specify the right start script by editing the package.json file to in
 }
 ```
 
-To run this code, now all you need to do is run:
+To run this code, all you need to do is run:
 
 ```bash
 cf push <app-name> --random-route
 ```
-
-Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
 
 {{</tab >}}
 
@@ -390,8 +394,6 @@ TODO: Updating in Python
 
 There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
 
-Create a file called ```manifest.yml``` and fill it with 
-
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
 
@@ -412,6 +414,9 @@ A more complete list of options can be found [Here](https://docs.cloudfoundry.or
 
 {{</tab>}}
 {{<tab tabNum="2">}}
+
+Create a file called ```manifest.yml``` and fill it with:
+
 ```yaml
 applications:
 - name: mysample
