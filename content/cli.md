@@ -251,7 +251,7 @@ TODO: Java Example
 {{<tab tabNum="4">}}
 Let us create a simple static website as an example Cloud Foundry application written in Python. 
 
-First, let's create a simple HTML file that will serve as our home page, and save as index.html:
+First, let's create a simple HTML file that will serve as our home page, and save it as `index.html`:
 
 ```html
   <html>
@@ -279,23 +279,37 @@ with socketserver.TCPServer((HOST, PORT), Handler) as httpd:
     httpd.serve_forever()
 ```
 
-Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry Python build pack defaults to Python 2.7, we need to add a `runtime.txt` file to our app directory:
+Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry Python build pack defaults to Python 2.7, we need to add a `runtime.txt` file to our app directory, which contains the following line:
 
 ```txt
 python-3.x
 ```
 
-And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a Procfile, a manifest.yaml or specify the start command when pushing with the -c switch. We'll use the Procfile option in this example. 
+And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command when with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
 
 ```txt
 web: python server.py
 ``` 
 
+Now we are ready to push our app up to Cloud Foundry. If you followed our example step-by-step you might want to double-check on the space you're targeting first. Push your app with `cf push` and remember to specify that you want to use the Python build pack by using the -b switch. This is needed since the Python build pack looks for `requirements.txt` or `setup.py` to determine if it's facing a Python application and our very simple app doesn't need either of them. 
+
+```bash
+> cf target -s dev
+api endpoint:   https://api.cap.explore.suse.dev
+api version:    2.144.0
+user:           <your_user_name>
+org:            <your_org_name>
+space:          dev
+
+> cf push pythonhelloworld -b python_buildpack --random-route
+```
+
 {{</tab >}}
 
 {{</tabs >}}
   
-  
+Note: Adding the ```--random-route``` flag to your push command is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
+
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
@@ -339,15 +353,15 @@ TODO: screenshot
 
 As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
 
-It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production.
+It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
 
-The way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.  
+TODO: can we give a pointer to further reading on updating in production?  
 
-{{<tabs tabTotal="4" tabID="updating_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+Now let's see how we can update our running app. Note that an update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
+
+
+{{<tabs tabTotal="3" tabID="updating_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
-An update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
-{{</tab>}}
-{{<tab tabNum="2">}}
 Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
 and we really want to be running a web service that turns random phrases into `cowsay` (a nice article introducing cowsay can he found[here](https://opensource.com/article/18/12/linux-toy-cowsay)).
 
@@ -378,25 +392,43 @@ Then to update the running application we can again run
 cf push mysample
 ```
 
-Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
-
 {{</tab>}}
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 TODO: Updating in Java
 {{</tab>}}
-{{<tab tabNum="4">}}
-TODO: Updating in Python
+
+{{<tab tabNum="3">}}
+Let's update our app's `index.html` home page as follows:
+  ```html
+  <html>
+      <head>
+          <title>Python says Hello World!</title>
+      </head>
+      <body>
+          <h1>And this is running on the SUSE Cloud Application Platform developer sandbox</h1>
+          <p>This page has been updated and pushing the update has been simple and fast!</p>
+      </body>
+  </html>
+```
+
+Then to update the running application we can again run 
+```bash 
+cf push pythonhelloworld
+```
 {{</tab>}}
+
 {{</tabs>}}
 
+Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
 ## Manifest
 
-There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
+There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file. There are a ton of options that can be set up in the manifest file, see the [Cloud Foundry documentation on application manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html) for details.
 
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
-
 There are a ton of options that can be set up in the manifest file.
 ```yaml
 applications:
@@ -432,7 +464,16 @@ applications:
 TODO: Updating in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
-TODO: Updating in Python
+```yaml
+applications:
+- name: pythonhelloworld
+  buildpacks: 
+  - python_buildpack
+  random-route: true
+  command: python server.py
+  services:
+  env:
+```
 {{</tab>}}
 {{</tabs>}}
 
@@ -448,9 +489,9 @@ The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API s
 
 ### Service Marketplace
 
-As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. Your account should have access to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
+As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. The [quota](https://docs.cloudfoundry.org/adminguide/quota-plans.html) associated to your sandbox account should allow you to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
 
-We can look at the services provided by running:
+We can look at the available services by running:
 ```bash
 cf marketplace
 ```
@@ -481,13 +522,13 @@ cf services
 Once that shows `create succeeded` under "last operation", you can bind the service to an application. There are two ways to go about that: add it to your `manifest.yml` and push again or use 
 
 ```bash
-cf bind-service mysample myredis
-cf restage mysample
+cf bind-service <app-name> myredis
+cf restage <app-name>
 ```
-to add the service and restage with any new environment variables needed. To see this, check out:
+To add the service and restage with any new environment variables needed. To see your app's current environment, check out:
 
 ```bash
-cf env mysample
+cf env <app-name>
 ```
 
 ### Service Binding
@@ -666,7 +707,7 @@ You should see something similar to:
 TODO: Debugging in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
-TODO: Debugging in Python
+TODO: debugging in Python
 {{</tab>}}
 {{</tabs>}}
 
