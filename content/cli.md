@@ -237,8 +237,6 @@ To run this code, now all you need to do is run:
 cf push mysample --random-route
 ```
 
-Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
-
 {{</tab >}}
 
 {{<tab tabNum="3">}}
@@ -298,14 +296,15 @@ user:           <your_user_name>
 org:            <your_org_name>
 space:          dev
 
-> cf push pythonhelloworld -b python_buildpack
+> cf push pythonhelloworld -b python_buildpack --random-route
 ```
 
 {{</tab >}}
 
 {{</tabs >}}
   
-  
+Note: Adding the ```--random-route``` flag to your push command is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
+
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
@@ -388,8 +387,6 @@ Then to update the running application we can again run
 cf push mysample
 ```
 
-Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
-
 {{</tab>}}
 {{<tab tabNum="2">}}
 TODO: Updating in Java
@@ -413,21 +410,23 @@ Then to update the running application we can again run
 ```bash 
 cf push pythonhelloworld
 ```
-
-Note: This time, we can drop the ```--random-route``` as the configuration is persistent 
 {{</tab>}}
 
 {{</tabs>}}
 
+Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
 ## Manifest
 
-There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file. There are a ton of options that can be set up in the manifest file.
+There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file. There are a ton of options that can be set up in the manifest file, see the [Cloud Foundry documentation on application manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html) for details.
 
 Create a file called ```manifest.yml``` and fill it with 
 
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
+There are a ton of options that can be set up in the manifest file.
 ```yaml
 applications:
 - name: "name"
@@ -487,9 +486,9 @@ The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API s
 
 ### Service Marketplace
 
-As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. Your account should have access to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
+As part of the CAP Sandbox, we have included the [Minibroker](https://github.com/kubernetes-sigs/minibroker) to give access to a few different databases. The [quota](https://docs.cloudfoundry.org/adminguide/quota-plans.html) associated to your sandbox account should allow you to create up to 5 services. You can create a MariaDB, Postgres, Redis, or MongoDB database for developer use easily.
 
-We can look at the services provided by running:
+We can look at the available services by running:
 ```bash
 cf marketplace
 ```
@@ -515,13 +514,13 @@ cf services
 Once that shows `create succeeded` under "last operation", you can bind the service to an application. There are two ways to go about that: add it to your `manifest.yml` and push again or use 
 
 ```bash
-cf bind-service mysample myredis
-cf restage mysample
+cf bind-service <app-name> myredis
+cf restage <app-name>
 ```
-To add the service and restage with any new environment variables needed. To see this, check out:
+To add the service and restage with any new environment variables needed. To see your app's current environment, check out:
 
 ```bash
-cf env mysample
+cf env <app-name>
 ```
 
 ### Service Binding
