@@ -4,7 +4,7 @@ menu:
   nav:
     name: "computer"
     url: "/cli/"
-    weight: 50
+    weight: 60
     icon: color_lens
 ---
 

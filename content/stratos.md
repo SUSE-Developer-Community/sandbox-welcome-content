@@ -4,7 +4,7 @@ menu:
   nav:
     name: "web"
     url: "/stratos/"
-    weight: 60
+    weight: 50
 ---
 
 Stratos is a great way to manage our Cloud Foundry applications. While it might not be the most useful for "inner-loop" development cycles, it's a great tool for looking at configuration, logging, and resource utilization.
