@@ -89,7 +89,7 @@ cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal>
 
 This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
-The next prompt will be to select which space you want to target. Select "4" (or Samples) for now. 
+The next prompt will be to select which space you want to target. Select the option that corresponds to `samples` for now. 
 
 ```bash
 user:~/Projects/ $ cf login -u test@example.com -p <redacted>
