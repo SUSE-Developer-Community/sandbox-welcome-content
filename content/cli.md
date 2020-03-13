@@ -166,6 +166,10 @@ cf help -a
 
 From a developer's perspective, Cloud Foundry can be summed up in a single command. All it takes to run an application is `cf push`. 
 
+
+Note: The `--random-route` flag shown below is useful here in this multi-tenant environment. It eliminates collisions of people running the same examples (each trying to request same route from different apps). Please use it when working in our sandbox! You will get a randomly generated url for each new app that will stay consistent between app redeploys. 
+
+
 Let's run a simple app (use the tabs to select your language of choice): 
 
 {{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
@@ -237,8 +241,6 @@ To run this code, all you need to do is run:
 ```bash
 cf push <app-name> --random-route
 ```
-
-Note: The ```--random-route``` flag is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
 
 {{</tab >}}
 
