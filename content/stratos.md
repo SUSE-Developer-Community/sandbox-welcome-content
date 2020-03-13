@@ -81,7 +81,7 @@ Pick the top commit and click `Next`:
 
 Here you can customize the application deployment. Any settings set in your manifest can be overwritten at this step.  
 
-For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will will error out if there is a collision, so don't be that person)
+For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will produce and error if there is a collision, so don't be that person)
 
 ![Deploy Setting](/images/stratos/deploy7.png)
 
