@@ -230,7 +230,7 @@ We need to specify the right start script by editing the package.json file to in
 }
 ```
 
-To run this code, now all you need to do is run:
+To run this code, all you need to do is run:
 
 ```bash
 cf push <app-name> --random-route
