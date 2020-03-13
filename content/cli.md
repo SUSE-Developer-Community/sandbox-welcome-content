@@ -84,7 +84,7 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
 Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
 
 ```bash
-cf login -a < TODO  url> -u <Email used in developer portal> 
+cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal> 
 ```
 
 This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
@@ -121,7 +121,7 @@ Space:          samples
 
 The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
 
-As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "sample" space (selected at login).
+As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "samples" space (selected at login).
 
 To check which apps are running in the current org and space, run:
 
@@ -131,13 +131,14 @@ cf apps
 
 This should show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
 
-To switch to the "dev" space, use 
+To switch to the "dev" space, use: 
 
 ```bash
 cf target -s dev
 ```
-
   
+Once you are a member of more than one org (initially your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available and you didn't specify which one you want to target. 
+
 You can also check out the services provided in our environment, by running:
 
 ```bash
@@ -165,8 +166,6 @@ From a developer's perspective, Cloud Foundry can be summed up in a single comma
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
-  
-
 {{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
       
 {{< tab tabNum="1" >}}
@@ -182,11 +181,11 @@ There are a few steps that happen when you run `cf push`:
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
-Let's create a quick sample application using node.js! 
+Let's create a quick sample application using node.js! You'll need node and npm installed on your system for this example, instructions are [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
 
-Create a new project and install [express](http://expressjs.com/) into it:
+Create a new project and install express into it:
 
 ```bash
 mkdir nodejs_sample 
@@ -234,7 +233,7 @@ We need to specify the right start script by editing the package.json file to in
 To run this code, now all you need to do is run:
 
 ```bash
-cf push mysample --random-route
+cf push <app-name> --random-route
 ```
 
 {{</tab >}}
@@ -328,7 +327,7 @@ In the line starting with `routes:`, we can get a link to our newly created appl
 ## Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
-or just too see the event history.
+or just to see the event history.
 
 To view a stream of your app's logs, run: 
 
@@ -358,7 +357,7 @@ Now let's see how we can update our running app. Note that an update will act th
 {{<tabs tabTotal="3" tabID="updating_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
 Let's assume that we really want something more interesting than "Hello, World!" as part of our application 
-and we really want to be running a web service that turns random phrases into `cowsay`.
+and we really want to be running a web service that turns random phrases into `cowsay` (a nice article introducing cowsay can he found[here](https://opensource.com/article/18/12/linux-toy-cowsay)).
 
 First let's add the cowsay npm module:
 
@@ -477,9 +476,6 @@ While we like to talk a lot about "stateless" applications, that's not the reali
 
 The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the outside using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
 
-
-TODO: Write about file persistence?
-
 ### Open Service Broker
 
 The [Open Service Broker API](https://www.openservicebrokerapi.org/) is an API standard that describes how to create and allow consumption of services. This can allow a provider of services to give some control over life-cycle to the users of the service.
@@ -495,7 +491,13 @@ cf marketplace
 
 This will give us a table view of the available services to run.
 
-//TODO what is the expected output?
+```bash
+service      plans           description                 broker
+mongodb      4-0-6           Helm Chart for mongodb      minibroker
+postgresql   11-5-0          Helm Chart for postgresql   minibroker
+redis        4-0-10, 5-0-7   Helm Chart for redis        minibroker
+mariadb      10-1-34         Helm Chart for mariadb      minibroker
+```
 
 For our working example, let's create a redis instance:
 
@@ -505,8 +507,7 @@ cf create-service redis 4-0-10 myredis
 
 This will kick off the creation of a new redis instance.
 
-To see the state (and a list of current services),
-run
+To see the state (and a list of current services), run
 ```bash
 cf services
 ```
@@ -567,13 +568,14 @@ const getService = (type, name)=>(
   .find((service)=>(service.name==name))
 )
 ```
-//TODO: write a quick library and publish it?
 
 With this, we can expand our sample program from a basic hello world to an (extremely) simple guestbook using redis:
 
 ```bash
 npm install redis
 ```
+
+Then adapting the application to use it:
 
 ```js
 const getService = (type, name)=>(
@@ -611,7 +613,6 @@ app.post('/', function (req, res) {
 app.listen(8080)
 ```
 
-
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: Reading VCAP_SERVICES in Java
@@ -625,18 +626,17 @@ TODO: Reading VCAP_SERVICES in Python
 
 There are a few methods of debugging a running application that can be used: logging, tracing, and remote debugging from your IDE.
 
-We've already covered logging, this is an effective but typically painful way to debug application flow. It requires no setup 
+We've already covered logging, which is an effective but typically painful way to debug application flow. It requires no setup 
 but also allows little to no inspection of application state.
 
 Tracing is a fantastic way to look back at previous errors and see what might have happened in the past. 
 Hooking up a tracer is definitely useful but out of scope for this guide. 
-There are third party venders who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
+There are third party vendors who can build tracing instrumentation into the compiler, as well as OpenTracing servers that can be hooked up through an Open Service Broker.  
 
-So that leaves us with attaching a debugger to the running application to monitor state as well as place breakpoints. 
+Lastly, we can attach a debugger to the running application to monitor state as well as place breakpoints.
+
 Since any traffic going to the container running our application is routed through a reverse proxy, 
 we need to be a little clever when attaching a remote debugger to the running application. 
-
-TODO: clean up wording
 
 {{<tabs tabTotal="4" tabID="debugging_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
@@ -644,9 +644,8 @@ The trick for most languages is to pipe through SSH using `cf ssh`.
 This will open up an SSH socket and host it on your local computer giving a secure way to access your application
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in 
 
-Node.js has a debug mode available by starting with the `--inspect` flag.
+Node.js has a debug mode available by starting with the `--inspect` flag that we can use to attach the VS Code debugger.
 
 The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
 
@@ -659,7 +658,7 @@ The first step will be to change the start command in your `package.json` to ena
 ...
 ```
 
-And push again 
+And push again by:
 
 ```bash
 cf push
@@ -667,7 +666,7 @@ cf push
 
 Then to allow access to the debugger, use the command:
 ```bash
-cf ssh nodejs-example -L 9221:localhost:9229
+cf ssh mysample -L 9221:localhost:9229
 ```
 
 This will forward port 9211 on your local machine to port 9229 of the container. It will hold this port open until you exit the shell it creates. (This ssh connection can be useful for all sort of debugging as well)
@@ -687,12 +686,13 @@ You can then attach whichever debugger you prefer to 127.0.0.1:9221. For example
         }
     ]
 }
-
-With this file written, we can click on the 
-
-TODO: Screenshot
-
 ```
+
+With this file written, we can click on the `Run and Debug` tab on the left of VS Code and press the green arrow to start the debugger.
+
+You should see something similar to:
+
+![VS Code Debugger](/images/cli/debugger1.png)
 
 
 {{</tab>}}
@@ -707,7 +707,7 @@ TODO: debugging in Python
   
 ## Clean up
 
-If you want to clean up unused apps or services, we can delete them from the command line.
+If you want to clean up unused apps or services, you can delete them from the command line.
 
 To delete an app you can run:
 
@@ -715,11 +715,13 @@ To delete an app you can run:
 cf delete <app name>
 ```
 
-Depending on the app, you might get a few prompts.
+You will be prompted to confirm the deletion and, depending on the app, you might get a few additional prompts.
 
-TODO: see what prompts might happen
+If an app is deleted using `cf delete <app name>` the route created for the app will still persist.
 
-TODO: what else should we clean up?
+To delete the route as well use -r, e.g. `cf delete -r <app name>`. 
+
+If the route is not removed when the app is deleted, it can then be deleted afterwards with `cf delete-route <domain> -n <host>`. To bulk delete any routes that are not mapped in the current space use `cf delete-orphaned-routes`.
   
 
 ## Next Steps

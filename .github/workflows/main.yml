@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  deploy:
+    runs-on: ubuntu-18.04
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: citizen-of-planet-earth/cf-cli-action@master
+      with:
+        cf_api: ${{ secrets.CF_API }}
+        cf_username: ${{ secrets.CF_USER }}
+        cf_password: ${{ secrets.CF_PASSWORD }}
+        cf_org: ${{ secrets.CF_ORG }}
+        cf_space: ${{ secrets.CF_SPACE }}
+        command: push 
