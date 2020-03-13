@@ -7,14 +7,11 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   # This workflow contains a single job called "build"
   deploy:
     runs-on: ubuntu-18.04
-    needs: build
     
     steps:
     - uses: citizen-of-planet-earth/cf-cli-action@master
