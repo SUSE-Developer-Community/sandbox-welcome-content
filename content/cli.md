@@ -390,8 +390,6 @@ TODO: Updating in Python
 
 There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file.
 
-Create a file called ```manifest.yml``` and fill it with 
-
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
 
@@ -412,6 +410,9 @@ A more complete list of options can be found [Here](https://docs.cloudfoundry.or
 
 {{</tab>}}
 {{<tab tabNum="2">}}
+
+Create a file called ```manifest.yml``` and fill it with:
+
 ```yaml
 applications:
 - name: mysample
