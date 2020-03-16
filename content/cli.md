@@ -279,7 +279,7 @@ Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry
 python-3.x
 ```
 
-And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command when with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
+And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
 
 ```txt
 web: python server.py
@@ -467,6 +467,10 @@ applications:
   services:
   env:
 ```
+
+With this application manifest in place, we can now omit the build pack specification with the `-b python_buildpack` switch and we do not need the `Procfile` anymore. It does not hurt to leave it in place though. 
+
+TODO: explain which file takes precedence in case of diverging config (e.g. start command in Procfile and manifest)
 {{</tab>}}
 {{</tabs>}}
 
