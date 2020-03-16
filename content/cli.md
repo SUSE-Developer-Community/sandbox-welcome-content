@@ -167,8 +167,11 @@ cf help -a
 From a developer's perspective, Cloud Foundry can be summed up in a single command. All it takes to run an application is `cf push`. 
 
 
-Note: The `--random-route` flag shown below is useful here in this multi-tenant environment. It eliminates collisions of people running the same examples (each trying to request same route from different apps). Please use it when working in our sandbox! You will get a randomly generated url for each new app that will stay consistent between app redeploys. 
+{{<callout title="Note">}}
+The `--random-route` flag shown below is useful here in this multi-tenant environment. It eliminates collisions of people running the same examples (each trying to request same route from different apps). Please use it when working in our sandbox! 
 
+You will get a randomly generated url for each new app that will stay consistent between app redeploys. 
+{{</callout>}}
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
@@ -307,8 +310,7 @@ space:          dev
 {{</tab >}}
 
 {{</tabs >}}
-  
-Note: Adding the ```--random-route``` flag to your push command is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
+
 
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
@@ -419,7 +421,12 @@ cf push pythonhelloworld
 
 {{</tabs>}}
 
-Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+{{<callout title="Note">}}
+
+This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+{{</callout>}}
 
 TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
