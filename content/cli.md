@@ -349,11 +349,9 @@ If you want to get a dump of your app's recent logs instead, run:
 cf logs --recent <app name>
 ```
 
-TODO: screenshot
-
 ## Updating an Application
 
-As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
+As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly. 
 
 It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
 
