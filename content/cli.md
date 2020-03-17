@@ -287,7 +287,7 @@ applications:
   env:
     JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
 ```   
-Now try to build the application using maven by running mvn clean install then pushing it into the application by cf push and test it but running the browser your application assigned route followed by helloworld/sayHello/cap user and you can see the Hello World message.
+Now try to build the application using maven by running `mvn clean install` then pushing it into the application by `cf push` and test it but pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your username>` and you can see the Hello World message.
 
 {{</tab >}}
 
