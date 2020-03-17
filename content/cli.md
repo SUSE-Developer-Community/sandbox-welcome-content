@@ -276,7 +276,7 @@ public class HelloWorldController {
 	}
 }
 ```
-Then navigate to the main folder and create manifest.yaml with the following content:
+Then navigate to the main folder and create `manifest.yaml` with the following content:
 ```yaml
 ---
 applications:
