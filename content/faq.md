@@ -15,7 +15,20 @@ Anything! This getting started guide has some very simple examples, but you can 
 
 If you want some suggestions on what to build, join us on our discord to see what others are building!
 
+### What languages are supported?
 
+We have buildpacks built in for: 
+ - Java
+ - Ruby
+ - Node.js
+ - Golang
+ - Python
+ - Php
+ - .Net Core
+ - Static Files
+ - and binary applications
+
+ If you are interested in helping expand this list, let us know!
 
 ## Rules and Quotas
 
