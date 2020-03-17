@@ -17,7 +17,7 @@ If you want some suggestions on what to build, join us on our discord to see wha
 
 ### What languages are supported?
 
-We have buildpacks built in for: 
+We support the build packs for: 
  - Java
  - Ruby
  - Node.js
