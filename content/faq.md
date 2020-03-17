@@ -9,7 +9,13 @@ menu:
 
 ## Purpose
 
-### 
+### What can I build in this sandbox?
+
+Anything! This getting started guide has some very simple examples, but you can host very complex applications in Cloud Foundry.
+
+If you want some suggestions on what to build, join us on our discord to see what others are building!
+
+
 
 ## Rules and Quotas
 
