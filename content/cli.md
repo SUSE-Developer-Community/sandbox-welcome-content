@@ -254,7 +254,7 @@ First let us go to the spring initializer site https://start.spring.io/ and sele
   Then hit generate button and download the project zip.
   Upzip the project, then open eclipse and import the project.
   In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
-  Now Navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+  Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
  ```Java
   package com.suse.cap.helloworld;
 
