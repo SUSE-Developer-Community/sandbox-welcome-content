@@ -243,7 +243,7 @@ Note: The ```--random-route``` flag is useful here in this multi-tenant environm
 
 {{<tab tabNum="3">}}
 Let us start by creating a simple Java Spring Boot Application. 
-First let us go to the spring initializer site https://start.spring.io/ the select the required dependcies and enter the project name and details, here are the requested details:
+First let us go to the spring initializer site https://start.spring.io/ and select the required dependencies. Enter the project name and details as follows:
   - Spring version 2.2.5
   - Group com.suse.cap
   - Artifact helloworld
