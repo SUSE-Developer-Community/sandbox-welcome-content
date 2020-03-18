@@ -41,7 +41,7 @@ We support the build packs for:
 ### How many Applications can I run?
 10
 
-With a total of 2GB of requested ram.
+With a total of 2GB of requested RAM.
 
 ### How many services can I use from the marketplace?
 
@@ -69,4 +69,3 @@ Yes, this is a feature of Cloud Foundry, but we have it turned off by default.
 ### I want to try something bigger, can I request more capacity?
 
 Yes, depending on the request we can work with you to get more capacity or (more likely) help set up your own cluster.
-
