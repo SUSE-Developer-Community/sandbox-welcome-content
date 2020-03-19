@@ -64,7 +64,7 @@ Talk to us, if it's something that we think would be interesting to the whole co
 
 ### Can I route non-HTTP routes. 
 
-Yes, this is a feature of Cloud Foundry, but we have it turned off by default.
+Yes, this is a feature of Cloud Foundry, but we have it turned off by default. Let us know if this limiting you, we're happy to look into ways to support your use case.
 
 ### I want to try something bigger, can I request more capacity?
 
