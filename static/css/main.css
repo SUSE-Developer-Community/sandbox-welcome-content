@@ -50,7 +50,7 @@ p img {
     padding: 8px;
 }
 
-.callout[data-title]:before {
+.callout[data-title]:not([data-title='']):before {
     content: attr(data-title);
     clear: right;
     display: block;
