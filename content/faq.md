@@ -56,7 +56,7 @@ No, this is specifically a *Developer* Sandbox. We are not allowing access to a 
  - User and Team Management
  - Blue/Green Deployments
 
-If there are features that you 
+Let us know if you require access to features beyond the baseline set, we're happy to discuss how we can help.
 
 ### Can I install my own Open Service Broker? 
 
