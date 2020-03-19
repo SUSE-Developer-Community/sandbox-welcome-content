@@ -4,7 +4,7 @@ menu:
   nav:
     name: "computer"
     url: "/cli/"
-    weight: 50
+    weight: 60
     icon: color_lens
 ---
 
@@ -89,7 +89,7 @@ cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal>
 
 This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
-The next prompt will be to select which space you want to target. Select "4" (or Samples) for now. 
+The next prompt will be to select which space you want to target. Select the option that corresponds to `samples` for now. 
 
 ```bash
 user:~/Projects/ $ cf login -u test@example.com -p <redacted>
@@ -147,7 +147,9 @@ cf marketplace
 
 Which will return the services, the plans offered, any description, and which broker is providing the service. These will be revisited later.
 
-To find more information about a single sub-command, use the help command. For example to get more information about the marketplace command, run:
+## Help on Commands
+
+There is a lot of commands with their own options in the cli. To find more information about a single sub-command, use the `cf help` command. For example to get more information about the marketplace command, run:
 
 ```bash
 cf help marketplace
@@ -163,6 +165,13 @@ cf help -a
 ## Pushing Applications
 
 From a developer's perspective, Cloud Foundry can be summed up in a single command. All it takes to run an application is `cf push`. 
+
+
+{{<callout title="Note">}}
+The `--random-route` flag shown below is useful here in this multi-tenant environment. It eliminates collisions of people running the same examples (each trying to request same route from different apps). Please use it when working in our sandbox! 
+
+You will get a randomly generated url for each new app that will stay consistent between app redeploys. 
+{{</callout>}}
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
@@ -230,7 +239,7 @@ We need to specify the right start script by editing the package.json file to in
 }
 ```
 
-To run this code, now all you need to do is run:
+To run this code, all you need to do is run:
 
 ```bash
 cf push <app-name> --random-route
@@ -239,7 +248,53 @@ cf push <app-name> --random-route
 {{</tab >}}
 
 {{<tab tabNum="3">}}
-TODO: Java Example
+Let us start by creating a simple Java Spring Boot Application. 
+First let us go to the spring initializer site https://start.spring.io/ and select the required dependencies. Enter the project name and details as follows:
+  - Spring version 2.2.5
+  - Group com.suse.cap
+  - Artifact helloworld
+  - Packaging jar
+  - java 8
+  - dependcies:
+      - spring web
+  Then hit generate button and download the project zip.
+  Upzip the project, then open eclipse and import the project.
+  In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
+  Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+ ```Java
+  package com.suse.cap.helloworld;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello "+name + " From Spring :)!";
+	}
+}
+```
+Then navigate to the main folder and create `manifest.yaml` with the following content:
+```yaml
+---
+applications:
+- name: HelloWorld
+  memory: 1G
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+```   
+Now try to build the application using maven by running `mvn clean install` then pushing it into the application by `cf push` and test it but pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your username>` and you can see the Hello World message.
+
 {{</tab >}}
 
 {{<tab tabNum="4">}}
@@ -301,7 +356,7 @@ space:          dev
 {{</tab >}}
 
 {{</tabs >}}
-  
+
 Note: Adding the ```--random-route``` flag to your push command is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
 
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
@@ -341,11 +396,9 @@ If you want to get a dump of your app's recent logs instead, run:
 cf logs --recent <app name>
 ```
 
-TODO: screenshot
-
 ## Updating an Application
 
-As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly.
+As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly. 
 
 It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
 
@@ -417,11 +470,17 @@ Note: This time, we can drop the ```--random-route``` as the configuration is pe
 
 TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
+{{<callout title="Note">}}
+
+This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+{{</callout>}}
+
+TODO: add some explanation how the config can changed after initial push without deleting the app. 
+
 ## Manifest
 
 There is a lot of configuration available while pushing an application using `cf push` and it can get a bit easy to typo. To make configuration easier and more portable, we can use a manifest file. There are a ton of options that can be set up in the manifest file, see the [Cloud Foundry documentation on application manifests](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html) for details.
-
-Create a file called ```manifest.yml``` and fill it with 
 
 {{<tabs tabTotal="4" tabID="manifest"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
 {{<tab tabNum="1">}}
@@ -442,6 +501,9 @@ A more complete list of options can be found [Here](https://docs.cloudfoundry.or
 
 {{</tab>}}
 {{<tab tabNum="2">}}
+
+Create a file called ```manifest.yml``` and fill it with:
+
 ```yaml
 applications:
 - name: mysample
@@ -467,10 +529,10 @@ applications:
   services:
   env:
 ```
-
 With this application manifest in place, we can now omit the build pack specification with the `-b python_buildpack` switch and we do not need the `Procfile` anymore. It does not hurt to leave it in place though. 
 
 TODO: explain which file takes precedence in case of diverging config (e.g. start command in Procfile and manifest)
+
 {{</tab>}}
 {{</tabs>}}
 
