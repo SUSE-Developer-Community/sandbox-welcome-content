@@ -8,25 +8,27 @@ menu:
     icon: color_lens
 ---
 
-For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
-you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
+For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your personal developer space, 
+you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought or whitespace change to git!
 
 ## Installation
-It can be run on a variety of systems. Pick the system you are using to install on:
+The command line client can be run on a variety of systems. To get started, pick the OS you are running:
 
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
 {{< tab tabNum="1" >}}
-To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with zypper:
+To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with `zypper`:
 
 ```bash
 sudo zypper in cf-cli
 ```
+
+This works on [OpenSUSE for WSL](https://en.opensuse.org/openSUSE%3AWSL) as well!
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
 To install the cf-cli on a Mac, the package is available in homebrew. 
 
-If you haven't installed homebrew, install it with:
+If you haven't installed [homebrew](https://brew.sh/), install it with:
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -69,11 +71,11 @@ sudo yum install cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="6" >}}
-If none of the other methods work for you, there are binaries precompiled for you to use. 
+If none of the other methods work for you, there are binaries pre-compiled available. 
 
 These can be found at [Here](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries).
 
-Or, if you want to build it yourself, the Golang source can be found [Here](https://github.com/cloudfoundry/cli).
+Or, if you want to build it from source, the project can be found [Here](https://github.com/cloudfoundry/cli).
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -81,13 +83,14 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
   
 ## Login To Your Account
 
-Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
+Once you have installed the cf-cli, we can log in. 
 
+{{<callout title="note">}}
+Your user name is the e-mail address you used to create your SUSE developer community account, and the password is in the welcome e-mail you received after registering for access to the sandbox. You can change this by [following these instructions](/password/).
+{{</callout>}}
 ```bash
-cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal> 
+cf login -a https://api.cap.explore.suse.dev -u <your_username> -p <your_password>
 ```
-
-This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
 The next prompt will be to select which space you want to target. Select the option that corresponds to `samples` for now. 
 
@@ -108,8 +111,6 @@ Select a space (or press enter to skip):
 Space> 3
 Targeted space samples
 
-
-                
 API endpoint:   https://api.cap.explore.suse.dev (API version: 2.138.0)
 User:           test@example.com
 Org:            text_example_com
@@ -119,9 +120,9 @@ Space:          samples
   
 ## Organizations and Spaces
 
-The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
+All applications (and users) on a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to build a multi-tenant environment with minimal headache since each organization and space can be given it's own resource quota and access control.
 
-As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "samples" space (selected at login).
+As part of your free trial, you have administrator access for a personal organization with a few spaces. By default, there are a few applications running in the "samples" space (selected at login).
 
 To check which apps are running in the current org and space, run:
 
@@ -129,23 +130,17 @@ To check which apps are running in the current org and space, run:
 cf apps
 ```
 
-This should show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
+This will show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
 
 To switch to the "dev" space, use: 
 
 ```bash
 cf target -s dev
 ```
-  
-Once you are a member of more than one org (initially your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available and you didn't specify which one you want to target. 
 
-You can also check out the services provided in our environment, by running:
-
-```bash
-cf marketplace
-```
-
-Which will return the services, the plans offered, any description, and which broker is providing the service. These will be revisited later.
+{{<callout title="note">}}
+If you are a member of more than one org (in this sandbox, your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available. 
+{{</callout>}}
 
 ## Help on Commands
 
@@ -175,21 +170,9 @@ You will get a randomly generated url for each new app that will stay consistent
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
-{{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{< tabs tabTotal="3" tabID="lang" tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
       
 {{< tab tabNum="1" >}}
-There are a few steps that happen when you run `cf push`:
-
- * The current working directory gets zipped up
- * This file gets uploaded to the server
- * The server starts running the code through a series of "build packs"
- * Each build pack determines if it can do anything with the code
- * If one can, it builds the code into a container and instructs the scheduler how to run the new application
- * The scheduler runs the freshly built application
- 
-{{< /tab >}}
-  
-{{< tab tabNum="2" >}}
 Let's create a quick sample application using node.js! You'll need node and npm installed on your system for this example, instructions are [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
@@ -247,7 +230,7 @@ cf push <app-name> --random-route
 
 {{</tab >}}
 
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 Let us start by creating a simple Java Spring Boot Application. 
 First let us go to the spring initializer site https://start.spring.io/ and select the required dependencies. Enter the project name and details as follows:
   - Spring version 2.2.5
@@ -297,7 +280,7 @@ Now try to build the application using maven by running `mvn clean install` then
 
 {{</tab >}}
 
-{{<tab tabNum="4">}}
+{{<tab tabNum="3">}}
 Let us create a simple static website as an example Cloud Foundry application written in Python. 
 
 First, let's create a simple HTML file that will serve as our home page, and save it as `index.html`:
@@ -354,10 +337,18 @@ space:          dev
 ```
 
 {{</tab >}}
-
 {{</tabs >}}
 
+{{<callout title="Note">}}
+There are a few steps that happen when you run `cf push`:
 
+ * The current working directory gets zipped up
+ * This file gets uploaded to the server
+ * The server starts running the code through a series of "build packs"
+ * Each build pack determines if it can do anything with the code
+ * If one can, it builds the code into a container and instructs the scheduler how to run the new application
+ * The scheduler runs the freshly built application
+{{</callout>}}
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
@@ -376,7 +367,8 @@ start command:   npm start
 #0   running   2020-02-05T22:57:51Z   0.0%   0 of 1G   0 of 1G   
 ```
 
-In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
+In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using `curl`!
+
 
 ## Logging
 
