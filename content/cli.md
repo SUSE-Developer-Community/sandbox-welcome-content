@@ -375,7 +375,7 @@ In the line starting with `routes:`, we can get a link to our newly created appl
 After you've pushed your app, you may want to check the logs to debug any issues 
 or just to see the event history.
 
-To view a stream of your app's logs, run: 
+To view a live stream of your app's logs, run: 
 
 ```bash
 cf logs <app name>
