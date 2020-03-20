@@ -122,7 +122,7 @@ Space:          samples
 
 All applications (and users) on a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to build a multi-tenant environment with minimal headache since each organization and space can be given it's own resource quota and access control.
 
-As part of your free trial, you have administrator access for a personal organization with a few spaces. By default, there are a few applications running in the "samples" space (selected at login).
+As part of your developer sandbox, you have administrator access for a personal organization with a few spaces. By default, there are a few applications running in the "samples" space (selected at login).
 
 To check which apps are running in the current org and space, run:
 
