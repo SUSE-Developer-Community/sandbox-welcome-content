@@ -18,11 +18,21 @@ pre {
 
 .tab-content {
     border: rgba(0,0,0,.2) 1px solid;
-
+    margin-bottom: 8px;
 }
+
 .tab-pane {
     margin:8px;
     margin-left:12px;
+}
+
+p {
+    font-family: gotham;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1024px;
 }
 
 h2 {
@@ -48,9 +58,10 @@ p img {
 .callout {
     background: #E0F7F0;
     padding: 8px;
+    margin-bottom:8px;
 }
 
-.callout[data-title]:before {
+.callout[data-title]:not([data-title='']):before {
     content: attr(data-title);
     clear: right;
     display: block;
@@ -63,4 +74,8 @@ p img {
     margin-left: -8px;
     margin-top: -8px;
     margin-bottom: 8px;
+}
+
+li {
+    padding: 4px 0px 0px;
 }
