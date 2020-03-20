@@ -394,8 +394,6 @@ As you are developing an app you likely would like to continually iterate on cod
 
 It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
 
-TODO: can we give a pointer to further reading on updating in production?  
-
 Now let's see how we can update our running app. Note that an update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
 
 
@@ -460,15 +458,11 @@ cf push pythonhelloworld
 
 Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
 
-TODO: add some explanation how the config can changed after initial push without deleting the app. 
-
 {{<callout title="Note">}}
 
 This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
 
 {{</callout>}}
-
-TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
 ## Manifest
 
@@ -508,7 +502,7 @@ applications:
 ```
 {{</tab>}}
 {{<tab tabNum="3">}}
-TODO: Updating in Java
+TODO: Manifest in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
 ```yaml
@@ -522,8 +516,6 @@ applications:
   env:
 ```
 With this application manifest in place, we can now omit the build pack specification with the `-b python_buildpack` switch and we do not need the `Procfile` anymore. It does not hurt to leave it in place though. 
-
-TODO: explain which file takes precedence in case of diverging config (e.g. start command in Procfile and manifest)
 
 {{</tab>}}
 {{</tabs>}}

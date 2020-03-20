@@ -44,8 +44,6 @@ This set of features gives a really easy way to connect your application to exte
 ### Autoscaling
 
 Yet another benefit of PaaS is that it helps you avoid writing certain kinds of code that you don't want to write. For example, platforms usually have built-in load balancers and autoscaling capabilities so that the platform can launch additional app instances automatically - you don't have to write the code that does this anymore. This is a very complex topic though, and if you want to dive more into those aspects...
-> TODO: add a pointer to further reading about load balancers, autoscaler and microservice patterns...
-
   
 ## Stratos vs Command Line
 

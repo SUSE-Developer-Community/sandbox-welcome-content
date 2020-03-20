@@ -30,11 +30,17 @@ Please log in again
 
 To change your password from Stratos. Log in then browse to https://stratos.cap.explore.suse.dev/user-profile/edit, enter your existing password and your new password. 
 
-This page can be found from the home screen by 
+This page can be found from the home screen by:
 
- - Clicking on the icon in the top right
- - Clicking `Profile` from the menu that drops down
- - Clicking the pencil on the top right to edit
- - 
+Clicking on the icon in the top right then `Profile` from the menu that drops down
 
-TODO: rewrite with screenshots
+![Profile Access](/images/password/mainpage.png)
+
+Clicking the pencil on the top right to edit
+ 
+![Profile Access](/images/password/account.png)
+
+Type in current password and new password where appropriate then click `Save`
+
+![Profile Access](/images/password/edit_account.png)
+
