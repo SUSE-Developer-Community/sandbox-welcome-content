@@ -317,7 +317,7 @@ Save this as `server.py`. Since this code assumes Python 3 but the Cloud Foundry
 python-3.x
 ```
 
-And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command when with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
+And now we still need to tell Cloud Foundry what to do to start our app. Looking at the [Python build pack documentation](https://docs.cloudfoundry.org/buildpacks/python/index.html), we find that there are three ways to do this: provide a [Procfile](https://docs.cloudfoundry.org/buildpacks/prod-server.html), a manifest.yaml or specify the app's start command with the -c switch to the `cf push` command. We'll use the Procfile option in this example. Create a file containing the following line and save it as `Procfile`:
 
 ```txt
 web: python server.py
@@ -349,6 +349,7 @@ There are a few steps that happen when you run `cf push`:
  * If one can, it builds the code into a container and instructs the scheduler how to run the new application
  * The scheduler runs the freshly built application
 {{</callout>}}
+
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
 ```bash
@@ -457,6 +458,9 @@ cf push pythonhelloworld
 
 {{</tabs>}}
 
+Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
+
+TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
 {{<callout title="Note">}}
 
@@ -517,6 +521,10 @@ applications:
   services:
   env:
 ```
+With this application manifest in place, we can now omit the build pack specification with the `-b python_buildpack` switch and we do not need the `Procfile` anymore. It does not hurt to leave it in place though. 
+
+TODO: explain which file takes precedence in case of diverging config (e.g. start command in Procfile and manifest)
+
 {{</tab>}}
 {{</tabs>}}
 
@@ -669,6 +677,129 @@ TODO: Reading VCAP_SERVICES in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
 TODO: Reading VCAP_SERVICES in Python
+To consume our Redis service from our Python example app we can use the following snippet:
+```Python
+import redis
+import json
+import os
+
+cf_app_env = os.getenv('VCAP_APPLICATION')
+if cf_app_env is not None:
+    host = json.loads(cf_app_env)['application_uris'][0]
+else:
+    host = 'localhost'
+
+if 'VCAP_SERVICES' in os.environ:
+  vcap_services = json.loads(os.environ['VCAP_SERVICES'])
+  if 'redis' in vcap_services:
+    credentials = vcap_services['redis'][0]['credentials']
+    redis_host = credentials['host']
+    redis_port = credentials['port']
+    redis_password = credentials['password']
+  else:
+    print("No Redis info found in VCAP_SERVICES! Are you sure you created and bound the service to your app?")
+
+try:
+  r = redis.Redis(
+    host = redis_host,
+    port = redis_port,
+    password = redis_password
+    )
+except redis.ConnectionError:
+  print("Error connecting to Redis database!")
+  r = None
+```
+
+Let's demonstrate this by turning our static hello world example into a real web application that can store words in a database. We will use the [Flask](https://flask.palletsprojects.com) framework for this purpose. The home page will display a form for adding and removing strings to a database, and display the current content of the database as an unordered list. Here's the code (including the Redis database part above)for our new server.py:
+```Python
+rom flask import Flask, redirect, render_template, request
+import json
+import os
+import redis
+
+APP_PORT = 8080
+APP_HOST = "0.0.0.0"
+
+app = Flask(__name__)
+
+cf_app_env = os.getenv('VCAP_APPLICATION')
+if cf_app_env is not None:
+    host = json.loads(cf_app_env)['application_uris'][0]
+else:
+    host = 'localhost'
+
+if 'VCAP_SERVICES' in os.environ:
+  vcap_services = json.loads(os.environ['VCAP_SERVICES'])
+  if 'redis' in vcap_services:
+    credentials = vcap_services['redis'][0]['credentials']
+    redis_host = credentials['host']
+    redis_port = credentials['port']
+    redis_password = credentials['password']
+  else:
+    print("No Redis info found in VCAP_SERVICES! Are you sure you created and bound the service to your app?")
+
+try:
+  r = redis.Redis(
+    host = redis_host,
+    port = redis_port,
+    password = redis_password
+    )
+except redis.ConnectionError:
+  print("Error connecting to Redis database!")
+  r = None
+
+@app.route('/')
+def index():
+  redis_words = r.lrange("mywords", 0, -1)
+  return render_template('index.html', redis_words=list(redis_words))
+
+@app.route('/addvalue', methods=['POST'])
+def add_value():
+  value = request.form['value']
+  print("Received value " + value + ", adding to database...")
+  r.rpush("mywords", value)
+  return redirect("/", code=302)
+
+@app.route('/removevalue', methods=['POST'])
+def remove_value():
+  value = request.form['value']
+  print("Received value " + value + ", removing from database...")
+  r.lrem("mywords", 0, value)
+  return redirect("/", code=302)
+
+if __name__ == '__main__':
+  app.run(host=APP_HOST, port=APP_PORT)
+```
+
+To make this work we need to modify our `index.html` as follows:
+```html
+<html>
+    <head>
+        <title>Python says Hello World!</title>
+    </head>
+    <body>
+        <h1>Python says Hello World!</h1>
+        <p>And this is running on the SUSE Cloud Application Platform developer sandbox...</p>
+        <p>Using a redis database is super easy with the Minibroker!</p>
+        <p>
+          <form method="POST" action="/addvalue">
+            Add value <input type="text" name="value" placeholder="myvalue" /> <input type="submit" value="Add" /> to database! 
+          </form>
+          <form method="POST" action="/removevalue">
+            Remove value <input type="text" name="value" placeholder="myvalue" /> <input type="submit" value="Remove" /> from database!
+        </p>
+        <p>Currently the database contains the following:</p>
+        <ul>
+          {% for word in redis_words %}
+          <li>{{ word }}</li>
+          {% endfor %}
+        </ul>
+
+    </body>
+</html>
+```
+
+We also need to move it into the `templates` directory of our app root directory, since this is where Flask expects its web templates to be. 
 {{</tab>}}
 {{</tabs>}}
 
