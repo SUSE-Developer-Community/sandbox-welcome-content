@@ -586,15 +586,11 @@ cf env <app-name>
 
 Once we have the service created and bound, we can consume it from our application.
 
-Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES environment variable.
-
-{{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
-{{<tab tabNum="1">}}
-Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
+Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES environment variable. Parsing that blob will give a data structure looking like:
 
 ```json
 {
-  "service-type1":[
+  "service-type-1":[
     {
       "name": "name",
       "credentials": {
@@ -603,21 +599,22 @@ Depending on the service being provided, the credentials provided will be differ
       }
     }
   ],
-  "service-type2":[
+  "service-type-2":[
     {
       "name": "name",
       "credentials": {
-        "connectionString":"a:p@path.to/service"
+        "connectionUri":"a:p@path.to/service"
       }
     }
   ]
 }
 ```
+Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
 
 These can be consumed in your applications code to know what services exist that it can use.
 
-{{</tab>}}
-{{<tab tabNum="2">}}
+{{<tabs tabTotal="3" tabID="service_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
+{{<tab tabNum="1">}}
 In a Node application, we can consume the services with something like this: 
 
 ```js
@@ -672,11 +669,10 @@ app.listen(8080)
 ```
 
 {{</tab>}}
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 TODO: Reading VCAP_SERVICES in Java
 {{</tab>}}
-{{<tab tabNum="4">}}
-TODO: Reading VCAP_SERVICES in Python
+{{<tab tabNum="3">}}
 To consume our Redis service from our Python example app we can use the following snippet:
 ```Python
 import redis
