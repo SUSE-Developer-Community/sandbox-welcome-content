@@ -11,7 +11,11 @@
         {
             "label": "push",
             "type": "shell",
-            "command": "cf push"
+            "command": "cf push",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
