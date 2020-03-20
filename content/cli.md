@@ -615,7 +615,7 @@ These can be consumed in your applications code to know what services exist that
 
 {{<tabs tabTotal="3" tabID="service_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
-In a Node application, we can consume the services with something like this: 
+In a Node application, we can consume the services with some code like this: 
 
 ```js
 const getService = (type, name)=>(
@@ -815,16 +815,14 @@ Lastly, we can attach a debugger to the running application to monitor state as 
 Since any traffic going to the container running our application is routed through a reverse proxy, 
 we need to be a little clever when attaching a remote debugger to the running application. 
 
-{{<tabs tabTotal="4" tabID="debugging_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+The trick for most languages is to pipe through SSH using `cf ssh <app name> -L <local port>:localhost:<remote port>` to open up a ssh port forward.
+
+{{<tabs tabTotal="4" tabID="debugging_lang" tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
-The trick for most languages is to pipe through SSH using `cf ssh`. 
-This will open up an SSH socket and host it on your local computer giving a secure way to access your application
-{{</tab>}}
-{{<tab tabNum="2">}}
 
 Node.js has a debug mode available by starting with the `--inspect` flag that we can use to attach the VS Code debugger.
 
-The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
+The first step will be to change the start command in your `package.json` to enable the inspector. 
 
 ```json
 ...
@@ -873,14 +871,17 @@ You should see something similar to:
 
 
 {{</tab>}}
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 TODO: Debugging in Java
 {{</tab>}}
-{{<tab tabNum="4">}}
+{{<tab tabNum="3">}}
 TODO: debugging in Python
 {{</tab>}}
 {{</tabs>}}
 
+{{<callout title="Note">}}
+Don't forget to remove any debugger flags before pushing to production!
+{{</callout>}}
   
 ## Clean up
 
