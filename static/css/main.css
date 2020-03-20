@@ -18,11 +18,21 @@ pre {
 
 .tab-content {
     border: rgba(0,0,0,.2) 1px solid;
-
+    margin-bottom: 8px;
 }
+
 .tab-pane {
     margin:8px;
     margin-left:12px;
+}
+
+p {
+    font-family: gotham;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1024px;
 }
 
 h2 {
