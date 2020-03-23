@@ -442,7 +442,43 @@ cf push mysample
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Updating in Java
+
+Let's assume that we really want something more interesting than just a hello world app.
+
+We can edit the HelloWorldController.java file to be 
+```Java
+package com.suse.cap.helloworld;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+
+  ArrayList<String> guestBook = new ArrayList<String>();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+
+    guestBook.add(name);
+
+    String nameList = guestBook.stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello " + name + " From Spring :)!";
+	}
+}
+```
+
 {{</tab>}}
 
 {{<tab tabNum="3">}}
@@ -697,7 +733,10 @@ app.listen(8080)
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Reading VCAP_SERVICES in Java
+
+Spring Boot comes with [built in consumption of the VCAP_SERVICES environment variable](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/cloud/CloudFoundryVcapEnvironmentPostProcessor.html). This flattens the JSON tree so you can consume credentials easily.
+
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 To consume our Redis service from our Python example app we can use the following snippet:
