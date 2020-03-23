@@ -238,14 +238,21 @@ First let us go to the spring initializer site https://start.spring.io/ and sele
   - Artifact helloworld
   - Packaging jar
   - java 8
-  - dependcies:
+  - dependencies:
       - spring web
-  Then hit generate button and download the project zip.
-  Upzip the project, then open eclipse and import the project.
-  In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
-  Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
+Then hit `generate` and download the project zip.
+
+![Spring Page](/images/cli/spring1.png)
+
+Unzip the project, open eclipse, and import the project.
+
+In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
+
+Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
  ```Java
-  package com.suse.cap.helloworld;
+package com.suse.cap.helloworld;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -265,18 +272,20 @@ public class HelloWorldController {
 	}
 }
 ```
-Then navigate to the main folder and create `manifest.yaml` with the following content:
-```yaml
----
-applications:
-- name: HelloWorld
-  memory: 1G
-  random-route: true
-  path: target/helloworld-1.0.jar
-  env:
-    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
-```   
-Now try to build the application using maven by running `mvn clean install` then pushing it into the application by `cf push` and test it but pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your username>` and you can see the Hello World message.
+
+Now build the application using maven by running:
+
+```bash
+mvn clean install
+```
+
+Then pushing it to the platform with:
+
+```bash
+cf push HelloWorld -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
+```
+
+Test it by pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your name>` and you can see the Hello World message.
 
 {{</tab >}}
 
@@ -508,7 +517,25 @@ applications:
 ```
 {{</tab>}}
 {{<tab tabNum="3">}}
-TODO: Updating in Java
+
+Create `manifest.yaml` in your project's root folder with the following content:
+```yaml
+---
+applications:
+- name: HelloWorld
+  memory: 1G
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+```
+
+You can now drop the flags from your push command and just use:
+```bash
+cf push
+```
+
+
 {{</tab>}}
 {{<tab tabNum="4">}}
 ```yaml
