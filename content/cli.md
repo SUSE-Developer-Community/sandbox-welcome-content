@@ -264,6 +264,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/helloworld")
 public class HelloWorldController {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
 	public String sayHello(@PathVariable String name) {
@@ -735,6 +736,62 @@ app.listen(8080)
 {{<tab tabNum="2">}}
 
 Spring Boot comes with [built in consumption of the VCAP_SERVICES environment variable](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/cloud/CloudFoundryVcapEnvironmentPostProcessor.html). This flattens the JSON tree so you can consume credentials easily.
+
+Let's extend our example to persist the "guestbook" to a redis array to survive any restarts. 
+
+Start by adding the [Jedis dependency](https://mvnrepository.com/artifact/redis.clients/jedis/3.2.0) to your pom.xml
+
+```xml
+...
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>3.2.0</version>
+</dependency>
+...
+```
+
+Then we can connect to the service with the following code:
+
+```Java
+package com.suse.cap.helloworld;
+
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import redis.clients.jedis.Jedis;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+	@Value("${vcap.services.myredis.credentials.uri:}")
+	private String JEDIS_URI; 
+
+	private static final String LIST_KEY = "guestbook"; 
+
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+		
+		Jedis jedis = new Jedis(JEDIS_URI);
+		
+		jedis.lpush(LIST_KEY, name);
+		
+		String nameList = jedis.lrange(LIST_KEY, 0, -1).stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello "+name + " From Spring :)! " + nameList + "  have all signed in!";
+	}
+}
+```
 
 
 {{</tab>}}
