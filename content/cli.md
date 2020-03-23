@@ -283,7 +283,7 @@ mvn clean install
 Then pushing it to the platform with:
 
 ```bash
-cf push HelloWorld -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
+cf push mysample -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
 ```
 
 Test it by pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your name>` and you can see the Hello World message.
@@ -559,7 +559,7 @@ Create `manifest.yaml` in your project's root folder with the following content:
 ```yaml
 ---
 applications:
-- name: HelloWorld
+- name: mysample
   memory: 1G
   random-route: true
   path: target/helloworld-1.0.jar
@@ -995,7 +995,38 @@ You should see something similar to:
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in Java
+
+Java allows attaching a debugger to a remotely running application. To do this we need to restart the application with the following `JAVA_OPTS` in the manifest:
+
+```yaml
+applications:
+- name: mysample
+  memory: 1G
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,address=:8000'
+```
+
+Then repush the app:
+```bash 
+cf push
+```
+
+To allow local access to the debugger through a ssh tunnel, run this in the background:
+```bash
+cf ssh mysample -L 8000:localhost:8000
+```
+
+Then, from eclipse, add a debug configuration by right clicking on your project, selecting `Debug As`, and `Debug Configurations...`:
+![VS Code Debugger](/images/cli/eclipse1.png)
+
+Then click `Remote Java Application` and create new one (button in the top left of this screenshot):
+
+![VS Code Debugger](/images/cli/eclipse2.png)
+
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: debugging in Python
