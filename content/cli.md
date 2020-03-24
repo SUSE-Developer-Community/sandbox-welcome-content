@@ -280,7 +280,7 @@ Now build the application using maven by running:
 mvn clean install
 ```
 
-Then pushing it to the platform with:
+Then push it to the platform with:
 
 ```bash
 cf push mysample -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
