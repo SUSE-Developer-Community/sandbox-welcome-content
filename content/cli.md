@@ -560,7 +560,7 @@ Create `manifest.yaml` in your project's root folder with the following content:
 ---
 applications:
 - name: mysample
-  memory: 1G
+  memory: 512M
   random-route: true
   path: target/helloworld-1.0.jar
   env:
@@ -1001,7 +1001,7 @@ Java allows attaching a debugger to a remotely running application. To do this w
 ```yaml
 applications:
 - name: mysample
-  memory: 1G
+  memory: 512M
   random-route: true
   path: target/helloworld-1.0.jar
   env:
