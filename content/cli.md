@@ -238,14 +238,21 @@ First let us go to the spring initializer site https://start.spring.io/ and sele
   - Artifact helloworld
   - Packaging jar
   - java 8
-  - dependcies:
+  - dependencies:
       - spring web
-  Then hit generate button and download the project zip.
-  Upzip the project, then open eclipse and import the project.
-  In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
-  Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
+Then hit `generate` and download the project zip.
+
+![Spring Page](/images/cli/spring1.png)
+
+Unzip the project, open eclipse, and import the project.
+
+In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
+
+Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
  ```Java
-  package com.suse.cap.helloworld;
+package com.suse.cap.helloworld;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -257,6 +264,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/helloworld")
 public class HelloWorldController {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
 	public String sayHello(@PathVariable String name) {
@@ -265,18 +273,20 @@ public class HelloWorldController {
 	}
 }
 ```
-Then navigate to the main folder and create `manifest.yaml` with the following content:
-```yaml
----
-applications:
-- name: HelloWorld
-  memory: 1G
-  random-route: true
-  path: target/helloworld-1.0.jar
-  env:
-    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
-```   
-Now try to build the application using maven by running `mvn clean install` then pushing it into the application by `cf push` and test it but pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your username>` and you can see the Hello World message.
+
+Now build the application using maven by running:
+
+```bash
+mvn clean install
+```
+
+Then push it to the platform with:
+
+```bash
+cf push mysample -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
+```
+
+Test it by pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your name>` and you can see the Hello World message.
 
 {{</tab >}}
 
@@ -431,7 +441,43 @@ cf push mysample
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Updating in Java
+
+Let's assume that we really want something more interesting than just a hello world app.
+
+We can edit the HelloWorldController.java file to be 
+```Java
+package com.suse.cap.helloworld;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+
+  ArrayList<String> guestBook = new ArrayList<String>();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+
+    guestBook.add(name);
+
+    String nameList = guestBook.stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello " + name + " From Spring :)!";
+	}
+}
+```
+
 {{</tab>}}
 
 {{<tab tabNum="3">}}
@@ -502,7 +548,23 @@ applications:
 ```
 {{</tab>}}
 {{<tab tabNum="3">}}
-TODO: Manifest in Java
+
+Create `manifest.yaml` in your project's root folder with the following content:
+```yaml
+---
+applications:
+- name: mysample
+  memory: 512M
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+```
+
+You can now drop the flags from your push command and just use:
+```bash
+cf push
+```
 {{</tab>}}
 {{<tab tabNum="4">}}
 ```yaml
@@ -662,7 +724,66 @@ app.listen(8080)
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Reading VCAP_SERVICES in Java
+
+Spring Boot comes with [built in consumption of the VCAP_SERVICES environment variable](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/cloud/CloudFoundryVcapEnvironmentPostProcessor.html). This flattens the JSON tree so you can consume credentials easily.
+
+Let's extend our example to persist the "guestbook" to a redis array to survive any restarts. 
+
+Start by adding the [Jedis dependency](https://mvnrepository.com/artifact/redis.clients/jedis/3.2.0) to your pom.xml
+
+```xml
+...
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>3.2.0</version>
+</dependency>
+...
+```
+
+Then we can connect to the service with the following code:
+
+```Java
+package com.suse.cap.helloworld;
+
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import redis.clients.jedis.Jedis;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+	@Value("${vcap.services.myredis.credentials.uri:}")
+	private String JEDIS_URI; 
+
+	private static final String LIST_KEY = "guestbook"; 
+
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+		
+		Jedis jedis = new Jedis(JEDIS_URI);
+		
+		jedis.lpush(LIST_KEY, name);
+		
+		String nameList = jedis.lrange(LIST_KEY, 0, -1).stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello "+name + " From Spring :)! " + nameList + "  have all signed in!";
+	}
+}
+```
+
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 To consume our Redis service from our Python example app we can use the following snippet:
@@ -864,7 +985,38 @@ You should see something similar to:
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Debugging in Java
+
+Java allows attaching a debugger to a remotely running application. To do this we need to restart the application with the following `JAVA_OPTS` in the manifest:
+
+```yaml
+applications:
+- name: mysample
+  memory: 512M
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,address=:8000'
+```
+
+Then repush the app:
+```bash 
+cf push
+```
+
+To allow local access to the debugger through a ssh tunnel, run this in the background:
+```bash
+cf ssh mysample -L 8000:localhost:8000
+```
+
+Then, from eclipse, add a debug configuration by right clicking on your project, selecting `Debug As`, and `Debug Configurations...`:
+![VS Code Debugger](/images/cli/eclipse1.png)
+
+Then click `Remote Java Application` and create new one (button in the top left of this screenshot):
+
+![VS Code Debugger](/images/cli/eclipse2.png)
+
+
 {{</tab>}}
 {{<tab tabNum="3">}}
 TODO: debugging in Python
