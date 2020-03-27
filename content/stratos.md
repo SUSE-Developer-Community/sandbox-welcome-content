@@ -7,7 +7,7 @@ menu:
     weight: 50
 ---
 
-Stratos is a great way to manage our Cloud Foundry applications. While it might not be the most useful for "inner-loop" development cycles, it's a great tool for looking at configuration, logging, and resource utilization.
+Stratos is a great way to manage our Cloud Foundry applications. It's a great tool for looking at configuration, logging, and resource utilization.
 
 ## Logging in
 
@@ -26,16 +26,16 @@ To see a list of currently running applications, click on the Applications tab o
 ## Organizations and Spaces
 
 
-The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
+Cloud Foundry uses the concept of Organizations (often abbreviated as "Orgs") and Spaces to enable multi-tenancy with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls. Each app belongs to a space in an org. A user can have access across a system and permissions control which orgs and spaces they can access.
 
 As part of your free trial, you have been set up administrator rights for your own personal organization with a few different spaces by default (dev, test, prod, and sample).
 
 
 ## Forking Example on GitHub
 
-While we can deploy applications by zipping up some files and uploading them, it's much easier in the long run to tie a release into a git repository. This will allow switching between deployed commits significantly easily. (This is a reason that the CLI is much better for active development but Stratos does very well for managing production deployments)
+While we can deploy applications by zipping up some files and uploading them, it's much easier in the long run to tie a release into a git repository. This will make switching between deployed commits significantly easier. (This is a reason that the CLI is much better for active development but Stratos does very well for managing production deployments)
 
-For these instructions, we can use an existing project. If you want to follow along with the example, fork the project found at [Link](https://github.com/scf-samples/python-mongodb-blog) to your personal space. 
+For these instructions, we can use an existing project. If you want to follow along with the example, fork the project found [here](https://github.com/scf-samples/python-mongodb-blog) to your personal space. 
 
 ### Manifest
 
@@ -49,10 +49,10 @@ applications:
 - name: Example Application
 ```
 
-But these can get a little bit lengthy depending on your use-case. 
+Manifest files can be a lot richer than this simple example. For more information take a look at the [Cloud Foundry Documentation on manifests]/(https://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html). 
 
 
-## Deploying Application
+## Deploying an Application
 
 To deploy your example application, start on the applications page and click the `+` in the top right:
 
@@ -79,9 +79,9 @@ Pick the top commit and click `Next`:
 
 ![Commit Selection](/images/stratos/deploy6.png)
 
-Here you can customize the application deployment. Any settings set in your manifest can be overwritten at this step.  
+Here you can customize the application deployment. Any settings set in your manifest can be overridden at this step.  
 
-For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will produce and error if there is a collision, so don't be that person)
+For our sandbox, please select `Create a random route` and click `Deploy`: (The deploy will produce an error if there is a naming collision with another route used on the system - routes have one common namespace across all orgs, spaces and users.)
 
 ![Deploy Setting](/images/stratos/deploy7.png)
 
