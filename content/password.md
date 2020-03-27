@@ -32,7 +32,7 @@ To change your password from Stratos, click on the icon in the top right corner 
 
 ![Profile Access](/images/password/mainpage.png)
 
-Click the pencil on the top right to edit your profile. You can also browse directly to https://stratos.cap.explore.suse.dev/user-profile/edit. If this gives you a 404 error, you are either not logged in or your login has timed out. Logging back in should fix this. 
+Click the pencil on the top right to edit your profile. You can also browse directly to [https://stratos.cap.explore.suse.dev/user-profile/edit](https://stratos.cap.explore.suse.dev/user-profile/edit). If this gives you a 404 error, you are either not logged in or your login has timed out. Logging back in should fix this. 
  
 ![Profile Access](/images/password/account.png)
 
