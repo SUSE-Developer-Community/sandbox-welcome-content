@@ -622,18 +622,11 @@ app.listen(8080)
 TODO: Reading VCAP_SERVICES in Java
 {{</tab>}}
 {{<tab tabNum="4">}}
-TODO: Reading VCAP_SERVICES in Python
 To consume our Redis service from our Python example app we can use the following snippet:
 ```Python
 import redis
 import json
 import os
-
-cf_app_env = os.getenv('VCAP_APPLICATION')
-if cf_app_env is not None:
-    host = json.loads(cf_app_env)['application_uris'][0]
-else:
-    host = 'localhost'
 
 if 'VCAP_SERVICES' in os.environ:
   vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -656,9 +649,9 @@ except redis.ConnectionError:
   r = None
 ```
 
-Let's demonstrate this by turning our static hello world example into a real web application that can store words in a database. We will use the [Flask](https://flask.palletsprojects.com) framework for this purpose. The home page will display a form for adding and removing strings to a database, and display the current content of the database as an unordered list. Here's the code (including the Redis database part above)for our new server.py:
+Let's demonstrate this by turning our static hello world example into a real web application that can store words in a database. We will use the [Flask](https://flask.palletsprojects.com) framework for this purpose. The home page will display a form for adding and removing strings to a database, and display the current content of the database as an unordered list. Here's the code (including the Redis database part above) for our new server.py:
 ```Python
-rom flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request
 import json
 import os
 import redis
@@ -667,12 +660,6 @@ APP_PORT = 8080
 APP_HOST = "0.0.0.0"
 
 app = Flask(__name__)
-
-cf_app_env = os.getenv('VCAP_APPLICATION')
-if cf_app_env is not None:
-    host = json.loads(cf_app_env)['application_uris'][0]
-else:
-    host = 'localhost'
 
 if 'VCAP_SERVICES' in os.environ:
   vcap_services = json.loads(os.environ['VCAP_SERVICES'])
@@ -745,7 +732,7 @@ To make this work we need to modify our `index.html` as follows:
 </html>
 ```
 
-We also need to move it into the `templates` directory of our app root directory, since this is where Flask expects its web templates to be. 
+We also need to move `index.html` into the `templates` directory of our app root directory, since this is where Flask expects its web templates to be. Now we can simply update our app by doing anopther `cf push`.  
 {{</tab>}}
 {{</tabs>}}
 
