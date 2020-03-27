@@ -11,7 +11,7 @@ Stratos is a great way to manage our Cloud Foundry applications. While it might 
 
 ## Logging in
 
-Sign in to Stratos at https://stratos.cap.explore.suse.dev/login. (If you haven't changed your password already, check out [Changing your Password](/password/))
+To get started, we first need to sign in to Stratos at https://stratos.cap.explore.suse.dev/login. (If you haven't changed your password already, check out [Changing your Password](/password/))
 
 ![Logging In](/images/stratos/login.png)
 

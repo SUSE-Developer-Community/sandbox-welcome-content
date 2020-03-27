@@ -8,25 +8,27 @@ menu:
     icon: color_lens
 ---
 
-For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your developer space, 
-you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought to git. 
+For day to day use, most developers will likely use the Cloud Foundry cli (cf-cli) often. With it's ability to push any code directly to your personal developer space, 
+you can rapidly iterate on your application. This allows you to test code without needing to commit every single thought or whitespace change to git!
 
 ## Installation
-It can be run on a variety of systems. Pick the system you are using to install on:
+The command line client can be run on a variety of systems. To get started, pick the OS you are running:
 
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
 {{< tab tabNum="1" >}}
-To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with zypper:
+To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with `zypper`:
 
 ```bash
 sudo zypper in cf-cli
 ```
+
+This works on [OpenSUSE for WSL](https://en.opensuse.org/openSUSE%3AWSL) as well!
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
 To install the cf-cli on a Mac, the package is available in homebrew. 
 
-If you haven't installed homebrew, install it with:
+If you haven't installed [homebrew](https://brew.sh/), install it with:
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -69,11 +71,11 @@ sudo yum install cf-cli
 {{< /tab >}}
   
 {{< tab tabNum="6" >}}
-If none of the other methods work for you, there are binaries precompiled for you to use. 
+If none of the other methods work for you, there are binaries pre-compiled available. 
 
 These can be found at [Here](https://github.com/cloudfoundry/cli#installers-and-compressed-binaries).
 
-Or, if you want to build it yourself, the Golang source can be found [Here](https://github.com/cloudfoundry/cli).
+Or, if you want to build it from source, the project can be found [Here](https://github.com/cloudfoundry/cli).
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -81,13 +83,14 @@ Or, if you want to build it yourself, the Golang source can be found [Here](http
   
 ## Login To Your Account
 
-Once you have installed the cf-cli, we need to log in. In this sandbox environment, we need to log in though our Single Sign On portal. To start the sign on, run:
+Once you have installed the cf-cli, we can log in. 
 
+{{<callout title="note">}}
+Your user name is the e-mail address you used to create your SUSE developer community account, and the password is in the welcome e-mail you received after registering for access to the sandbox. You can change this by [following these instructions](/password/).
+{{</callout>}}
 ```bash
-cf login -a https://api.cap.explore.suse.dev -u <Email used in developer portal> 
+cf login -a https://api.cap.explore.suse.dev -u <your_username> -p <your_password>
 ```
-
-This will prompt you for your password. This is the random password delivered along with your welcome email. Remember to use your updated password in case you changed it in Stratos. 
 
 The next prompt will be to select which space you want to target. Select the option that corresponds to `samples` for now. 
 
@@ -108,8 +111,6 @@ Select a space (or press enter to skip):
 Space> 3
 Targeted space samples
 
-
-                
 API endpoint:   https://api.cap.explore.suse.dev (API version: 2.138.0)
 User:           test@example.com
 Org:            text_example_com
@@ -119,9 +120,9 @@ Space:          samples
   
 ## Organizations and Spaces
 
-The applications and users of a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to built a multi-tenant environment with minimal headache since each of these organizations and spaces can be given it's own resource quotas and access controls.
+All applications (and users) on a Cloud Foundry platform are split into Organizations and Spaces. This gives a way to build a multi-tenant environment with minimal headache since each organization and space can be given it's own resource quota and access control.
 
-As part of your free trial, you have administrator rights for your own organization with a few different spaces by default. By default, there are a few applications running in the "samples" space (selected at login).
+As part of your developer sandbox, you have administrator access for a personal organization with a few spaces. By default, there are a few applications running in the "samples" space (selected at login).
 
 To check which apps are running in the current org and space, run:
 
@@ -129,23 +130,17 @@ To check which apps are running in the current org and space, run:
 cf apps
 ```
 
-This should show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
+This will show a list of applications, their state, how many instances are running, their quotas, and any URLs being routed to them.
 
 To switch to the "dev" space, use: 
 
 ```bash
 cf target -s dev
 ```
-  
-Once you are a member of more than one org (initially your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available and you didn't specify which one you want to target. 
 
-You can also check out the services provided in our environment, by running:
-
-```bash
-cf marketplace
-```
-
-Which will return the services, the plans offered, any description, and which broker is providing the service. These will be revisited later.
+{{<callout title="note">}}
+If you are a member of more than one org (in this sandbox, your account will only be member of your own personal org), you can switch between them by using the `-o` switch. Note also that CF will prompt you for org or space selection when there are multiple orgs or spaces available. 
+{{</callout>}}
 
 ## Help on Commands
 
@@ -175,21 +170,9 @@ You will get a randomly generated url for each new app that will stay consistent
 
 Let's run a simple app (use the tabs to select your language of choice): 
 
-{{< tabs tabTotal="4" tabID="lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+{{< tabs tabTotal="3" tabID="lang" tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
       
 {{< tab tabNum="1" >}}
-There are a few steps that happen when you run `cf push`:
-
- * The current working directory gets zipped up
- * This file gets uploaded to the server
- * The server starts running the code through a series of "build packs"
- * Each build pack determines if it can do anything with the code
- * If one can, it builds the code into a container and instructs the scheduler how to run the new application
- * The scheduler runs the freshly built application
- 
-{{< /tab >}}
-  
-{{< tab tabNum="2" >}}
 Let's create a quick sample application using node.js! You'll need node and npm installed on your system for this example, instructions are [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
 
 For easy readability, we will use the [express](http://expressjs.com/) framework to serve a Hello World Application.
@@ -247,7 +230,7 @@ cf push <app-name> --random-route
 
 {{</tab >}}
 
-{{<tab tabNum="3">}}
+{{<tab tabNum="2">}}
 Let us start by creating a simple Java Spring Boot Application. 
 First let us go to the spring initializer site https://start.spring.io/ and select the required dependencies. Enter the project name and details as follows:
   - Spring version 2.2.5
@@ -255,14 +238,21 @@ First let us go to the spring initializer site https://start.spring.io/ and sele
   - Artifact helloworld
   - Packaging jar
   - java 8
-  - dependcies:
+  - dependencies:
       - spring web
-  Then hit generate button and download the project zip.
-  Upzip the project, then open eclipse and import the project.
-  In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
-  Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
+Then hit `generate` and download the project zip.
+
+![Spring Page](/images/cli/spring1.png)
+
+Unzip the project, open eclipse, and import the project.
+
+In Eclipse navigate to the pom.xml and change version to 1.0 rather than 0.0.1-SNAPSHOT.
+
+Now navigate to com.suse.cap.helloworld and there create HelloWorldController with the following content:
+
  ```Java
-  package com.suse.cap.helloworld;
+package com.suse.cap.helloworld;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -274,6 +264,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/helloworld")
 public class HelloWorldController {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
 	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
 	public String sayHello(@PathVariable String name) {
@@ -282,22 +273,24 @@ public class HelloWorldController {
 	}
 }
 ```
-Then navigate to the main folder and create `manifest.yaml` with the following content:
-```yaml
----
-applications:
-- name: HelloWorld
-  memory: 1G
-  random-route: true
-  path: target/helloworld-1.0.jar
-  env:
-    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
-```   
-Now try to build the application using maven by running `mvn clean install` then pushing it into the application by `cf push` and test it but pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your username>` and you can see the Hello World message.
+
+Now build the application using maven by running:
+
+```bash
+mvn clean install
+```
+
+Then push it to the platform with:
+
+```bash
+cf push mysample -p target/helloworld-0.0.1-SNAPSHOT.jar --random-route
+```
+
+Test it by pointing your browser to your application's assigned route followed by `helloworld/sayHello/<your name>` and you can see the Hello World message.
 
 {{</tab >}}
 
-{{<tab tabNum="4">}}
+{{<tab tabNum="3">}}
 Let us create a simple static website as an example Cloud Foundry application written in Python. 
 
 First, let's create a simple HTML file that will serve as our home page, and save it as `index.html`:
@@ -354,10 +347,18 @@ space:          dev
 ```
 
 {{</tab >}}
-
 {{</tabs >}}
 
-Note: Adding the ```--random-route``` flag to your push command is useful here in this multi-tenant environment to eliminate collisions of people running the same examples and requesting the same route from different apps. Please use it when working in our sandbox!
+{{<callout title="Note">}}
+There are a few steps that happen when you run `cf push`:
+
+ * The current working directory gets zipped up
+ * This file gets uploaded to the server
+ * The server starts running the code through a series of "build packs"
+ * Each build pack determines if it can do anything with the code
+ * If one can, it builds the code into a container and instructs the scheduler how to run the new application
+ * The scheduler runs the freshly built application
+{{</callout>}}
 
 Regardless of which language you write your app in, the last few lines of the output should look something like this:
 
@@ -377,14 +378,15 @@ start command:   npm start
 #0   running   2020-02-05T22:57:51Z   0.0%   0 of 1G   0 of 1G   
 ```
 
-In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using curl.
+In the line starting with `routes:`, we can get a link to our newly created application. Go ahead and check that it's up by browsing to it or using `curl`!
+
 
 ## Logging
 
 After you've pushed your app, you may want to check the logs to debug any issues 
 or just to see the event history.
 
-To view a stream of your app's logs, run: 
+To view a live stream of your app's logs, run: 
 
 ```bash
 cf logs <app name>
@@ -401,8 +403,6 @@ cf logs --recent <app name>
 As you are developing an app you likely would like to continually iterate on code and see it running easily and quickly. 
 
 It's important to note that when an app that is already running is pushed again, the original app will be stopped and the new one built and deployed. For active development this is unlikely to cause any problems but would definitely be a concern when deploying to production. Digging into this would go beyond the scope of this introduction. In a nutshell, the way around this is to use multiple app names to give a blue green deployment and use the "real" route to direct traffic between instances.
-
-TODO: can we give a pointer to further reading on updating in production?  
 
 Now let's see how we can update our running app. Note that an update will act the same as any deploy however it will keep any additional settings that were added after the previous push. 
 
@@ -441,7 +441,43 @@ cf push mysample
 
 {{</tab>}}
 {{<tab tabNum="2">}}
-TODO: Updating in Java
+
+Let's assume that we really want something more interesting than just a hello world app.
+
+We can edit the HelloWorldController.java file to be 
+```Java
+package com.suse.cap.helloworld;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+
+  ArrayList<String> guestBook = new ArrayList<String>();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+
+    guestBook.add(name);
+
+    String nameList = guestBook.stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello " + name + " From Spring :)!";
+	}
+}
+```
+
 {{</tab>}}
 
 {{<tab tabNum="3">}}
@@ -468,15 +504,11 @@ cf push pythonhelloworld
 
 Note: This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
 
-TODO: add some explanation how the config can changed after initial push without deleting the app. 
-
 {{<callout title="Note">}}
 
 This time, we can drop the ```--random-route``` as the configuration is persistent. So Cloud Foundry will remember that you requested a random route the first time you pushed the app and will keep it that way in subsequent pushes. 
 
 {{</callout>}}
-
-TODO: add some explanation how the config can changed after initial push without deleting the app. 
 
 ## Manifest
 
@@ -516,7 +548,23 @@ applications:
 ```
 {{</tab>}}
 {{<tab tabNum="3">}}
-TODO: Updating in Java
+
+Create `manifest.yaml` in your project's root folder with the following content:
+```yaml
+---
+applications:
+- name: mysample
+  memory: 512M
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+```
+
+You can now drop the flags from your push command and just use:
+```bash
+cf push
+```
 {{</tab>}}
 {{<tab tabNum="4">}}
 ```yaml
@@ -530,8 +578,6 @@ applications:
   env:
 ```
 With this application manifest in place, we can now omit the build pack specification with the `-b python_buildpack` switch and we do not need the `Procfile` anymore. It does not hurt to leave it in place though. 
-
-TODO: explain which file takes precedence in case of diverging config (e.g. start command in Procfile and manifest)
 
 {{</tab>}}
 {{</tabs>}}
@@ -594,15 +640,11 @@ cf env <app-name>
 
 Once we have the service created and bound, we can consume it from our application.
 
-Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES environment variable.
-
-{{<tabs tabTotal="4" tabID="service_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
-{{<tab tabNum="1">}}
-Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
+Service binding information is passed to the app as a JSON blob in the VCAP_SERVICES environment variable. Parsing that blob will give a data structure looking like:
 
 ```json
 {
-  "service-type1":[
+  "service-type-1":[
     {
       "name": "name",
       "credentials": {
@@ -611,22 +653,23 @@ Depending on the service being provided, the credentials provided will be differ
       }
     }
   ],
-  "service-type2":[
+  "service-type-2":[
     {
       "name": "name",
       "credentials": {
-        "connectionString":"a:p@path.to/service"
+        "connectionUri":"a:p@path.to/service"
       }
     }
   ]
 }
 ```
+Depending on the service being provided, the credentials provided will be different. All services passed in will have at least a name and some credentials object. (But typically more)
 
 These can be consumed in your applications code to know what services exist that it can use.
 
-{{</tab>}}
-{{<tab tabNum="2">}}
-In a Node application, we can consume the services with something like this: 
+{{<tabs tabTotal="3" tabID="service_lang"  tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
+{{<tab tabNum="1">}}
+In a Node application, we can consume the services with some code like this: 
 
 ```js
 const getService = (type, name)=>(
@@ -680,10 +723,69 @@ app.listen(8080)
 ```
 
 {{</tab>}}
-{{<tab tabNum="3">}}
-TODO: Reading VCAP_SERVICES in Java
+{{<tab tabNum="2">}}
+
+Spring Boot comes with [built in consumption of the VCAP_SERVICES environment variable](https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/cloud/CloudFoundryVcapEnvironmentPostProcessor.html). This flattens the JSON tree so you can consume credentials easily.
+
+Let's extend our example to persist the "guestbook" to a redis array to survive any restarts. 
+
+Start by adding the [Jedis dependency](https://mvnrepository.com/artifact/redis.clients/jedis/3.2.0) to your pom.xml
+
+```xml
+...
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>3.2.0</version>
+</dependency>
+...
+```
+
+Then we can connect to the service with the following code:
+
+```Java
+package com.suse.cap.helloworld;
+
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import redis.clients.jedis.Jedis;
+
+@RestController
+@RequestMapping(value = "/helloworld")
+public class HelloWorldController {
+	@Value("${vcap.services.myredis.credentials.uri:}")
+	private String JEDIS_URI; 
+
+	private static final String LIST_KEY = "guestbook"; 
+
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldController.class);
+	@RequestMapping(value = "/sayHello/{name}", method = RequestMethod.GET)
+	public String sayHello(@PathVariable String name) {
+		
+		Jedis jedis = new Jedis(JEDIS_URI);
+		
+		jedis.lpush(LIST_KEY, name);
+		
+		String nameList = jedis.lrange(LIST_KEY, 0, -1).stream().collect(Collectors.joining(", "));
+
+		LOGGER.info("Saying Hello to " + name);
+		return "Hello "+name + " From Spring :)! " + nameList + "  have all signed in!";
+	}
+}
+```
+
+
 {{</tab>}}
-{{<tab tabNum="4">}}
+{{<tab tabNum="3">}}
 To consume our Redis service from our Python example app we can use the following snippet:
 ```Python
 import redis
@@ -814,16 +916,14 @@ Lastly, we can attach a debugger to the running application to monitor state as 
 Since any traffic going to the container running our application is routed through a reverse proxy, 
 we need to be a little clever when attaching a remote debugger to the running application. 
 
-{{<tabs tabTotal="4" tabID="debugging_lang"  tabName1="Theory" tabName2="Node.js" tabName3="Java" tabName4="Python" >}}
+The trick for most languages is to pipe through SSH using `cf ssh <app name> -L <local port>:localhost:<remote port>` to open up a ssh port forward.
+
+{{<tabs tabTotal="4" tabID="debugging_lang" tabName1="Node.js" tabName2="Java" tabName3="Python" >}}
 {{<tab tabNum="1">}}
-The trick for most languages is to pipe through SSH using `cf ssh`. 
-This will open up an SSH socket and host it on your local computer giving a secure way to access your application
-{{</tab>}}
-{{<tab tabNum="2">}}
 
 Node.js has a debug mode available by starting with the `--inspect` flag that we can use to attach the VS Code debugger.
 
-The first step will be to change the start command in your `package.json` to enable the inspector. (Remember to remove this when pushing to Production...)
+The first step will be to change the start command in your `package.json` to enable the inspector. 
 
 ```json
 ...
@@ -872,14 +972,48 @@ You should see something similar to:
 
 
 {{</tab>}}
-{{<tab tabNum="3">}}
-TODO: Debugging in Java
+{{<tab tabNum="2">}}
+
+Java allows attaching a debugger to a remotely running application. To do this we need to restart the application with the following `JAVA_OPTS` in the manifest:
+
+```yaml
+applications:
+- name: mysample
+  memory: 512M
+  random-route: true
+  path: target/helloworld-1.0.jar
+  env:
+    JBP_CONFIG_SPRING_AUTO_RECONFIGURATION: '{enabled: false}'
+    JAVA_OPTS: '-agentlib:jdwp=transport=dt_socket,address=:8000'
+```
+
+Then repush the app:
+```bash 
+cf push
+```
+
+To allow local access to the debugger through a ssh tunnel, run this in the background:
+```bash
+cf ssh mysample -L 8000:localhost:8000
+```
+
+Then, from eclipse, add a debug configuration by right clicking on your project, selecting `Debug As`, and `Debug Configurations...`:
+![VS Code Debugger](/images/cli/eclipse1.png)
+
+Then click `Remote Java Application` and create new one (button in the top left of this screenshot):
+
+![VS Code Debugger](/images/cli/eclipse2.png)
+
+
 {{</tab>}}
-{{<tab tabNum="4">}}
+{{<tab tabNum="3">}}
 TODO: debugging in Python
 {{</tab>}}
 {{</tabs>}}
 
+{{<callout title="Note">}}
+Don't forget to remove any debugger flags before pushing to production!
+{{</callout>}}
   
 ## Clean up
 

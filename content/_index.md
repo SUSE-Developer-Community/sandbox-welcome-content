@@ -7,10 +7,12 @@ menu:
     weight: 10
 ---
 
-Welcome to the SUSE CAP Sandbox! 
+Welcome to the SUSE CAP Sandbox!
 
+{{<callout>}}
 If you would like to skip the introduction and just get logged in and start playing around, [click here](/quickstart/)
-  
+{{</callout>}}
+
 ## Key Developer Benefits to Platform as a Service
 
 Imagine you just got a new (employer provided) laptop. First thing you do is slap your favorite OS on it and then the fun begins. You have to install your favorite editor or IDE, compilers, libraries, debug tools and what have you. Fast forward a few hours and you're slowly getting to a point where your new tool becomes usable. Couple of weeks later something in your tool-chain breaks and you have to spend time to fix it. Updates need to be made, dependencies to be considered and managed and so on. Bottom line is, you need to invest a certain amount of your valuable time into building and maintaining your development environment, your workbench so to speak. And this time gets taken away from the time you have to do actually productive things, i.e. write code. 
@@ -33,23 +35,15 @@ This concept becomes even more beneficial when it comes to harmonizing developme
 
 Another advantage of Platform as a Service is that it can rid a developer to maintain adjacent components as part of the test tool-chain. The platform operator usually offers a number of services such as databases, search and analytics engines, etc. Imagine you want to use a database in your app. Normally you would have to install and configure that database yourself. With a PaaS, your platform operator can offer readily available database instances as services that you can bind to your app. So the only thing you need to worry about is the API calls to the database interface in your code. 
 
-#### Services
+### Services
 
 Cloud Foundry uses the Open Service Broker API spec to allow external services to give an easy way to be created and attached to applications. We then give a way for applications to define which services they expect to exist and specify how to receive credentials for those services.
 
 This set of features gives a really easy way to connect your application to external services without a lot of additional set up work. This allows you to get started on your code with much less headache.
 
-#### Autoscaling
+### Autoscaling
 
 Yet another benefit of PaaS is that it helps you avoid writing certain kinds of code that you don't want to write. For example, platforms usually have built-in load balancers and autoscaling capabilities so that the platform can launch additional app instances automatically - you don't have to write the code that does this anymore. This is a very complex topic though, and if you want to dive more into those aspects...
-> TODO: add a pointer to further reading about load balancers, autoscaler and microservice patterns...
-  
-## Developer Workflow
-
-Software development is hard. There's no getting around the base level of complexity involved in building software that doesn't completely fall apart as soon as a user breathes on it.
-
-The goal of any platform is to simplify the mundane boring part of development to let you focus your energy on more interesting problems. 
-
   
 ## Stratos vs Command Line
 
