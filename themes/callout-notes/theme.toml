@@ -1,0 +1,10 @@
+name = "Hugo Callout Notes"
+license = "MIT"
+description = "A Hugo shortcode that allows you to add callouts in your markdown files."
+tags = ["component", "notes"]
+features = ["unlimited notes"]
+min_version = "0.55"
+
+[author]
+    name = "Andrew Gracey"
+    homepage = "https://github.com/agracey/"

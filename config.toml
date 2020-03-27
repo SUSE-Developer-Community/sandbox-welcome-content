@@ -2,7 +2,7 @@ baseURL = "/"
 languageCode = "en-us"
 title = "SUSE Developer CAP Sandbox"
 
-theme = ["hugo-dynamic-tabs", "vanilla-bootstrap-hugo-theme"]
+theme = ["hugo-dynamic-tabs", "callout-notes", "vanilla-bootstrap-hugo-theme"]
 
 [params]
   includeBootstrapJs = true
