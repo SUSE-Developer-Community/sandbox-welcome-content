@@ -79,3 +79,7 @@ p img {
 li {
     padding: 4px 0px 0px;
 }
+
+nav.mobile-menu-open {
+  display: block;
+}
