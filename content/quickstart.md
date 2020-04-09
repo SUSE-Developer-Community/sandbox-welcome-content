@@ -65,10 +65,12 @@ The Stratos Web UI can be accessed at https://stratos.cap.explore.suse.dev. Cred
 If you get stuck or run into trouble, you can check out the [FAQ](/faq/), reach us on our [forum](https://forums.explore.suse.dev/), or write an email to developers@suse.com.
 
 
-## Further reading
+## What now?
 
 More detailed instructions and inspiration what to try out on the command line can be found [here](/cli/), and some exercises on the web UI Stratos can be found [here](/stratos). 
 
-The Cloud Foundry [From Zero to Hero course](https://www.cloudfoundry.org/trainings/cloud-foundry-beginners-zero-hero/) is a classic starting point if you want to get even more serious.  
+The Cloud Foundry [From Zero to Hero course](https://www.cloudfoundry.org/trainings/cloud-foundry-beginners-zero-hero/) is a classic starting point if you want to get even more serious. 
+
+It is rather easy to set up your own SUSE Cloud Application Platform cluster on Microsoft Azure - instructions can be found in [this blog post](https://www.suse.com/c/cloud-foundry-in-azure-made-easier/). 
 
 If you're interested in going deeper and maybe even get certified on SUSE Cloud Application Platform, have a look at our [training offerings](https://training.suse.com/certification/fa-suse-cap/). 

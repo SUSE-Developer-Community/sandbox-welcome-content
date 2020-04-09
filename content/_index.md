@@ -7,17 +7,17 @@ menu:
     weight: 10
 ---
 
-Welcome to the SUSE CAP Sandbox!
+Welcome to the Getting Started Guide for the SUSE Cloud Application Platform Developer Sandbox! This guide discusses the benefits of Platform-as-a-Service in general and walks you through [the basics of the Cloud Foundry command line interface](/cli) and the browser-based ghraphical user interface [Stratos](/stratos). It also has [instructions how to change your password](/password) and a collection of [Frequently Asked Questions](/faq).
 
 {{<callout>}}
-If you would like to skip the introduction and just get logged in and start playing around, [click here](/quickstart/)
+If you would like to skip the introduction and get right into the middle of things, have a look at our [Quickstart Guide](/quickstart/)!
 {{</callout>}}
 
 ## Key Developer Benefits to an Application Platform
 
-Imagine you just got a new (employer provided) laptop. First thing you do is slap your favorite OS on it and then the fun begins. You have to install your favorite editor or IDE, compilers, libraries, debug tools and what have you. Fast forward a few hours and you're slowly getting to a point where your new tool becomes usable. Couple of weeks later something in your tool-chain breaks and you have to spend time to fix it. Updates need to be made, dependencies to be considered and managed and so on. Bottom line is, you need to invest a certain amount of your valuable time into building and maintaining your development environment, your workbench so to speak. And this time gets taken away from the time you have to do actually productive things, i.e. write code. 
+Imagine your employer just gave you a new laptop. First thing you do is slap your favorite OS on it and then the fun begins. You have to install your favorite editor or IDE, compilers, libraries, debug tools and what have you. Fast forward a few hours and you're slowly getting to a point where your new tool becomes usable. Couple of weeks later something in your tool-chain breaks and you have to spend time to fix it. Updates need to be made, dependencies to be considered and managed and so on. Bottom line is, you need to invest a certain amount of your valuable time into building and maintaining your development environment, your workbench so to speak. And this time gets taken away from the time you have to do actually productive things, i.e. write code. 
 
-Recent surveys have shown, that developers actually only spend about one third of their time coding, while the rest of the time is packed with tedious tasks around maintenance, preparation and planning. [Click here for more information](https://thenewstack.io/how-much-time-do-developers-spend-actually-writing-code/)
+Recent surveys have shown, that developers actually only spend about one third of their time coding, while the rest of the time is packed with tedious tasks around maintenance, preparation and planning. Have a look at [this article](https://thenewstack.io/how-much-time-do-developers-spend-actually-writing-code/) for more information. 
 
 And so far we have just talked about an individual developer. Imagine your teammates doing the same thing. Which not only causes the time spent on maintaining dev environments to multiply across your team, it also makes everybody end up with a different environment - even if they install exactly the same set of software. There will be version differences of some sort. Security patches come every day. New library versions get published every day. Generally speaking, there's always the possibility that code that runs on your machine doesn't run on your colleague's machine. So additional time needs to be spent on integration work. 
 

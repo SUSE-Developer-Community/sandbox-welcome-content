@@ -1036,4 +1036,8 @@ If the route is not removed when the app is deleted, it can then be deleted afte
 
 ## Next Steps
 
-TODO: What Next Steps?
+Now that you've learned a lot about how to handle Cloud Foundry from the command line, you might want to take a look at our [introduction to the SUSE Cloud Application Platform web interface Stratos](/stratos). 
+
+This guide only covers rather basic use cases, but there are lots of sample applications on the Internet that can help you understand how to make use of Cloud Foundry's more advanced features. We've pulled together a couple of pointers to our favourites on the [SUSE Developer Portal](https://www.explore.suse.dev/platform-as-a-service/).
+
+If you're interested in how to set up your own SUSE CLoud Application Platform cluster on Microsoft Azure, check out [this blog post](https://www.suse.com/c/cloud-foundry-in-azure-made-easier/).
