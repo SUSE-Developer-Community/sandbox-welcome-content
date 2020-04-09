@@ -7,7 +7,7 @@ menu:
     weight: 10
 ---
 
-Welcome to the Getting Started Guide for the SUSE Cloud Application Platform Developer Sandbox! This guide discusses the benefits of Platform-as-a-Service in general and walks you through [the basics of the Cloud Foundry command line interface](/cli) and the browser-based ghraphical user interface [Stratos](/stratos). It also has [instructions how to change your password](/password) and a collectioon of [Frequently Asked Questions](/faq). 
+Welcome to the Getting Started Guide for the SUSE Cloud Application Platform Developer Sandbox! This guide discusses the benefits of Platform-as-a-Service in general and walks you through [the basics of the Cloud Foundry command line interface](/cli) and the browser-based ghraphical user interface [Stratos](/stratos). It also has [instructions how to change your password](/password) and a collection of [Frequently Asked Questions](/faq).
 
 {{<callout>}}
 If you would like to skip the introduction and get right into the middle of things, have a look at our [Quickstart Guide](/quickstart/)!
