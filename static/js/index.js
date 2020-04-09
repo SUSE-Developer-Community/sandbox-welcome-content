@@ -92,8 +92,9 @@ $(document).ready(() => {
   const mobileMenu = $('.js-mobile-menu').find('nav')
   /* Toggle mobile menu on click */
   $('.js-burger-menu').click(() => {
-    mobileMenu.slideToggle()
-    $('body').toggleClass('mobile-menu-open')
+    //mobileMenu.slideToggle()
+    $('.display-nav').toggleClass('mobile-menu-open')
+
   })
 
   showCollpasedMenuFloatingItems()
