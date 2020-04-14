@@ -13,7 +13,7 @@ menu:
 
 We wanted to make it easier for developers to get started with playing around and using our version of Cloud Foundry. Since most developers don't want to install an entire Kubernetes cluster just to try out a platform, it made more sense to bring it to you! 
 
-Whether you are an experienced developer or brand new to the idea, we hope this sandbox can be place to try random ideas and see if they work. Share with us what you build or ask for help on our [forums](https://forums.explore.suse.dev/)!
+Whether you are an experienced developer or brand new to the idea, we hope this sandbox can be place to try random ideas and see if they work. Share with us what you build or ask for help on the [SUSE Developer Forum](https://forums.explore.suse.dev/)!
 
 ### What can I build in this sandbox?
 
