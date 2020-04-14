@@ -7,7 +7,7 @@ menu:
     weight: 50
 ---
 
-You can access the SUSE CAP Sandbox via the Cloud Foundry command line interface or via the Stratos Web interface. Your user name is the e-mail address you used to create your SUSE developer community account, and the password is in the welcome e-mail you received after registering for access to the sandbox. 
+You can access your SUSE Cloud Application Platform Developer Sandbox via the Cloud Foundry command line interface or via the Stratos Web interface. Your user name is the e-mail address you used to create your SUSE developer community web portal account, and the password is in the welcome e-mail you received after registering for access to the sandbox. If you want to change your initial password, check our [password change instructions](/password/).
 
 ## CLI access
 
