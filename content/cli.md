@@ -86,7 +86,7 @@ Or, if you want to build it from source, the project can be found [Here](https:/
 Once you have installed the cf-cli, we can log in. 
 
 {{<callout title="note">}}
-Your user name is the e-mail address you used to create your SUSE developer community account, and the password is in the welcome e-mail you received after registering for access to the sandbox. You can change this by [following these instructions](/password/).
+Your username and password is what you provided when creating your sandbox account. You can change your password by [following these instructions](/password/).
 {{</callout>}}
 ```bash
 cf login -a https://api.cap.explore.suse.dev -u <your_username> -p <your_password>

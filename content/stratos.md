@@ -104,7 +104,7 @@ You will see that the new app is live but has an error due to a lack of database
 
 While we like to talk a lot about "stateless" applications, that's not the reality for a lot of systems. For most systems, state needs to live somewhere and treating all state as ephemeral like the hyper-scalers is not fiscally responsible for all but the largest systems.
 
-The way SUSE CAP approaches this problem is by pushing dependencies (including state) to the fringe using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
+The way SUSE Cloud Application Platform approaches this problem is by pushing dependencies (including state) to the fringe using services and suggesting that components follow the [12 Factor Application](https://12factor.net/) guidelines. This allows a lot of flexibility in development of components and allows you to develop as if in your production environment.
 
 ### Open Service Broker
 
