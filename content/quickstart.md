@@ -7,7 +7,7 @@ menu:
     weight: 50
 ---
 
-You can access your SUSE Cloud Application Developer Sandbox via the Cloud Foundry command line interface or via the Stratos Web interface. Your username and password are what you privided when creating your sandbox account. If you need to change your password, follow [these instructions](/password/). 
+You can access your SUSE Cloud Application Developer Sandbox via the Cloud Foundry command line interface or via the Stratos Web interface. Your username and password are what you provided when creating your sandbox account. If you need to change your password, follow [these instructions](/password/). 
 
 ## CLI access
 
