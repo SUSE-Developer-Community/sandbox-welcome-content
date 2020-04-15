@@ -7,7 +7,7 @@ menu:
     weight: 60
 ---
 
-When you  first create your sandbox account, you will be provided a randomly generated password. For easier access, you will likely want to change your password to one that's easier to remember. You can do that from the command line or from the Stratos UI.
+When you first create your sandbox account, you selected your username and initial password. In case you want to change it later, you can do that from the command line or from the Stratos UI.
 
 ## From Command Line
 
