@@ -69,3 +69,19 @@ Yes, this is a feature of Cloud Foundry, but we have it turned off by default. L
 ### I want to try something bigger, can I request more capacity?
 
 Yes, depending on the request we can work with you to get more capacity or (more likely) help set up your own cluster.
+
+
+## User Management
+
+### What is my username and password?
+
+When you requested a sandbox account, you were prompted for a username and password to use. Please note that these credentials are different from your Developer Community credentials. 
+
+### How can I change my password?
+
+Follow [these instructions](/password/).
+
+
+### How can I reset my password if I forgot it?
+
+At the moment, you will need to [email us](developers@suse.com) and have us change it to a temporary password.
