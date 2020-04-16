@@ -15,6 +15,16 @@ We wanted to make it easier for developers to get started with playing around an
 
 Whether you are an experienced developer or brand new to the idea, we hope this sandbox can be place to try random ideas and see if they work. Share with us what you build or ask for help on the [SUSE Developer Forum](https://forums.explore.suse.dev/)!
 
+### Does it cost anything?
+
+No. The Developer Sandbox is free. 
+
+### Will my access expire some time?
+
+No. Your Developer Sandbox will be available to you as long as you need it. 
+
+If your account is inactive for more than 3 months, we may delete it though in order to ensure a good user experience for all users of the system. Check our [Developer Sandbox Terms & Conditions](https://www.explore.suse.dev/cap-developer-sandbox-terms-conditions/) for details. 
+
 ### What can I build in this sandbox?
 
 Anything! This getting started guide has some very simple examples, but you can host very complex applications in Cloud Foundry.
@@ -42,6 +52,10 @@ We support the build packs for:
 10
 
 With a total of 2GB of requested RAM.
+
+### What happens to my Applications if I forget them?
+
+The sandbox runs on a shared instance of SUSE Cloud Application platform. To ensure a good user experience, we are monitoring usage of the system in accordance with our [Privacy Policy](https://www.explore.suse.dev/privacy/). If required, we may turn off Applications that appear unused to us. We will not delete them or any data associated with them at that point, and you will be notified if this happens. You can then simply turn them back on via the web UI or the command line client if you need them running again. 
 
 ### How many services can I use from the marketplace?
 
