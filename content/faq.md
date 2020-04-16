@@ -21,7 +21,7 @@ No. The Developer Sandbox is free.
 
 ### Will my access expire some time?
 
-No. Your Developer Sandbox is there to stay. 
+No. Your Developer Sandbox will be available to you as long as you need it. 
 
 If your account is inactive for more than 3 months, we may delete it though in order to ensure a good user experience for all users of the system. Check our [Developer Sandbox Terms & Conditions](https://www.explore.suse.dev/cap-developer-sandbox-terms-conditions/) for details. 
 
