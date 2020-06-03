@@ -896,7 +896,7 @@ To make this work we need to modify our `index.html` as follows:
 </html>
 ```
 … and include a simple `requirements.txt` file specifying our new dependencies:
-```
+```txt
 flask
 redis
 ```
