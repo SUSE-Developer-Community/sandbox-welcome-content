@@ -895,7 +895,11 @@ To make this work we need to modify our `index.html` as follows:
     </body>
 </html>
 ```
-
+… and include a simple `requirements.txt` file specifying our new dependencies:
+```txt
+flask
+redis
+```
 We also need to move `index.html` into the `templates` directory of our app root directory, since this is where Flask expects its web templates to be. Now we can simply update our app by doing anopther `cf push`.  
 {{</tab>}}
 {{</tabs>}}
