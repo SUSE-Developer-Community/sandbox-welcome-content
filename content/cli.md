@@ -16,13 +16,13 @@ The command line client can be run on a variety of systems. To get started, pick
 
 {{< tabs tabTotal="6" tabID="1"  tabName1="SUSE Linux" tabName2="Mac OS X" tabName3="Windows" tabName4="Debian" tabName5="RPM" tabName6="Source" >}}
 {{< tab tabNum="1" >}}
-To install on SUSE linux (either OpenSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with `zypper`:
+To install on SUSE linux (either openSUSE or SUSE Linux Enterprise Server), you can install the cf-cli package with `zypper`:
 
 ```bash
 sudo zypper in cf-cli
 ```
 
-This works on [OpenSUSE for WSL](https://en.opensuse.org/openSUSE%3AWSL) as well!
+This works on [openSUSE for WSL](https://en.opensuse.org/openSUSE%3AWSL) as well!
 {{< /tab >}}
   
 {{< tab tabNum="2" >}}
