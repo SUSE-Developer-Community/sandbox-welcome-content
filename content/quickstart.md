@@ -62,7 +62,7 @@ The Stratos Web UI can be accessed at https://stratos.cap.explore.suse.dev. Cred
 
 ## Where to get help
 
-If you get stuck or run into trouble, you can check out the [FAQ](/faq/), reach us on our [forum](https://forums.explore.suse.dev/), or write an email to developers@suse.com.
+If you get stuck or run into trouble, you can check out the [FAQ](/faq/), reach us on our [forum](https://forums.suse.com/), or write an email to developers@suse.com.
 
 
 ## What now?

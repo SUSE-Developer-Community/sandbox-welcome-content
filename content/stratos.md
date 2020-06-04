@@ -267,6 +267,6 @@ If everything looks correct, click `Delete`:
 
 Now that you've learned the buttons and menus of the GUI, you might be ready for some command line magic. Have a look at our [guide on the Cloud Foundry command line interface](/cli). 
 
-This guide only covers rather basic use cases, but there are lots of sample applications on the Internet that can help you understand how to make use of Cloud Foundry's more advanced features. We've pulled together a couple of pointers to our favourites on the [SUSE Developer Portal](https://www.explore.suse.dev/platform-as-a-service/). 
+This guide only covers rather basic use cases, but there are lots of sample applications on the Internet that can help you understand how to make use of Cloud Foundry's more advanced features. We've pulled together a couple of pointers to our favourites on the [SUSE Developer Portal](https://www.explore.suse.dev/application-platform/). 
 
 If you're interested in how to set up your own SUSE Cloud Application Platform cluster on Microsoft Azure, check out [this blog post](https://www.suse.com/c/cloud-foundry-in-azure-made-easier/).

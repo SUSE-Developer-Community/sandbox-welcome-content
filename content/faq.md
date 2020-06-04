@@ -13,7 +13,7 @@ menu:
 
 We wanted to make it easier for developers to get started with playing around and using our version of Cloud Foundry. Since most developers don't want to install an entire Kubernetes cluster just to try out a platform, it made more sense to bring it to you! 
 
-Whether you are an experienced developer or brand new to the idea, we hope this sandbox can be place to try random ideas and see if they work. Share with us what you build or ask for help on the [SUSE Developer Forum](https://forums.explore.suse.dev/)!
+Whether you are an experienced developer or brand new to the idea, we hope this sandbox can be place to try random ideas and see if they work. Share with us what you build or ask for help on the [SUSE Developer Forum](https://forums.suse.com/)!
 
 ### Does it cost anything?
 
@@ -29,7 +29,7 @@ If your account is inactive for more than 3 months, we may delete it though in o
 
 Anything! This getting started guide has some very simple examples, but you can host very complex applications in Cloud Foundry.
 
-If you want some suggestions on what to build, join us on our [forums](https://forums.explore.suse.dev/) to see what others are building!
+If you want some suggestions on what to build, join us on our [forums](https://forums.suse.com/) to see what others are building!
 
 ### What languages are supported?
 
