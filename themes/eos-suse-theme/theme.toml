@@ -1,0 +1,12 @@
+name = "SUSE (EOS) Bootstrap"
+license = "MIT"
+licenselink = "https://gitlab.com/SUSE-UIUX/eos-ds-npm/-/blob/master/LICENSE"
+description = "A SUSE theme for Hugo"
+homepage = "https://gitlab.com/SUSE-UIUX/eos-ds-npm"
+tags = ["home", "blog", "tags", "bootstrap", "minimal", "clean", "simple", "feather"]
+features = ["home", "blog", "tags", "bootstrap", "minimal", "clean", "simple", "feather"]
+min_version = "0.60.1"
+
+[author]
+  name = "Andrew Gracey"
+  homepage = "https://zwbetz.com/"
