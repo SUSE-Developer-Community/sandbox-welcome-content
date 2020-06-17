@@ -92,9 +92,8 @@ $(document).ready(() => {
   const mobileMenu = $('.js-mobile-menu').find('nav')
   /* Toggle mobile menu on click */
   $('.js-burger-menu').click(() => {
-    //mobileMenu.slideToggle()
-    $('.display-nav').toggleClass('mobile-menu-open')
-
+    mobileMenu.slideToggle()
+    $('body').toggleClass('mobile-menu-open')
   })
 
   showCollpasedMenuFloatingItems()
@@ -264,13 +263,13 @@ function submenuLinksSetAttribute () {
 }
 
 /* Add shadow to submenu element on scrop */
-// const submenuAddShadow = () => {
-//   if ($(window).scrollTop() > 100) {
-//     $('.js-submenu-section').stop().addClass('submenu-scroll')
-//   } else {
-//     $('.js-submenu-section').stop().removeClass('submenu-scroll')
-//   }
-// }
+const submenuAddShadow = () => {
+  if ($(window).scrollTop() > 100) {
+    $('.js-submenu-section').stop().addClass('submenu-scroll')
+  } else {
+    $('.js-submenu-section').stop().removeClass('submenu-scroll')
+  }
+}
 
 /* When window loads, if current the page is inside the dropdown, then highlight more menu */
 const highlightMoreMenu = () => {
@@ -348,6 +347,78 @@ $(function () {
     })
   })
 })
+
+/**
+ * Truncates text bases on given length.
+ */
+$(function () {
+  // How to use it: if you have an element with some text and you want to truncate it, add (data-truncate-characters=NUMBER).
+  textTruncate()
+})
+
+const textTruncate = () => {
+  // Checks the page for content to truncate
+  const charactersSelector = $('[data-truncate-characters]')
+  const pixelsSelector = $('[data-truncate-px]')
+
+  // For each founded element, call the truncate function
+  for (let i = 0; i < charactersSelector.length; i++) {
+    truncateAtCharacter({ selector: $('[data-truncate-characters]')[i] })
+  }
+
+  for (let i = 0; i < pixelsSelector.length; i++) {
+    truncateAtPixels({ selector: $('[data-truncate-px]')[i] })
+  }
+}
+
+const truncateAtCharacter = params => {
+  const { selector } = params
+
+  const truncateLength = selector.getAttribute('data-truncate-characters')
+  const initText = selector.textContent.trim()
+
+  /* Add the tooltip content */
+  addTooltipBeforeTruncate({ selector })
+
+  const truncateText = selector.textContent = initText.trunc(truncateLength)
+  return truncateText
+}
+
+const truncateAtPixels = params => {
+  const { selector } = params
+
+  if (selector.innerText.length <= 0) return
+
+  const limitWidth = selector.getAttribute('data-truncate-px')
+  addTooltipBeforeTruncate({ selector })
+
+  return selector.setAttribute('style', `
+    max-width: ${limitWidth}px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+ `)
+}
+
+/* Adds the tooltip to title before truncating the text content */
+const addTooltipBeforeTruncate = params => {
+  const { selector } = params
+
+  if (selector.innerText.length <= 0) return
+
+  selector.setAttribute('title', selector.textContent.trim()
+  )
+  selector.setAttribute('data-toggle', 'tooltip')
+}
+
+/* String method to truncate a string at given value (n) */
+// eslint-disable-next-line
+String.prototype.trunc = String.prototype.trunc ||
+  function (n) { // eslint-disable-next-line
+    return (this.length > n) ? this.substring(0, n - 3) + '...' : this
+  }
+
 
 
 $(()=>{
