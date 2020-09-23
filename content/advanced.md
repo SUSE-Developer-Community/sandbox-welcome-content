@@ -27,13 +27,13 @@ We will create a few files in your project.
 
 Firstly, let's write our dependencies to `requirements.txt`: 
 
-```txt
+```requirements.txt
 flask
 celery
 ```
 
 Then pick Python 3 in `runtime.txt`:
-```txt
+```runtime.txt
 python-3.x
 ```
 
@@ -44,7 +44,7 @@ These will tell the buildpack to install all the right reqs.
 
 Next let's set up the RabbitMQ <-> Celery link and define our `longtime_add` task in `tasks.py`. As you can see we are using a similar VCAP_SERVICES chunk of code as documented in [the cli guide](/cli/).
 
-```python
+```tasks.py
 from __future__ import absolute_import
 from celery import Celery
 import time
@@ -82,7 +82,7 @@ To call this we need to import the function and call `.delay()` on it. When call
 With the returned future, we can either call `.get()` or `.ready()` to block and get the value or see if the result is ready. 
 
 Let's use a extremely simple flask application to see this in action:
-```python
+```server.py
 from flask import Flask, redirect, render_template, request
 from tasks import longtime_add
 
@@ -103,7 +103,7 @@ Lastly, we need to actually run these in CF. Since we actually have two differen
 Since the worker doesn't need a URL, we can set `no-route: true`.
 {{</callout>}}
 
-```yaml
+```manifest.yml
 applications:
 - name: PythonTestWeb
   buildpacks: 
