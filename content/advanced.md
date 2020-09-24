@@ -7,17 +7,17 @@ menu:
     weight: 100
 ---
 
-Here's a selection of more advanced useage for the platform:
 
 # Rabbit MQ
 
 With the introduction of [Minibroker 1.0](https://github.com/kubernetes-sigs/minibroker/releases/tag/v1.0.0) we are offering Rabbit MQ in our service marketplace.
 
-[Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over a network allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
+[Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over a event bus allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
+
 
 ## Sample Application
 
-For a sample application, let's build the sample Celery application in CAP. 
+For a sample application, let's build the sample `longtime_add` Celery application in CAP. 
 
 {{<callout title="Note">}}
 This is not at all production code and is only intended to show how to set up Celery workers in Python.   
@@ -37,9 +37,7 @@ Then pick Python 3 in `runtime.txt`:
 python-3.x
 ```
 
-These will tell the buildpack to install all the right reqs.
-
-
+These will tell the buildpack to install all the right packages and run with the right version of Python.
 
 
 Next let's set up the RabbitMQ <-> Celery link and define our `longtime_add` task in `tasks.py`. As you can see we are using a similar VCAP_SERVICES chunk of code as documented in [the cli guide](/cli/).
@@ -97,7 +95,7 @@ if __name__ == '__main__':
   app.run(host="0.0.0.0", port=8080)
 ```
 
-Lastly, we need to actually run these in CF. Since we actually have two different applications here (web and worker) we can define both in the same manifest. We just need to make sure we share the same rabbitmq service instance.
+Lastly, we need to actually run these in CF. Since we actually have two different applications here (web and worker) we can define both in the same manifest. We just need to make sure we share the same service instance.
 
 {{<callout title="Note">}}
 Since the worker doesn't need a URL, we can set `no-route: true`.
