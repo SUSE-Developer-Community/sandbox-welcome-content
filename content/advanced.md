@@ -8,14 +8,14 @@ menu:
 ---
 
 
-# Rabbit MQ
+## Rabbit MQ
 
 With the introduction of [Minibroker 1.0](https://github.com/kubernetes-sigs/minibroker/releases/tag/v1.0.0) we are offering Rabbit MQ in our service marketplace.
 
 [Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over a event bus allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
 
 
-## Sample Application
+### Sample Application
 
 For a sample application, let's build the sample `longtime_add` Celery application in CAP. 
 
@@ -38,6 +38,7 @@ python-3.x
 ```
 
 These will tell the buildpack to install all the right packages and run with the right version of Python.
+#### Worker Setup
 
 
 Next let's set up the RabbitMQ <-> Celery link and define our `longtime_add` task in `tasks.py`. As you can see we are using a similar VCAP_SERVICES chunk of code as documented in [the cli guide](/cli/).
@@ -78,6 +79,8 @@ This task will take 5 seconds to add two numbers.
 To call this we need to import the function and call `.delay()` on it. When called in this style, the function will actually run on the worker and a future is returned. 
 
 With the returned future, we can either call `.get()` or `.ready()` to block and get the value or see if the result is ready. 
+
+#### Flask Setup
 
 Let's use a extremely simple flask application to see this in action:
 ```server.py
