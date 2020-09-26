@@ -15,9 +15,10 @@ With the introduction of [Minibroker 1.0](https://github.com/kubernetes-sigs/min
 [Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over a event bus allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
 
 
+
 ### Sample Application
 
-For a sample application, let's build the sample `longtime_add` Celery application in CAP. 
+For an amazingly basic sample application, let's build the sample `longtime_add` Celery application in CAP and then expose it via HTTP using flask. 
 
 {{<callout title="Note">}}
 This is not at all production code and is only intended to show how to set up Celery workers in Python.   
@@ -78,7 +79,7 @@ This task will take 5 seconds to add two numbers.
 
 To call this we need to import the function and call `.delay()` on it. When called in this style, the function will actually run on the worker and a future is returned. 
 
-With the returned future, we can either call `.get()` or `.ready()` to block and get the value or see if the result is ready. 
+With the returned future, we can either call `.get()` to block and get the value or `.ready()` to see if the result is ready. 
 
 #### Flask Setup
 
@@ -91,7 +92,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  fut = longtime_add.delay(2,3)
+  x = request.args.get('x', default = 2, type = int)
+  y = request.args.get('y', default = 3, type = int)
+  fut = longtime_add.delay(x, y)
   return str(fut.get())
 
 if __name__ == '__main__':
@@ -121,5 +124,9 @@ applications:
   buildpacks: 
   - python_buildpack
   no-route: true
-  command: celery worker -A tasks
+  command: celery -A tasks worker
 ```
+
+You can find the route that gets assigned to PythonTestWeb by using `cf routes`. When you browse to it, the page should take roughly 5 seconds to load then returns `5`. 
+
+While this example is obviously silly, using a message queue to think about your data moving through a pipeline is an amazingly useful concept. While we waited for the return to reply, you can pass the message on and not wait. When used correctly, this can lead to both better usability in the User Experience as well as more maintainable code due to the separation of concerns.
