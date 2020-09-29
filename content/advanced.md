@@ -12,7 +12,7 @@ menu:
 
 With the introduction of [Minibroker 1.0](https://github.com/kubernetes-sigs/minibroker/releases/tag/v1.0.0) we are offering Rabbit MQ in our service marketplace.
 
-[Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over a event bus allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
+[Rabbit MQ](https://www.rabbitmq.com) is an open source message broker. It's very useful for splitting work across processes and treating the system as a flow of data. Splitting this work over an event bus allows you to better control scaling of tasks that might take significant processing time without blocking new requests coming in. 
 
 
 
@@ -129,4 +129,4 @@ applications:
 
 You can find the route that gets assigned to PythonTestWeb by using `cf routes`. When you browse to it, the page should take roughly 5 seconds to load then returns `5`. 
 
-While this example is obviously silly, using a message queue to think about your data moving through a pipeline is an amazingly useful concept. While we waited for the return to reply, you can pass the message on and not wait. When used correctly, this can lead to both better usability in the User Experience as well as more maintainable code due to the separation of concerns.
+This example is obviously contrived. But, using a message queue to think about your data moving through a pipeline is an amazingly useful concept. In this example, we waited for the return to reply. However, you instead pass the message on and not wait. When used correctly, this can lead to both better usability in the User Experience as well as more maintainable code due to the separation of concerns.
