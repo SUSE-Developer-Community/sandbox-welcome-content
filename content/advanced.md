@@ -20,6 +20,8 @@ With the introduction of [Minibroker 1.0](https://github.com/kubernetes-sigs/min
 
 For an amazingly basic sample application, let's build the sample `longtime_add` Celery application in CAP and then expose it via HTTP using flask. 
 
+The reason for using Celery is that it allows for showcasing the concept without as much code and complication. It abstracts a good chunk of the baseline set up. FOr a more complete example of RabbitMQ with Python check out the Rabbit MQ docs [here](https://www.rabbitmq.com/tutorials/tutorial-one-python.html)
+
 {{<callout title="Note">}}
 This is not at all production code and is only intended to show how to set up Celery workers in Python.   
 {{</callout>}}
