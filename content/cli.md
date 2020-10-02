@@ -607,14 +607,14 @@ This will give us a table view of the available services to run.
 service      plans           description                 broker
 mongodb      4-0-6           Helm Chart for mongodb      minibroker
 postgresql   11-5-0          Helm Chart for postgresql   minibroker
-redis        4-0-10, 5-0-7   Helm Chart for redis        minibroker
+redis        5-0-7   Helm Chart for redis        minibroker
 mariadb      10-1-34         Helm Chart for mariadb      minibroker
 ```
 
 For our working example, let's create a redis instance:
 
 ```bash
-cf create-service redis 4-0-10 myredis
+cf create-service redis 5-0-6 myredis
 ```
 
 This will kick off the creation of a new redis instance.
