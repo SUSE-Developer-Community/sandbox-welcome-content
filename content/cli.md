@@ -604,17 +604,18 @@ cf marketplace
 This will give us a table view of the available services to run.
 
 ```bash
-service      plans           description                 broker
-mongodb      4-0-6           Helm Chart for mongodb      minibroker
-postgresql   11-5-0          Helm Chart for postgresql   minibroker
-redis        4-0-10, 5-0-7   Helm Chart for redis        minibroker
-mariadb      10-1-34         Helm Chart for mariadb      minibroker
+service      plans     description                 broker
+postgresql   11-6-0    Helm Chart for postgresql   minibroker1.0
+rabbitmq     3-8-1     Helm Chart for rabbitmq     minibroker1.0
+redis        5-0-6     Helm Chart for redis        minibroker1.0
+mariadb      10-3-21   Helm Chart for mariadb      minibroker1.0
+mongodb      4-2-3     Helm Chart for mongodb      minibroker1.0
 ```
 
 For our working example, let's create a redis instance:
 
 ```bash
-cf create-service redis 4-0-10 myredis
+cf create-service redis 5-0-6 myredis
 ```
 
 This will kick off the creation of a new redis instance.
